@@ -1,0 +1,29 @@
+##########################
+#     Caso de Uso 3      #
+# Trabalhando Exceptions #
+##########################
+
+iniciaSistema
+
+#####################################################
+#            Checkout com Exception                 #
+#####################################################
+
+expectError "Erro ao realizar checkout. Email do(a) hospede nao pode ser vazio." realizaCheckout email="" quarto="1A"
+expectError "Erro ao realizar checkout. Email do(a) hospede nao pode ser vazio." realizaCheckout email="   " quarto="1A"
+
+expectError "Erro ao realizar checkout. Email do(a) hospede esta invalido." realizaCheckout email="@sven" quarto="1A"
+expectError "Erro ao realizar checkout. Email do(a) hospede esta invalido." realizaCheckout email="sven.se" quarto="1A"
+expectError "Erro ao realizar checkout. Email do(a) hospede esta invalido." realizaCheckout email="sven@se" quarto="1A"
+expectError "Erro ao realizar checkout. Email do(a) hospede esta invalido." realizaCheckout email="sven@" quarto="1A"
+
+expectError "Erro ao realizar checkout. ID do quarto invalido, use apenas numeros ou letras." realizaCheckout email="sven@sverige.se" quarto="##"
+expectError "Erro ao realizar checkout. ID do quarto invalido, use apenas numeros ou letras." realizaCheckout email="sven@sverige.se" quarto="@"
+
+#####################################################
+#            Consulta de Transacoes                 #
+#####################################################
+
+expectError "Erro na consulta de transacoes. Indice invalido." consultaTransacoes atributo="Total" indice=-1
+
+fechaSistema

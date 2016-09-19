@@ -1,0 +1,54 @@
+#################
+# Caso de Uso 2 #
+#################
+
+iniciaSistema
+
+# Alfred Nobel originalmente nasceu em 1833.
+id1=cadastraHospede nome="Alfred Nobel" email="nobel@got.se" dataNascimento="21/10/1983"
+
+#####################################################
+# Realiza checkin de alguns hospedes ja cadastrados #
+#####################################################
+# Lembrando que os precos de quartos sao:           #
+# Presidencial 450,00; Luxo 250,00; Simples 100,00  #
+#####################################################
+
+realizaCheckin email="sven@sverige.se" dias=5 quarto="1A" tipoQuarto="Presidencial"
+realizaCheckin email="sven@sverige.se" dias=3 quarto="2A" tipoQuarto="Presidencial"
+
+realizaCheckin email="ines@brasil.com.br" dias=2 quarto="1B" tipoQuarto="Luxo"
+
+realizaCheckin email="agnetha@abba.se" dias=2 quarto="15A" tipoQuarto="Simples"
+
+#############################################
+# Checa informacoes das hospedagens criadas #
+#############################################
+
+expect "2" getInfoHospedagem email="sven@sverige.se" atributo="Hospedagens ativas"
+expect "1" getInfoHospedagem email="ines@brasil.com.br" atributo="Hospedagens ativas"
+expect "1" getInfoHospedagem email="agnetha@abba.se" atributo="Hospedagens ativas"
+expectError "Erro na consulta de hospedagem. Hospede Alfred Nobel nao esta hospedado(a)." getInfoHospede email=${id1} atributo="Hospedagens ativas"
+
+expect "1A,2A" getInfoHospedagem email="sven@sverige.se" atributo="Quarto"
+expect "1B" getInfoHospedagem email="ines@brasil.com.br" atributo="Quarto"
+expect "15A" getInfoHospedagem email="agnetha@abba.se" atributo="Quarto"
+expectError "Erro na consulta de hospedagem. Hospede Alfred Nobel nao esta hospedado(a)." getInfoHospedagem email=${id1} atributo="Quarto"
+
+expect "R$3600,00" getInfoHospedagem email="sven@sverige.se" atributo="Total"
+expect "R$500,00" getInfoHospedagem email="ines@brasil.com.br" atributo="Total"
+expect "R$200,00" getInfoHospedagem email="agnetha@abba.se" atributo="Total"
+expectError "Erro na consulta de hospedagem. Hospede Alfred Nobel nao esta hospedado(a)." getInfoHospedagem email=${id1} atributo="Total"
+
+realizaCheckin email="ines@brasil.com.br" dias=3 quarto="2B" tipoQuarto="Luxo"
+expect "2" getInfoHospedagem email="ines@brasil.com.br" atributo="Hospedagens ativas"
+expect "1B,2B" getInfoHospedagem email="ines@brasil.com.br" atributo="Quarto"
+expect "R$1250,00" getInfoHospedagem email="ines@brasil.com.br" atributo="Total"
+
+#########################################################################
+# Quartos jah ocupados nao podem ser usados para criar outra hospedagem #
+#########################################################################
+
+expectError "Erro ao realizar checkin. Quarto 1A ja esta ocupado." realizaCheckin email="ines@brasil.com.br" dias=10 quarto="1A" tipoQuarto="Presidencial"
+
+fechaSistema

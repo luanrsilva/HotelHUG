@@ -1,0 +1,61 @@
+#################
+# Caso de Uso 1 #
+#################
+
+#iniciaSistema e fechaSistema serao usados para carregar/armazenar os dados do sistema nos arquivos de dados.
+
+iniciaSistema
+
+###############################
+#    Cadastro de Hospedes     #
+###############################
+
+id1=cadastraHospede nome="Sven Svensson" email="sven@sverige.se" dataNascimento="10/02/1978"
+id2=cadastraHospede nome="Ines Brasil" email="ines@brasil.com.br" dataNascimento="05/10/1969"
+id3=cadastraHospede nome="Agnetha Faltskog" email="agnetha@abba.se" dataNascimento="05/04/1950"
+id4=cadastraHospede nome="Robyn" email="robyn@sverige.se" dataNascimento="12/06/1979"
+
+############################################################################ 
+#        Note que o getInfoHospede abaixo tem diferentes parametros.       # 
+#   Para esse caso, ele retorna as informacoes referente ao parametro.     # 
+############################################################################
+
+expect "Sven Svensson"  getInfoHospede id=${id1} atributo="Nome"
+expect 10/02/1978 getInfoHospede id=${id1} atributo="Data de Nascimento"
+
+expect "Ines Brasil"  getInfoHospede id=${id2} atributo="Nome"
+expect 05/10/1969  getInfoHospede id=${id2} atributo="Data de Nascimento"
+
+expect "Agnetha Faltskog"  getInfoHospede id=${id3} atributo="Nome"
+expect 05/04/1950  getInfoHospede id=${id3} atributo="Data de Nascimento"
+
+expect "Robyn"  getInfoHospede id=${id4} atributo="Nome"
+expect 12/06/1979  getInfoHospede id=${id4} atributo="Data de Nascimento"
+
+###############################
+#      Atualiza Cadastro      #
+###############################
+
+atualizaCadastro id=${id1} atributo="Nome" valor="Sven Gudmar Svenson"
+expect "Sven Gudmar Svenson"  getInfoHospede id=${id1} atributo="Nome"
+
+atualizaCadastro id=${id2} atributo="Data de Nascimento" valor="25/10/1969"
+expect 25/10/1969  getInfoHospede id=${id2} atributo="Data de Nascimento"
+
+atualizaCadastro id=${id3} atributo="Email" valor="agnetha@monomusic.se"
+expect "agnetha@monomusic.se"  getInfoHospede id="agnetha@monomusic.se" atributo="Email"
+
+###############################
+#      Remove Hospede         #
+###############################
+
+removeHospede email="robyn@sverige.se"
+
+expectError "Erro na consulta de hospede. Hospede de email robyn@sverige.se nao foi cadastrado(a)." getInfoHospede id=${id4} atributo="Nome"
+expectError "Erro na consulta de hospede. Hospede de email robyn@sverige.se nao foi cadastrado(a)." getInfoHospede id=${id4} atributo="Email"
+expectError "Erro na consulta de hospede. Hospede de email robyn@sverige.se nao foi cadastrado(a)." getInfoHospede id=${id4} atributo="Data de Nascimento"
+
+fechaSistema
+
+
+

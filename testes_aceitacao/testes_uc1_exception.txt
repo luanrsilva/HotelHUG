@@ -1,0 +1,69 @@
+##########################
+#     Caso de Uso 1      #
+# Trabalhando Exceptions #
+##########################
+
+#iniciaSistema e fechaSistema serao usados para carregar/armazenar os dados do sistema nos arquivos de dados.
+
+iniciaSistema
+
+###############################
+#    Cadastro de Hospedes     #
+###############################
+
+expectError "Erro no cadastro de Hospede. Nome do(a) hospede nao pode ser vazio." cadastraHospede nome="" email="sven@sverige.se" dataNascimento="10/02/1978"
+expectError "Erro no cadastro de Hospede. Nome do(a) hospede nao pode ser vazio." cadastraHospede nome="    " email="sven@sverige.se" dataNascimento="10/02/1978"
+expectError "Erro no cadastro de Hospede. Nome do(a) hospede esta invalido." cadastraHospede nome="Sven Gudm@r Svenson" email="sven@sverige.se" dataNascimento="10/02/1978"
+
+expectError "Erro no cadastro de Hospede. Email do(a) hospede nao pode ser vazio." cadastraHospede nome="Sven Svensson" email="" dataNascimento="10/02/1978"
+expectError "Erro no cadastro de Hospede. Email do(a) hospede nao pode ser vazio." cadastraHospede nome="Sven Svensson" email="   " dataNascimento="10/02/1978"
+expectError "Erro no cadastro de Hospede. Email do(a) hospede esta invalido." cadastraHospede nome="Sven Svensson" email="sven.sverige.se" dataNascimento="10/02/1978"
+expectError "Erro no cadastro de Hospede. Email do(a) hospede esta invalido." cadastraHospede nome="Sven Svensson" email="sven@se" dataNascimento="10/02/1978"
+expectError "Erro no cadastro de Hospede. Email do(a) hospede esta invalido." cadastraHospede nome="Sven Svensson" email="@sven" dataNascimento="10/02/1978"
+
+expectError "Erro no cadastro de Hospede. Data de Nascimento do(a) hospede nao pode ser vazio." cadastraHospede nome="Sven Svensson" email="sven@sverige.se" dataNascimento=""
+expectError "Erro no cadastro de Hospede. Data de Nascimento do(a) hospede nao pode ser vazio." cadastraHospede nome="Sven Svensson" email="sven@sverige.se" dataNascimento="    "
+
+expectError "Erro no cadastro de Hospede. Formato de data invalido." cadastraHospede nome="Sven Svensson" email="sven@sverige.se" dataNascimento="10.02.1919"
+expectError "Erro no cadastro de Hospede. Formato de data invalido." cadastraHospede nome="Sven Svensson" email="sven@sverige.se" dataNascimento="1010/02/1978"
+expectError "Erro no cadastro de Hospede. Formato de data invalido." cadastraHospede nome="Sven Svensson" email="sven@sverige.se" dataNascimento="10/0200/1978"
+expectError "Erro no cadastro de Hospede. Formato de data invalido." cadastraHospede nome="Sven Svensson" email="sven@sverige.se" dataNascimento="10/02/19"
+expectError "Erro no cadastro de Hospede. Formato de data invalido." cadastraHospede nome="Sven Svensson" email="sven@sverige.se" dataNascimento="10/02/19197"
+
+#O Hospede deve possuir uma idade minima para realizar cadastro no Hotel. 
+
+expectError "Erro no cadastro de Hospede. A idade do(a) hospede deve ser maior que 18 anos." cadastraHospede nome="Sven Svensson" email="sven@sverige.se" dataNascimento="10/02/1999"
+
+###############################
+#      Atualiza Cadastro      #
+###############################
+
+expectError "Erro na atualizacao do cadastro de Hospede. Nome do(a) hospede nao pode ser vazio." atualizaCadastro id=${id1} atributo="Nome" valor=""
+expectError "Erro na atualizacao do cadastro de Hospede. Nome do(a) hospede nao pode ser vazio." atualizaCadastro id=${id1} atributo="Nome" valor="    "
+expectError "Erro na atualizacao do cadastro de Hospede. Nome do(a) hospede esta invalido." atualizaCadastro id=${id1} atributo="Nome" valor="Sven Gudm@ar"
+
+expectError "Erro na atualizacao do cadastro de Hospede. Email do(a) hospede esta invalido." atualizaCadastro id=${id1} atributo="Email" valor="sven.sverige.se"
+expectError "Erro na atualizacao do cadastro de Hospede. Email do(a) hospede esta invalido." atualizaCadastro id=${id1} atributo="Email" valor="sven@se"
+expectError "Erro na atualizacao do cadastro de Hospede. Email do(a) hospede esta invalido." atualizaCadastro id=${id1} atributo="Email" valor="@sven"
+
+expectError "Erro na atualizacao do cadastro de Hospede. Data de Nascimento do(a) hospede nao pode ser vazio." atualizaCadastro id=${id1} atributo="Data de Nascimento" valor=""
+expectError "Erro na atualizacao do cadastro de Hospede. Data de Nascimento do(a) hospede nao pode ser vazio." atualizaCadastro id=${id1} atributo="Data de Nascimento" valor="   "
+expectError "Erro na atualizacao do cadastro de Hospede. Data de Nascimento do(a) hospede nao pode ser vazio." atualizaCadastro id=${id1} atributo="Data de Nascimento" valor="   "
+expectError "Erro na atualizacao do cadastro de Hospede. Formato de data invalido." atualizaCadastro id=${id1} atributo="Data de Nascimento" valor="10.02.1978"
+expectError "Erro na atualizacao do cadastro de Hospede. Formato de data invalido." atualizaCadastro id=${id1} atributo="Data de Nascimento" valor="1010/02/1978"
+expectError "Erro na atualizacao do cadastro de Hospede. Formato de data invalido." atualizaCadastro id=${id1} atributo="Data de Nascimento" valor="10/0200/1978"
+expectError "Erro na atualizacao do cadastro de Hospede. Formato de data invalido." atualizaCadastro id=${id1} atributo="Data de Nascimento" valor="10/02/197878"
+expectError "Erro na atualizacao do cadastro de Hospede. Formato de data invalido." atualizaCadastro id=${id1} atributo="Data de Nascimento" valor="10/02/19"
+expectError "Erro na atualizacao do cadastro de Hospede. Formato de data invalido." atualizaCadastro id=${id1} atributo="Data de Nascimento" valor="32/02/1920"
+expectError "Erro na atualizacao do cadastro de Hospede. Formato de data invalido." atualizaCadastro id=${id1} atributo="Data de Nascimento" valor="10/13/1920"
+expectError "Erro na atualizacao do cadastro de Hospede. A idade do(a) hospede deve ser maior que 18 anos." atualizaCadastro id=${id1} atributo="Data de Nascimento" valor="10/02/1999"
+
+###############################
+#      Remove Hospede         #
+###############################
+
+expectError "Erro na remocao do Hospede. Formato de email invalido." removeHospede email="@sverige.se"
+expectError "Erro na remocao do Hospede. Formato de email invalido." removeHospede email="sverige.se"
+expectError "Erro na remocao do Hospede. Formato de email invalido." removeHospede email="sven@"
+
+fechaSistema

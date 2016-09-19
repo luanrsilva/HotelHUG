@@ -1,0 +1,90 @@
+#################
+# Caso de Uso 3 #
+#################
+
+iniciaSistema
+
+#####################################################
+# Realiza checkin de alguns hospedes ja cadastrados #
+#####################################################
+# Lembrando que os precos de quartos sao:           #
+# Presidencial 450,00; Luxo 250,00; Simples 100,00  #
+# Sven: 5 dias, 1A, Pres; 3 dias, 2A, Pres          #
+# Ines: 2 dias, 1B, Luxo; 2 dias, 2B, Luxo          #
+# Agnetha: 2 dias, 15A, Simples;                    #
+#####################################################
+
+expect "R$2250,00" realizaCheckout email="sven@sverige.se" quarto="1A"
+expect "R$500,00" realizaCheckout email="ines@brasil.com.br" quarto="1B"
+expect "R$200,00" realizaCheckout email="agnetha@abba.se" quarto="15A"
+
+expect "1" getInfoHospedagem email="sven@sverige.se" atributo="Hospedagens ativas"
+expect "1" getInfoHospedagem email="ines@brasil.com.br" atributo="Hospedagens ativas"
+
+expectError "Erro na consulta de hospedagem. Agnetha Faltskog nao esta hospedado(a)." getInfoHospedagem email="agnetha@abba.se" atributo="Hospedagens ativas"
+expectError "Erro na consulta de hospedagem. Hospede Alfred Nobel nao esta hospedado(a)." getInfoHospede email="nobel@got.se" atributo="Hospedagens ativas"
+
+expect "2A" getInfoHospedagem email="sven@sverige.se" atributo="Quarto"
+expect "1B" getInfoHospedagem email="ines@brasil.com.br" atributo="Quarto"
+
+expectError "Erro na consulta de hospedagem. Agnetha Faltskog nao esta hospedado(a)." getInfoHospedagem email="agnetha@abba.se" atributo="Quarto"
+expectError "Erro na consulta de hospedagem. Hospede Alfred Nobel nao esta hospedado(a)." getInfoHospedagem email="nobel@got.se" atributo="Quarto"
+
+expect "R$1350,00" getInfoHospedagem email="sven@sverige.se" atributo="Total"
+expect "R$750,00" getInfoHospedagem email="ines@brasil.com.br" atributo="Total"
+
+expectError "Erro na consulta de hospedagem. Agnetha Faltskog nao esta hospedado(a)." email="agnetha@abba.se" atributo="Total"
+expectError "Erro na consulta de hospedagem. Hospede Alfred Nobel nao esta hospedado(a)." getInfoHospedagem email="nobel@got.se" atributo="Total"
+
+expect "3" consultaTransacoes atributo="Quantidade"
+expect "R$2950,00" consultaTransacoes atributo="Total"
+expect "Sven Gudmar Svenson;Ines Brasil;Agnetha Faltskog" consultaTransacoes atributo="Nome"
+
+expect "R$2950,00" consultaTransacoes atributo="Total" indice=0
+expect "Sven Gudmar Svenson" consultaTransacoes atributo="Nome" indice=0
+
+expect "R$1350,00" consultaTransacoes atributo="Total" indice=1
+expect "Ines Brasil" consultaTransacoes atributo="Nome" indice=1
+
+expect "R$750,00" consultaTransacoes atributo="Total" indice=2
+expect "Agnetha Faltskog" consultaTransacoes atributo="Nome" indice=2
+
+##############################################################
+# Um novo checkin nao deve alterar o historico de transacoes #
+##############################################################
+
+realizaCheckin email="nobel@got.se" dias=1 quarto="1A" tipoQuarto="Luxo"
+
+expect "3" consultaTransacoes atributo="Quantidade"
+expect "R$2950,00" consultaTransacoes atributo="Total"
+expect "Sven Gudmar Svenson;Ines Brasil;Agnetha Faltskog" consultaTransacoes atributo="Nome"
+expect "R$2950,00" consultaTransacoes atributo="Total" indice=0
+expect "Sven Gudmar Svenson" consultaTransacoes atributo="Nome" indice=0
+expect "R$1350,00" consultaTransacoes atributo="Total" indice=1
+expect "Ines Brasil" consultaTransacoes atributo="Nome" indice=1
+expect "R$750,00" consultaTransacoes atributo="Total" indice=2
+expect "Agnetha Faltskog" consultaTransacoes atributo="Nome" indice=2
+
+##############################################################
+#             O checkout por sua vez altera                  #
+##############################################################
+
+expect "R$250,00" realizaCheckout email="nobel@got.se" quarto="1A"
+
+expect "4" consultaTransacoes atributo="Quantidade"
+expect "R$3200,00" consultaTransacoes atributo="Total"
+expect "Sven Gudmar Svenson;Ines Brasil;Agnetha Faltskog;Alfred Nobel" consultaTransacoes atributo="Nome"
+
+expect "R$2950,00" consultaTransacoes atributo="Total" indice=0
+expect "Sven Gudmar Svenson" consultaTransacoes atributo="Nome" indice=0
+
+expect "R$1350,00" consultaTransacoes atributo="Total" indice=1
+expect "Ines Brasil" consultaTransacoes atributo="Nome" indice=1
+
+expect "R$750,00" consultaTransacoes atributo="Total" indice=2
+expect "Agnetha Faltskog" consultaTransacoes atributo="Nome" indice=2
+
+expect "R$250,00" consultaTransacoes atributo="Total" indice=3
+expect "Alfred Nobel" consultaTransacoes atributo="Nome" indice=3
+
+fechaSistema

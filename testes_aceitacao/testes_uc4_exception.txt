@@ -1,0 +1,45 @@
+##########################
+#     Caso de Uso 4      #
+# Trabalhando Exceptions #
+##########################
+
+iniciaSistema
+
+###############################
+#    Cadastro de Pratos       #
+###############################
+
+expectError "Erro no cadastro do prato. Nome do prato esta vazio." cadastraPrato nome="" preco=18.50 descricao="Deliciosa sopa de ervilhas com carne. Essa comida tradicional da Suecia eh saboreada principalmente nas quintas-feiras."
+expectError "Erro no cadastro do prato. Nome do prato esta vazio." cadastraPrato nome="   " preco=18.50 descricao="Deliciosa sopa de ervilhas com carne. Essa comida tradicional da Suecia eh saboreada principalmente nas quintas-feiras."
+
+expectError "Erro no cadastro do prato. Preco do prato eh invalido." cadastraPrato nome="Artsoppa com panquecas" preco=-18.50 descricao="Deliciosa sopa de ervilhas com carne. Essa comida tradicional da Suecia eh saboreada principalmente nas quintas-feiras."
+
+expectError "Erro no cadastro do prato. Descricao do prato esta vazia." cadastraPrato nome="Artsoppa com panquecas" preco=18.50 descricao=""
+expectError "Erro no cadastro do prato. Descricao do prato esta vazia." cadastraPrato nome="Artsoppa com panquecas" preco=18.50 descricao="  "
+
+###############################
+#    Consulta restaurante     #
+###############################
+
+expectError "Erro na consulta do restaurante. Nome do prato esto vazio." consultaRestaurante nome="" atributo="Preco"
+expectError "Erro na consulta do restaurante. Nome do prato esto vazio." consultaRestaurante nome="  " atributo="Preco"
+
+###################################
+# Cadastro de refeicoes completas #
+###################################
+
+expectError "Erro no cadastro de refeicao. So eh possivel cadastrar refeicoes com pratos ja cadastrados." cadastraRefeicao nome="Svensk mat" descricao="Uma variedade de comidas populares na Suecia." componentes="Artsoppa com panquecas;Algkot com vegetais;Kanelbullar;Algkot com legumes"
+
+expectError "Erro no cadastro de refeicao completa. Uma refeicao completa deve possuir no minimo 3 e no maximo 4 pratos." cadastraRefeicao nome="Pasto italiano" descricao="Varios pratos italianos para saborear." componentes="Bruschetta;Bresaola com rucula e parmesao;Penne ao pesto;Tiramisu;Espresso"
+expectError "Erro no cadastro de refeicao completa. Uma refeicao completa deve possuir no minimo 3 e no maximo 4 pratos." cadastraRefeicao nome="Delicia da serra" descricao="Uma selecao de pratos da culinaria regional nordestina." componentes="Tapioca"
+
+expectError "Erro no cadastro de refeicao. Nome da refeicao esta vazio." cadastraRefeicao nome="" descricao="Uma variedade de comidas populares na Suecia." componentes="Artsoppa com panquecas;Algkot com vegetais;Kanelbullar"
+expectError "Erro no cadastro de refeicao. Nome da refeicao esta vazio." cadastraRefeicao nome="   " descricao="Uma variedade de comidas populares na Suecia." componentes="Artsoppa com panquecas;Algkot com vegetais;Kanelbullar"
+
+expectError "Erro no cadastro de refeicao. Descricao da refeicao esta vazia." cadastraRefeicao nome="Svensk mat" descricao="" componentes="Artsoppa com panquecas;Algkot com vegetais;Kanelbullar"
+expectError "Erro no cadastro de refeicao. Descricao da refeicao esta vazia." cadastraRefeicao nome="Svensk mat" descricao="  " componentes="Artsoppa com panquecas;Algkot com vegetais;Kanelbullar"
+
+expectError "Erro no cadastro de refeicao. Componente(s) esta(o) vazio(s)." cadastraRefeicao nome="Svensk mat" descricao="Uma variedade de comidas populares na Suecia." componentes=""
+
+fechaSistema
+

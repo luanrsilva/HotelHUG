@@ -1,0 +1,59 @@
+#################
+# Caso de Uso 4 #
+#################
+
+iniciaSistema
+
+###############################
+#    Cadastro de Pratos       #
+###############################
+
+cadastraPrato nome="Artsoppa com panquecas" preco=18.50 descricao="Deliciosa sopa de ervilhas com carne. Essa comida tradicional da Suecia eh saboreada principalmente nas quintas-feiras."
+cadastraPrato nome="Kotbullar com lingon" preco=38.50 descricao="Almondegas de carne feito no tradicional estilo sueco."
+cadastraPrato nome="Kanelbullar" preco=15.00 descricao="Um pequeno pao de massa fofinha e sabor de canela"
+cadastraPrato nome="Algkot com vegetais" preco=75.00 descricao="Carne de alce grelhada e servida com vegetais cozidos no vapor."
+
+cadastraPrato nome="Espresso" preco=2.50 descricao="Tradicional cafe italiano."
+cadastraPrato nome="Bruschetta" preco=10.50 descricao="Uma entrada italiana feito a base de pao, alho, queijo e tomates."
+cadastraPrato nome="Penne ao pesto" preco=34.50 descricao="Tradicional massa italiana feita ao molho pesto."
+cadastraPrato nome="Tiramisu" preco=12.00 descricao="Sobremesa cremosa a base de mascaporne e com sabor de cafe."
+cadastraPrato nome="Bresaola com rucula e parmesao" preco=10.50 descricao="Carne de vaca ressecada e salgada de sabor intenso."
+
+cadastraPrato nome="Tapioca" preco=3.00 descricao="Essa deliciosa receita nordestina possui como base a farinha de mandioca."
+cadastraPrato nome="Rapadura" preco=0.50 descricao="Sobremesa doce com sabor semelhante ao acucar mascavo."
+cadastraPrato nome="Carne de sol com fritas" preco=53.00 descricao="Carne de sol saborosa servida com fritas como acompanhamento."
+cadastraPrato nome="Galeto com farofa" preco=15.50 descricao="Galeto assado na brasa servido com farofa de calabresa e bacon."
+
+expect "R$3,00" consultaRestaurante nome="Tapioca" atributo="Preco"
+expect "R$38,50" consultaRestaurante nome="Kotbullar com lingon" atributo="Preco"
+expect "R$15,00" consultaRestaurante nome="Kanelbullar" atributo="Preco"
+expect "R$75,00" consultaRestaurante nome="Algkot com vegetais" atributo="Preco"
+expect "R$53,00" consultaRestaurante nome="Carne de sol com fritas" atributo="Preco"
+
+expect "Deliciosa sopa de ervilhas com carne. Essa comida tradicional da Suecia eh saboreada principalmente nas quintas-feiras." consultaRestaurante nome="Artsoppa com panquecas" atributo="Descricao"
+expect "Almondegas de carne feito no tradicional estilo sueco." consultaRestaurante nome="Kotbullar com lingon" atributo="Descricao"
+expect "Uma entrada italiana feito a base de pao, alho, queijo e tomates." consultaRestaurante nome="Bruschetta" atributo="Descricao"
+expect "Galeto assado na brasa servido com farofa de calabresa e bacon." consultaRestaurante nome="Galeto com farofa" atributo="Descricao"
+
+###################################
+# Cadastro de refeicoes completas #
+###################################
+
+cadastraRefeicao nome="Svensk mat" descricao="Uma variedade de comidas populares na Suecia." componentes="Artsoppa com panquecas;Algkot com vegetais;Kanelbullar"
+cadastraRefeicao nome="Pasto italiano" descricao="Varios pratos italianos para saborear." componentes="Bruschetta;Bresaola com rucula e parmesao;Penne ao pesto;Tiramisu"
+cadastraRefeicao nome="Delicia da serra" descricao="Uma selecao de pratos da culinaria regional nordestina." componentes="Tapioca;Carne de sol com fritas;Rapadura"
+
+expect "R$60,75" consultaRestaurante nome="Pasto italiano" atributo="Preco"
+expect "R$38,50" consultaRestaurante nome="Kotbullar com lingon" atributo="Preco"
+expect "R$15,00" consultaRestaurante nome="Kanelbullar" atributo="Preco"
+expect "R$50,85" consultaRestaurante nome="Delicia da serra" atributo="Preco"
+expect "R$97,65" consultaRestaurante nome="Svensk mat" atributo="Preco"
+
+###############################################################################
+# Ao retornar a descricao das refeicoes informe de que pratos ela eh composta #
+###############################################################################
+
+expect "Varios pratos italianos para saborear. Serao servidos: (1) Bruschetta, (2) Bresaola com rucula e parmesao, (3) Penne ao pesto, (4) Tiramisu." consultaRestaurante nome="Pasto italiano" atributo="Descricao"
+expect "Uma selecao de pratos da culinaria regional nordestina. Serao servidos: (1) Tapioca, (2) Carne de sol com fritas, (3) Rapadura." consultaRestaurante nome="Delicia da serra" atributo="Descricao"
+
+fechaSistema
