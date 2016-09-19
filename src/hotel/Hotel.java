@@ -3,36 +3,38 @@ package hotel;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import estadia.Estadia;
 import exceptions.AtualizacaoHospedeException;
 import exceptions.BuscaHospedeException;
 import exceptions.CadastraPratoException;
 import exceptions.CadastraRefeicaoException;
-import exceptions.CadastroException;
 import exceptions.CadastroHospedeException;
 import exceptions.DadoInvalidoException;
+import exceptions.DataInvalidaException;
+import exceptions.EmailInvalidoException;
 import exceptions.HospedagemException;
 import exceptions.IdInvalidoException;
 import exceptions.StringInvalidaException;
 import exceptions.ValorInvalidoException;
 import hospede.Hospede;
 import restaurante.Restaurante;
+import util.ValidacaoDeDados;
 
 public class Hotel {
 
 	private Map<String, Hospede> hospedes;
 	private List<Hospede> checkoutRealizados;
 	private Restaurante restaurante;
+	private ValidacaoDeDados validacao;
 
 	public Hotel() {
 		this.hospedes = new HashMap<String, Hospede>();
 		this.checkoutRealizados = new ArrayList<Hospede>();
 		this.restaurante = new Restaurante();
+		this.validacao = new ValidacaoDeDados();
 	}
 
 	public String cadastraHospede(String nome, String email, String nascimento)
@@ -63,22 +65,29 @@ public class Hotel {
 	public void atualizaCadastro(String email, String atributo, String valor)
 			throws DadoInvalidoException, AtualizacaoHospedeException {
 		Hospede hospede = this.hospedes.get(email);
+		
 
 		try {
 			switch (atributo.toUpperCase()) {
 			case "NOME":
+				verificaNome(valor);
+				verificaNomeInvalido(valor);
 				hospede.setNome(valor);
 				break;
 			case "EMAIL":
+				verificaEmail(valor);
+				verificaEmailInvalido(valor);
 				hospede.setEmail(valor);
 				this.hospedes.put(valor, hospede);
 				this.hospedes.remove(email);
 				break;
 			case "DATA DE NASCIMENTO":
+				verificaDataInvalida(valor);
+				verificaDataDeNascimento(valor);
 				hospede.setDataNascimento(valor);
 				break;
 			}
-		} catch (Exception e) {
+		} catch (StringInvalidaException e) {
 			throw new AtualizacaoHospedeException(e.getMessage());
 		}
 	}
@@ -227,5 +236,46 @@ public class Hotel {
 	public void cadastraRefeicao(String nome, String descricao, String componentes)
 			throws StringInvalidaException, CadastraRefeicaoException {
 		restaurante.cadastraRefeicao(nome, descricao, componentes);
+	}
+	
+	private void verificaIdadeInvalida(String dataNascimento) throws DadoInvalidoException {
+		if (validacao.verificaIdadeValida(dataNascimento)) {
+			throw new DadoInvalidoException("A idade do(a) hospede deve ser maior que 18 anos.");
+		}
+	}
+
+	private void verificaNomeInvalido(String nome) throws StringInvalidaException {
+		if (validacao.verificaNomeValido(nome)) {
+			throw new StringInvalidaException("Nome do(a) hospede esta invalido.");
+		}
+	}
+
+	private void verificaEmailInvalido(String email) throws EmailInvalidoException {
+		if(!validacao.verificaEmailValido(email)){
+			throw new EmailInvalidoException("Email do(a) hospede esta invalido.");
+		}
+	}
+	private void verificaDataDeNascimento(String dataNascimento) throws StringInvalidaException {
+		if (dataNascimento == null || dataNascimento.trim().isEmpty()) {
+			throw new StringInvalidaException("Data de Nascimento do(a) hospede nao pode ser vazio.");
+		}
+	}
+	
+	private void verificaEmail(String email) throws StringInvalidaException {
+		if (email == null || email.trim().isEmpty()) {
+			throw new StringInvalidaException("Email do(a) hospede nao pode ser vazio.");
+		}
+	}
+	
+	private void verificaNome(String nome) throws StringInvalidaException {
+		if (nome == null || nome.trim().isEmpty()) {
+			throw new StringInvalidaException("Nome do(a) hospede nao pode ser vazio.");
+		}
+	}
+
+	private void verificaDataInvalida(String dataNascimento) throws DataInvalidaException {
+		if (!validacao.verificaDataValida(dataNascimento)) {
+			throw new DataInvalidaException("Formato de data invalido.");
+		}
 	}
 }

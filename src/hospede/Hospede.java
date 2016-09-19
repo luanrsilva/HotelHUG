@@ -5,12 +5,9 @@ import java.util.List;
 
 import estadia.Estadia;
 import exceptions.DadoInvalidoException;
-import exceptions.DataInvalidaException;
-import exceptions.EmailInvalidoException;
 import exceptions.IdInvalidoException;
 import exceptions.StringInvalidaException;
 import exceptions.ValorInvalidoException;
-import util.ValidacaoDeDados;
 
 public class Hospede {
 
@@ -19,22 +16,8 @@ public class Hospede {
 	private String dataNascimento;
 	private List<Estadia> estadias;
 	private List<Estadia> estadiasAnteriores;
-	private ValidacaoDeDados validacao;
 
 	public Hospede(String nome, String email, String dataNascimento) throws DadoInvalidoException {
-
-		this.validacao = new ValidacaoDeDados();
-
-		verificaNome(nome);
-		verificaEmail(email);
-		verificaDataDeNascimento(dataNascimento);
-
-		verificaDataInvalida(dataNascimento);
-		verificaEmailInvalido(email);
-		
-		verificaNomeInvalido(nome);
-		
-		verificaIdadeInvalida(dataNascimento);
 
 		this.nome = nome;
 		this.email = email;
@@ -42,30 +25,6 @@ public class Hospede {
 		this.estadias = new ArrayList<Estadia>();
 		this.estadiasAnteriores = new ArrayList<Estadia>();
 
-	}
-
-	private void verificaIdadeInvalida(String dataNascimento) throws DadoInvalidoException {
-		if (validacao.verificaIdadeValida(dataNascimento)) {
-			throw new DadoInvalidoException("A idade do(a) hospede deve ser maior que 18 anos.");
-		}
-	}
-
-	private void verificaNomeInvalido(String nome) throws StringInvalidaException {
-		if (validacao.verificaNomeValido(nome)) {
-			throw new StringInvalidaException("Nome do(a) hospede esta invalido.");
-		}
-	}
-
-	private void verificaEmailInvalido(String email) throws EmailInvalidoException {
-		if(!validacao.verificaEmailValido(email)){
-			throw new EmailInvalidoException("Email do(a) hospede esta invalido.");
-		}
-	}
-
-	private void verificaDataInvalida(String dataNascimento) throws DataInvalidaException {
-		if (!validacao.verificaDataValida(dataNascimento)) {
-			throw new DataInvalidaException("Formato de data invalido.");
-		}
 	}
 
 	public boolean addEstadia(Estadia estadia) {
@@ -77,8 +36,6 @@ public class Hospede {
 	}
 
 	public void setNome(String nome) throws StringInvalidaException {
-		verificaNomeInvalido(nome);
-		verificaNome(nome);
 		this.nome = nome;
 	}
 
@@ -87,8 +44,6 @@ public class Hospede {
 	}
 
 	public void setEmail(String email) throws DadoInvalidoException {
-		verificaEmail(email);
-		verificaEmailInvalido(email);
 		this.email = email;
 	}
 
@@ -97,9 +52,6 @@ public class Hospede {
 	}
 
 	public void setDataNascimento(String dataNascimento) throws DadoInvalidoException {
-		verificaDataDeNascimento(dataNascimento);
-		verificaDataInvalida(dataNascimento);
-		verificaIdadeInvalida(dataNascimento);
 		this.dataNascimento = dataNascimento;
 	}
 
@@ -169,24 +121,6 @@ public class Hospede {
 			total += estadia.precoTotal();
 		}
 		return total;
-	}
-
-	private void verificaDataDeNascimento(String dataNascimento) throws StringInvalidaException {
-		if (dataNascimento == null || dataNascimento.trim().isEmpty()) {
-			throw new StringInvalidaException("Data de Nascimento do(a) hospede nao pode ser vazio.");
-		}
-	}
-
-	private void verificaEmail(String email) throws StringInvalidaException {
-		if (email == null || email.trim().isEmpty()) {
-			throw new StringInvalidaException("Email do(a) hospede nao pode ser vazio.");
-		}
-	}
-
-	private void verificaNome(String nome) throws StringInvalidaException {
-		if (nome == null || nome.trim().isEmpty()) {
-			throw new StringInvalidaException("Nome do(a) hospede nao pode ser vazio.");
-		}
 	}
 
 }

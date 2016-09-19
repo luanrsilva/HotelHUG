@@ -19,7 +19,7 @@ realizaCheckin email="sven@sverige.se" dias=3 quarto="2A" tipoQuarto="Presidenci
 
 realizaCheckin email="ines@brasil.com.br" dias=2 quarto="1B" tipoQuarto="Luxo"
 
-realizaCheckin email="agnetha@abba.se" dias=2 quarto="15A" tipoQuarto="Simples"
+realizaCheckin email="agnetha@monomusic.se" dias=2 quarto="15A" tipoQuarto="Simples"
 
 #############################################
 # Checa informacoes das hospedagens criadas #
@@ -27,17 +27,17 @@ realizaCheckin email="agnetha@abba.se" dias=2 quarto="15A" tipoQuarto="Simples"
 
 expect "2" getInfoHospedagem email="sven@sverige.se" atributo="Hospedagens ativas"
 expect "1" getInfoHospedagem email="ines@brasil.com.br" atributo="Hospedagens ativas"
-expect "1" getInfoHospedagem email="agnetha@abba.se" atributo="Hospedagens ativas"
+expect "1" getInfoHospedagem email="agnetha@monomusic.se" atributo="Hospedagens ativas"
 expectError "Erro na consulta de hospedagem. Hospede Alfred Nobel nao esta hospedado(a)." getInfoHospede email=${id1} atributo="Hospedagens ativas"
 
 expect "1A,2A" getInfoHospedagem email="sven@sverige.se" atributo="Quarto"
 expect "1B" getInfoHospedagem email="ines@brasil.com.br" atributo="Quarto"
-expect "15A" getInfoHospedagem email="agnetha@abba.se" atributo="Quarto"
+expect "15A" getInfoHospedagem email="agnetha@monomusic.se" atributo="Quarto"
 expectError "Erro na consulta de hospedagem. Hospede Alfred Nobel nao esta hospedado(a)." getInfoHospedagem email=${id1} atributo="Quarto"
 
 expect "R$3600,00" getInfoHospedagem email="sven@sverige.se" atributo="Total"
 expect "R$500,00" getInfoHospedagem email="ines@brasil.com.br" atributo="Total"
-expect "R$200,00" getInfoHospedagem email="agnetha@abba.se" atributo="Total"
+expect "R$200,00" getInfoHospedagem email="agnetha@monomusic.se" atributo="Total"
 expectError "Erro na consulta de hospedagem. Hospede Alfred Nobel nao esta hospedado(a)." getInfoHospedagem email=${id1} atributo="Total"
 
 realizaCheckin email="ines@brasil.com.br" dias=3 quarto="2B" tipoQuarto="Luxo"

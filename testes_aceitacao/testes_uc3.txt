@@ -16,24 +16,24 @@ iniciaSistema
 
 expect "R$2250,00" realizaCheckout email="sven@sverige.se" quarto="1A"
 expect "R$500,00" realizaCheckout email="ines@brasil.com.br" quarto="1B"
-expect "R$200,00" realizaCheckout email="agnetha@abba.se" quarto="15A"
+expect "R$200,00" realizaCheckout email="agnetha@monomusic.se" quarto="15A"
 
 expect "1" getInfoHospedagem email="sven@sverige.se" atributo="Hospedagens ativas"
 expect "1" getInfoHospedagem email="ines@brasil.com.br" atributo="Hospedagens ativas"
 
-expectError "Erro na consulta de hospedagem. Agnetha Faltskog nao esta hospedado(a)." getInfoHospedagem email="agnetha@abba.se" atributo="Hospedagens ativas"
+expectError "Erro na consulta de hospedagem. Agnetha Faltskog nao esta hospedado(a)." getInfoHospedagem email="agnetha@monomusic.se" atributo="Hospedagens ativas"
 expectError "Erro na consulta de hospedagem. Hospede Alfred Nobel nao esta hospedado(a)." getInfoHospede email="nobel@got.se" atributo="Hospedagens ativas"
 
 expect "2A" getInfoHospedagem email="sven@sverige.se" atributo="Quarto"
 expect "1B" getInfoHospedagem email="ines@brasil.com.br" atributo="Quarto"
 
-expectError "Erro na consulta de hospedagem. Agnetha Faltskog nao esta hospedado(a)." getInfoHospedagem email="agnetha@abba.se" atributo="Quarto"
+expectError "Erro na consulta de hospedagem. Agnetha Faltskog nao esta hospedado(a)." getInfoHospedagem email="agnetha@monomusic.se" atributo="Quarto"
 expectError "Erro na consulta de hospedagem. Hospede Alfred Nobel nao esta hospedado(a)." getInfoHospedagem email="nobel@got.se" atributo="Quarto"
 
 expect "R$1350,00" getInfoHospedagem email="sven@sverige.se" atributo="Total"
 expect "R$750,00" getInfoHospedagem email="ines@brasil.com.br" atributo="Total"
 
-expectError "Erro na consulta de hospedagem. Agnetha Faltskog nao esta hospedado(a)." email="agnetha@abba.se" atributo="Total"
+expectError "Erro na consulta de hospedagem. Agnetha Faltskog nao esta hospedado(a)." email="agnetha@monomusic.se" atributo="Total"
 expectError "Erro na consulta de hospedagem. Hospede Alfred Nobel nao esta hospedado(a)." getInfoHospedagem email="nobel@got.se" atributo="Total"
 
 expect "3" consultaTransacoes atributo="Quantidade"
