@@ -51,7 +51,7 @@ public class Hospede {
 	}
 
 	private void verificaNomeInvalido(String nome) throws StringInvalidaException {
-		if (nome.contains("@")) {
+		if (validacao.verificaNomeValido(nome)) {
 			throw new StringInvalidaException("Nome do(a) hospede esta invalido.");
 		}
 	}

@@ -24,6 +24,14 @@ public class ValidacaoDeDados {
 		}
 	}
 
+	public boolean verificaNomeValido(String nome) {
+		if (nome.contains("@")) {
+			return true;
+		}
+		return false;
+
+	}
+
 	public boolean verificaEmailValido(String email) {
 		String emailPattern = "\\b(^[_A-Za-z0-9-]+(\\.A-Za-z0-9-]+)*@([A-"
 				+ "Za-z0-9])+(\\.[A-Za-z0-9-]+)*((\\.[A-Za-z0-9]{2,})|(\\."
@@ -37,13 +45,13 @@ public class ValidacaoDeDados {
 		}
 		return false;
 	}
-	
-	public boolean verificaIdadeValida(String data){
+
+	public boolean verificaIdadeValida(String data) {
 		String[] novaData = data.split("/");
 		int ano = Integer.parseInt(novaData[2]);
 		LocalDate dataAtual = LocalDate.now();
 		int anoAtual = dataAtual.getYear();
-		if (anoAtual-ano < 18) {
+		if (anoAtual - ano < 18) {
 			return true;
 		}
 		return false;
