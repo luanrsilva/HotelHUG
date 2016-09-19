@@ -10,6 +10,7 @@ import exceptions.CadastroHospedeException;
 import exceptions.DadoInvalidoException;
 import exceptions.HospedagemException;
 import exceptions.IdInvalidoException;
+import exceptions.RemocaoHospedeException;
 import exceptions.StringInvalidaException;
 import exceptions.ValorInvalidoException;
 
@@ -30,16 +31,16 @@ public class Facade {
 		return controller.cadastraHospede(nome, email, nascimento);
 	}
 
-	public void removeHospede(String email) throws BuscaHospedeException {
+	public void removeHospede(String email) throws BuscaHospedeException, RemocaoHospedeException {
 		controller.removeHospede(email);
 	}
 
-	public void atualizaCadastro(String id, String atributo, String valor) throws BuscaHospedeException, DadoInvalidoException, AtualizacaoHospedeException, CadastroHospedeException {
+	public void atualizaCadastro(String id, String atributo, String valor) throws BuscaHospedeException, DadoInvalidoException, AtualizacaoHospedeException, CadastroException {
 		controller.atualizaCadastro(id, atributo, valor);
 	}
 
 	public String getInfoHospede(String email, String atributo) throws BuscaHospedeException {
-		return controller.getinfoHospede(email, atributo);
+		return controller.getInfoHospede(email, atributo);
 	}
 
 	public void realizaCheckin(String email, int dias, String quarto, String tipoDeQuarto)

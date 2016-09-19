@@ -62,8 +62,8 @@ expectError "Erro na atualizacao do cadastro de Hospede. A idade do(a) hospede d
 #      Remove Hospede         #
 ###############################
 
-expectError "Erro na remocao do Hospede. Formato de email invalido." removeHospede email="@sverige.se"
-expectError "Erro na remocao do Hospede. Formato de email invalido." removeHospede email="sverige.se"
-expectError "Erro na remocao do Hospede. Formato de email invalido." removeHospede email="sven@"
+expectError "Erro na remocao do Hospede. Email do(a) hospede esta invalido." removeHospede email="@sverige.se"
+expectError "Erro na remocao do Hospede. Email do(a) hospede esta invalido." removeHospede email="sverige.se"
+expectError "Erro na remocao do Hospede. Email do(a) hospede esta invalido." removeHospede email="sven@"
 
 fechaSistema
