@@ -34,7 +34,7 @@ public class Facade {
 		controller.removeHospede(email);
 	}
 
-	public void atualizaCadastro(String id, String atributo, String valor) throws BuscaHospedeException, DadoInvalidoException, AtualizacaoHospedeException {
+	public void atualizaCadastro(String id, String atributo, String valor) throws BuscaHospedeException, DadoInvalidoException, AtualizacaoHospedeException, CadastroHospedeException {
 		controller.atualizaCadastro(id, atributo, valor);
 	}
 

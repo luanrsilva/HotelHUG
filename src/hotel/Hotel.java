@@ -63,7 +63,7 @@ public class Hotel {
 	}
 
 	public void atualizaCadastro(String email, String atributo, String valor)
-			throws DadoInvalidoException, AtualizacaoHospedeException {
+			throws DadoInvalidoException, AtualizacaoHospedeException, CadastroHospedeException {
 		Hospede hospede = this.hospedes.get(email);
 		
 
@@ -88,7 +88,7 @@ public class Hotel {
 				break;
 			}
 		} catch (StringInvalidaException e) {
-			throw new AtualizacaoHospedeException(e.getMessage());
+			throw new CadastroHospedeException("" + e.getMessage());
 		}
 	}
 

@@ -35,7 +35,7 @@ public class Controller {
 	}
 
 	public void atualizaCadastro(String email, String atributo, String valor)
-			throws BuscaHospedeException, DadoInvalidoException, AtualizacaoHospedeException {
+			throws BuscaHospedeException, DadoInvalidoException, AtualizacaoHospedeException, CadastroHospedeException {
 		hotel.atualizaCadastro(email, atributo, valor);
 	}
 
