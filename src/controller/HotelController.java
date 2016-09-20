@@ -1,6 +1,7 @@
 package controller;
 
 import java.text.DecimalFormat;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -18,13 +19,11 @@ import exceptions.CheckoutException;
 import exceptions.ConsultaException;
 import exceptions.ConsultaHospedeException;
 import exceptions.DadoInvalidoException;
-import exceptions.DataInvalidaException;
 import exceptions.EmailInvalidoException;
 import exceptions.HospedagemException;
 import exceptions.IdInvalidoException;
 import exceptions.RemocaoHospedeException;
 import exceptions.StringInvalidaException;
-import exceptions.ValorInvalidoException;
 import hotel.Estadia;
 import hotel.Hospede;
 import util.ValidacaoDeDados;

@@ -1,12 +1,12 @@
 package util;
 
 import java.time.LocalDate;
+
 import java.time.format.DateTimeFormatter;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import exceptions.DadoInvalidoException;
-import exceptions.DataInvalidaException;
 import exceptions.EmailInvalidoException;
 import exceptions.StringInvalidaException;
 
@@ -130,9 +130,9 @@ public class ValidacaoDeDados {
 	}
 
 	public void verificaDataInvalida(String dataNascimento)
-			throws DataInvalidaException {
+			throws StringInvalidaException {
 		if (!verificaDataValida(dataNascimento)) {
-			throw new DataInvalidaException("Formato de data invalido.");
+			throw new StringInvalidaException("Formato de data invalido.");
 		}
 	}
 

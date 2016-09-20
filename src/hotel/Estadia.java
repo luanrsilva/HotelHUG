@@ -1,6 +1,7 @@
 package hotel;
 
 import exceptions.*;
+
 import testes.*;
 
 public class Estadia {
@@ -9,7 +10,7 @@ public class Estadia {
 	private Quarto quarto;
 
 	public Estadia(int qtdDias, String quartoId, String tipoQuarto)
-			throws ValorInvalidoException, StringInvalidaException, IdInvalidoException {
+			throws StringInvalidaException, IdInvalidoException {
 		this.quarto = new Quarto(quartoId, tipoQuarto);
 		this.dias = qtdDias;
 	}

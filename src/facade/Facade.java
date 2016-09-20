@@ -1,6 +1,7 @@
 package facade;
 
 import controller.HotelController;
+
 import controller.RestauranteController;
 import exceptions.AtualizacaoHospedeException;
 import exceptions.BuscaHospedeException;
@@ -20,7 +21,6 @@ import exceptions.HospedagemException;
 import exceptions.IdInvalidoException;
 import exceptions.RemocaoHospedeException;
 import exceptions.StringInvalidaException;
-import exceptions.ValorInvalidoException;
 
 public class Facade {
 
@@ -54,7 +54,7 @@ public class Facade {
 	}
 
 	public void realizaCheckin(String email, int dias, String quarto, String tipoDeQuarto)
-			throws ValorInvalidoException, StringInvalidaException, IdInvalidoException, CheckinException, ConsultaHospedeException {
+			throws StringInvalidaException, IdInvalidoException, CheckinException, ConsultaHospedeException {
 		hotelController.realizaCheckin(email, dias, quarto, tipoDeQuarto);
 	}
 

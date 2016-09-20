@@ -6,7 +6,6 @@ import java.util.List;
 import exceptions.DadoInvalidoException;
 import exceptions.IdInvalidoException;
 import exceptions.StringInvalidaException;
-import exceptions.ValorInvalidoException;
 
 public class Hospede {
 
@@ -77,7 +76,7 @@ public class Hospede {
 	}
 
 	public void criaEstadia(int dias, String quarto, String tipoDeQuarto)
-			throws ValorInvalidoException, StringInvalidaException, IdInvalidoException {
+			throws StringInvalidaException, IdInvalidoException {
 		Estadia novaEstadia = new Estadia(dias, quarto, tipoDeQuarto);
 		if (!estadias.contains(novaEstadia)) {
 			estadias.add(novaEstadia);
