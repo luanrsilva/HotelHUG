@@ -1,6 +1,7 @@
 package controller;
 
 import java.text.DecimalFormat;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -43,13 +44,13 @@ public class Controller {
 			throws StringInvalidaException, CadastroHospedeException {
 
 		try {
-			verificaNome(nome);
-			verificaNomeInvalido(nome);
-			verificaEmail(email);
-			verificaEmailInvalido(email);
-			verificaDataDeNascimento(nascimento);
-			verificaDataInvalida(nascimento);
-			verificaIdadeInvalida(nascimento);
+			validacao.verificaNome(nome);
+			validacao.verificaNomeInvalido(nome);
+			validacao.verificaEmail(email);
+			validacao.verificaEmailInvalido(email);
+			validacao.verificaDataDeNascimento(nascimento);
+			validacao.verificaDataInvalida(nascimento);
+			validacao.verificaIdadeInvalida(nascimento);
 			Hospede hospede = new Hospede(nome, email, nascimento);
 			this.hospedes.put(email, hospede);
 			return email;
@@ -62,14 +63,14 @@ public class Controller {
 
 	public boolean removeHospede(String email) throws BuscaHospedeException, RemocaoHospedeException {
 		try {
-			verificaEmail(email);
-			verificaEmailInvalido(email);
+			validacao.verificaEmail(email);
+			validacao.verificaEmailInvalido(email);
 		} catch (EmailInvalidoException e) {
 			throw new RemocaoHospedeException(e.getMessage());
 		} catch (StringInvalidaException e) {
 			throw new RemocaoHospedeException(e.getMessage());
 		}
-		
+
 		if (hospedes.containsKey(email)) {
 			hospedes.remove(email);
 			return true;
@@ -82,26 +83,25 @@ public class Controller {
 	public void atualizaCadastro(String email, String atributo, String valor)
 			throws DadoInvalidoException, AtualizacaoHospedeException, CadastroException {
 		Hospede hospede = this.hospedes.get(email);
-		
 
 		try {
 			switch (atributo.toUpperCase()) {
 			case "NOME":
-				verificaNome(valor);
-				verificaNomeInvalido(valor);
+				validacao.verificaNome(valor);
+				validacao.verificaNomeInvalido(valor);
 				hospede.setNome(valor);
 				break;
 			case "EMAIL":
-				verificaEmail(valor);
-				verificaEmailInvalido(valor);
+				validacao.verificaEmail(valor);
+				validacao.verificaEmailInvalido(valor);
 				hospede.setEmail(valor);
 				this.hospedes.put(valor, hospede);
 				this.hospedes.remove(email);
 				break;
 			case "DATA DE NASCIMENTO":
-				verificaDataDeNascimento(valor);
-				verificaDataInvalida(valor);
-				verificaIdadeInvalida(valor);
+				validacao.verificaDataDeNascimento(valor);
+				validacao.verificaDataInvalida(valor);
+				validacao.verificaIdadeInvalida(valor);
 				hospede.setDataNascimento(valor);
 				break;
 			}
@@ -115,8 +115,8 @@ public class Controller {
 	}
 
 	public String getInfoHospede(String email, String atributo) throws BuscaHospedeException {
-		Hospede hospede = buscaHospede(email); 
-		
+		Hospede hospede = buscaHospede(email);
+
 		String info = "";
 
 		try {
@@ -158,6 +158,7 @@ public class Controller {
 	public void realizaCheckin(String email, int dias, String quarto, String tipoDeQuarto)
 			throws BuscaHospedeException, ValorInvalidoException, StringInvalidaException, IdInvalidoException {
 		Hospede hospede = buscaHospede(email);
+		
 		if (!verificaQuarto(quarto)) {
 			hospede.criaEstadia(dias, quarto, tipoDeQuarto);
 		}
@@ -259,45 +260,5 @@ public class Controller {
 			throws StringInvalidaException, CadastraRefeicaoException {
 		restaurante.cadastraRefeicao(nome, descricao, componentes);
 	}
-	
-	private void verificaIdadeInvalida(String dataNascimento) throws DadoInvalidoException {
-		if (validacao.verificaIdadeValida(dataNascimento)) {
-			throw new DadoInvalidoException("A idade do(a) hospede deve ser maior que 18 anos.");
-		}
-	}
 
-	private void verificaNomeInvalido(String nome) throws StringInvalidaException {
-		if (validacao.verificaNomeValido(nome)) {
-			throw new StringInvalidaException("Nome do(a) hospede esta invalido.");
-		}
-	}
-
-	private void verificaEmailInvalido(String email) throws EmailInvalidoException {
-		if(!validacao.verificaEmailValido(email)){
-			throw new EmailInvalidoException("Email do(a) hospede esta invalido.");
-		}
-	}
-	private void verificaDataDeNascimento(String dataNascimento) throws StringInvalidaException {
-		if (dataNascimento == null || dataNascimento.trim().isEmpty()) {
-			throw new StringInvalidaException("Data de Nascimento do(a) hospede nao pode ser vazio.");
-		}
-	}
-	
-	private void verificaEmail(String email) throws StringInvalidaException {
-		if (email == null || email.trim().isEmpty()) {
-			throw new StringInvalidaException("Email do(a) hospede nao pode ser vazio.");
-		}
-	}
-	
-	private void verificaNome(String nome) throws StringInvalidaException {
-		if (nome == null || nome.trim().isEmpty()) {
-			throw new StringInvalidaException("Nome do(a) hospede nao pode ser vazio.");
-		}
-	}
-
-	private void verificaDataInvalida(String dataNascimento) throws DataInvalidaException {
-		if (!validacao.verificaDataValida(dataNascimento)) {
-			throw new DataInvalidaException("Formato de data invalido.");
-		}
-	}
 }

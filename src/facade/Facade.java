@@ -1,6 +1,7 @@
 package facade;
 
 import controller.Controller;
+
 import exceptions.AtualizacaoHospedeException;
 import exceptions.BuscaHospedeException;
 import exceptions.CadastraPratoException;
