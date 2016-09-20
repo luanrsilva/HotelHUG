@@ -375,7 +375,7 @@ public class HotelController {
 	 * passados estao corretos.
 	 * @param atributo
 	 * @param indice
-	 * @return
+	 * @return retorna uma string contendo as informacoes requeridas.
 	 * @throws DadoInvalidoException
 	 */
 	public String consultaTransacoes(String atributo, int indice) throws DadoInvalidoException {
