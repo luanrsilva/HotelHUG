@@ -35,6 +35,7 @@ public class HotelController {
 	private RestauranteController restaurante;
 	private ValidacaoDeDados validacao;
 
+	
 	public HotelController() {
 		this.hospedes = new HashMap<String, Hospede>();
 		this.checkoutRealizados = new ArrayList<Hospede>();
