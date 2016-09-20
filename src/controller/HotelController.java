@@ -163,6 +163,7 @@ public class HotelController {
 			validacao.verificaEmailInvalido(email);
 			validacao.verificaId(quarto);
 			validacao.verficaTipoQuarto(tipoQuarto);
+			validacao.verificaQuartoIDValido(quarto);
 			
 			verificaQuartoOcupado(quarto);
 			

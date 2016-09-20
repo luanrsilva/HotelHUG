@@ -48,6 +48,17 @@ public class ValidacaoDeDados {
 		}
 		return false;
 	}
+	
+	private boolean verificaQuartoValido(String quartoID){
+		String quartoPattern = "([A-Za-z0-9])\\w+";
+		Pattern pattern = Pattern.compile(quartoPattern, Pattern.CASE_INSENSITIVE);
+		Matcher matcher = pattern.matcher(quartoID);
+		
+		if (matcher.matches()) {
+			return true;
+		}
+		return false;
+	}
 
 	private boolean verificaIdadeValida(String data) {
 		String[] novaData = data.split("/");
@@ -112,6 +123,12 @@ public class ValidacaoDeDados {
 		if (!(tipoQuarto.equals("Presidencial") || tipoQuarto.equals("Luxo") || tipoQuarto.equals("Simples"))) {
 
 			throw new StringInvalidaException("Tipo de quarto invalido.");
+		}
+	}
+	
+	public void verificaQuartoIDValido(String quartoID) throws StringInvalidaException {
+		if (!(verificaQuartoValido(quartoID))) {
+			throw new StringInvalidaException("ID do quarto invalido, use apenas numeros ou letras.");
 		}
 	}
 

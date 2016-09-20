@@ -42,7 +42,7 @@ expectError "Erro ao checar hospedagem ativa. Email do(a) hospede esta invalido.
 #########################################################################
 
 expectError "Erro ao realizar checkin. Quarto 15A ja esta ocupado." realizaCheckin email="ines@brasil.com.br" dias=7 quarto="15A" tipoQuarto="Simples"
-expectError "Erro ao realizar checkin. Quarto 2A ja esta ocupado." realizaCheckin email="agnetha@abba.se" dias=3 quarto="2A" tipoQuarto="Presidencial"
+expectError "Erro ao realizar checkin. Quarto 2A ja esta ocupado." realizaCheckin email="agnetha@monomusic.se" dias=3 quarto="2A" tipoQuarto="Presidencial"
 
 fechaSistema
 

@@ -17,7 +17,7 @@ public class Quarto {
 	}
 
 	public String getId() {
-		return id;
+		return this.id;
 	}
 
 	public void setId(String id) {
