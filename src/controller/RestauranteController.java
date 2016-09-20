@@ -28,6 +28,7 @@ public class RestauranteController {
 
 	/**
 	 * Metodo que cadastra/adiciona o prato no cardapio(Lista de pratos) do restaurante.
+	 * passa seus parametros por uma serie de verificacoes que examinam se os dados passados estao corretos.
 	 * @param nome
 	 * @param preco
 	 * @param descricao
@@ -63,6 +64,7 @@ public class RestauranteController {
 
 	/**
 	 * Metodo que busca e retorna uma informacao de um atributo passado, para o prato passado.
+	 * passa seus parametros por uma serie de verificacoes que examinam se os dados passados estao corretos.
 	 * @param nome
 	 * @param atributo
 	 * @return Retorna uma String, contendo uma informacao a partir do preco ou da descricao da refeicao.
@@ -89,6 +91,15 @@ public class RestauranteController {
 		}
 	}
 
+	/**
+	 * Metodo que cadastra uma nova refeicao na lista de refeicoes.
+	 * passa seus parametros por uma serie de verificacoes que examinam se os dados passados estao corretos.
+	 * @param nome
+	 * @param descricao
+	 * @param componentes
+	 * @throws CadastraRefeicaoException
+	 * @throws CadastraRefeicaoCompletaException
+	 */
 	public void cadastraRefeicao(String nome, String descricao, String componentes) throws CadastraRefeicaoException, CadastraRefeicaoCompletaException {
 		RefeicaoCompleta novaRefeicaoCompleta;
 		try {
