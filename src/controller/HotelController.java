@@ -50,7 +50,7 @@ public class HotelController {
 			validacao.verificaNome(nome);
 			validacao.verificaNomeInvalido(nome);
 			validacao.verificaEmail(email);
-			validacao.verificaEmailInvalido(email);
+			validacao.verificaEmailInvalidoCadastro(email);
 			validacao.verificaDataDeNascimento(nascimento);
 			validacao.verificaDataInvalida(nascimento);
 			validacao.verificaIdadeInvalida(nascimento);
@@ -67,7 +67,7 @@ public class HotelController {
 	public boolean removeHospede(String email) throws BuscaHospedeException, RemocaoHospedeException {
 		try {
 			validacao.verificaEmail(email);
-			validacao.verificaEmailInvalido(email);
+			validacao.verificaEmailInvalidoRemocao(email);
 		} catch (EmailInvalidoException e) {
 			throw new RemocaoHospedeException(e.getMessage());
 		} catch (StringInvalidaException e) {
@@ -96,7 +96,7 @@ public class HotelController {
 				break;
 			case "EMAIL":
 				validacao.verificaEmail(valor);
-				validacao.verificaEmailInvalido(valor);
+				validacao.verificaEmailInvalidoCadastro(valor);
 				hospede.setEmail(valor);
 				this.hospedes.put(valor, hospede);
 				this.hospedes.remove(email);
@@ -162,7 +162,7 @@ public class HotelController {
 			throws BuscaHospedeException, CheckinException {
 		try {
 			validacao.verificaEmail(email);
-			validacao.verificaEmailInvalido(email);
+			validacao.verificaEmailInvalidoCadastro(email);
 			validacao.verificaId(quarto);
 			validacao.verficaTipoQuarto(tipoQuarto);
 			validacao.verificaQuartoIDValido(quarto);
@@ -194,24 +194,25 @@ public class HotelController {
 		}
 	}
 
-	public String getInfoHospedagem(String email, String atributo) throws BuscaHospedeException, HospedagemException, ChecarHospedagemException, ConsultaException {
+	public String getInfoHospedagem(String email, String atributo) throws ConsultaException, HospedagemException, ChecarHospedagemException   {
 		try {
 			validacao.verificaEmail(email);
-			validacao.verificaEmailInvalido(email);
+			validacao.verificaEmailInvalidoCadastro(email);
+			
 			Hospede hospede = buscaHospede(email);
+			
+			if (hospede.getEstadias().size() == 0){
+				throw new HospedagemException(hospede.getNome());
+
+			}
+				
 			String info = "";
 			switch (atributo.toUpperCase()) {
 			case "HOSPEDAGENS ATIVAS":
 				info += hospede.getEstadias().size();
-				if (info.equals("0")) {
-					throw new HospedagemException(hospede.getNome());
-				}
 				break;
 			case "QUARTO":
 				ArrayList<Estadia> estadias = hospede.getEstadias();
-				if (estadias.size() == 0) {
-					throw new HospedagemException(hospede.getNome());
-				}
 				info += estadias.get(0).getQuarto().getId();
 				
 				for (int i = 1; i < estadias.size(); i++) {
@@ -221,9 +222,6 @@ public class HotelController {
 				break;
 			case "TOTAL":
 				info += "R$" + (int) hospede.totalPagar() + ",00";
-				if ((int) hospede.totalPagar() == 0) {
-					throw new HospedagemException(hospede.getNome());
-				}
 				break;
 			}
 			
@@ -232,14 +230,13 @@ public class HotelController {
 			throw new ChecarHospedagemException(e.getMessage());
 		} catch (EmailInvalidoException e) {
 			throw new ChecarHospedagemException(e.getMessage());
-		}
-		
+		} 
 	}
 
 	public String realizaCheckout(String email, String quarto) throws BuscaHospedeException, CheckoutException, ConsultaException {
 		try {
 			validacao.verificaEmail(email);
-			validacao.verificaEmailInvalido(email);
+			validacao.verificaEmailInvalidoCadastro(email);
 			validacao.verificaQuartoIDValido(quarto);
 			Hospede hospede = buscaHospede(email);
 			String info = "";

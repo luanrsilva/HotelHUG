@@ -1,4 +1,4 @@
-package quarto;
+package testes;
 
 import static org.junit.Assert.fail;
 import hotel.Quarto;

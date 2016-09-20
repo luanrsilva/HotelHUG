@@ -1,7 +1,7 @@
 package hotel;
 
 import exceptions.*;
-import quarto.*;
+import testes.*;
 
 public class Estadia {
 

@@ -42,9 +42,9 @@ public class RestauranteController {
 	/**
 	 * Metodo que busca um prato no cardapio a partir de seu nome.
 	 * @param nome
-	 * @return retorna o prato caso exista ou nulo se nao existir.
+	 * @return Retorna o prato caso exista ou nulo se nao existir.
 	 */
-	public Refeicao buscaRefeicao(String nome) {
+	private Refeicao buscaRefeicao(String nome) {
 		for (Refeicao prato : cardapio) {
 			if (nome.equalsIgnoreCase(prato.getNome())) {
 				return prato;
@@ -57,7 +57,7 @@ public class RestauranteController {
 	 * Metodo que busca e retorna uma informacao de um atributo passado, para o prato passado.
 	 * @param nome
 	 * @param atributo
-	 * @return retorna uma String, contendo uma informacao a partir do preco ou da descricao da refeicao.
+	 * @return Retorna uma String, contendo uma informacao a partir do preco ou da descricao da refeicao.
 	 */
 	public String consultaRestaurante(String nome, String atributo) {
 		Refeicao refeicao = buscaRefeicao(nome);

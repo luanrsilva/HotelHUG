@@ -56,7 +56,7 @@ public class Facade {
 		hotelController.realizaCheckin(email, dias, quarto, tipoDeQuarto);
 	}
 
-	public String getInfoHospedagem(String email, String atributo) throws BuscaHospedeException, HospedagemException, ChecarHospedagemException, ConsultaException {
+	public String getInfoHospedagem(String email, String atributo) throws Exception {
 		return hotelController.getInfoHospedagem(email, atributo);
 	}
 	

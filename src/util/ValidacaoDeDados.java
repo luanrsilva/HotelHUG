@@ -91,7 +91,15 @@ public class ValidacaoDeDados {
 		}
 	}
 
-	public void verificaEmailInvalido(String email)
+	public void verificaEmailInvalidoCadastro(String email)
+			throws EmailInvalidoException {
+		if (!verificaEmailValido(email)) {
+			throw new EmailInvalidoException(
+					"Email do(a) hospede esta invalido.");
+		}
+	}
+	
+	public void verificaEmailInvalidoRemocao(String email)
 			throws EmailInvalidoException {
 		if (!verificaEmailValido(email)) {
 			throw new EmailInvalidoException(
