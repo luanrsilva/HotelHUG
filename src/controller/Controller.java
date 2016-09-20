@@ -164,7 +164,7 @@ public class Controller {
 			validacao.verificaEmail(email);
 			validacao.verificaEmailInvalido(email);
 			validacao.verificaId(quarto);
-			//validacao.verficaTipoQuarto(tipoQuarto);
+			validacao.verficaTipoQuarto(tipoQuarto);
 			Hospede hospede = buscaHospede(email);
 			
 			if (!verificaQuarto(quarto)) {

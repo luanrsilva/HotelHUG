@@ -109,7 +109,7 @@ public class ValidacaoDeDados {
 	}
 
 	public void verficaTipoQuarto(String tipoQuarto) throws StringInvalidaException {
-		if (!tipoQuarto.equals("Presidencial") || !tipoQuarto.equals("Luxo") || !tipoQuarto.equals("Simples")) {
+		if (!(tipoQuarto.equals("Presidencial") || tipoQuarto.equals("Luxo") || tipoQuarto.equals("Simples"))) {
 
 			throw new StringInvalidaException("Tipo de quarto invalido.");
 		}
