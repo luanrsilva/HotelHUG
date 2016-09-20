@@ -160,6 +160,12 @@ public class ValidacaoDeDados {
 		}
 	}
 	
+	public void verificaPreco(double preco) throws StringInvalidaException {
+		if (preco < 0) {
+			throw new StringInvalidaException("Preco do prato eh invalido.");
+		}
+	}
+	
 	public void verificaDiasValidos(int dias) throws DadoInvalidoException {
 		if (dias <= 0) {
 			throw new DadoInvalidoException("Quantidade de dias esta invalida.");
@@ -172,5 +178,40 @@ public class ValidacaoDeDados {
 		}
 	}
 	
+	public void verificaNomePrato(String nome) throws StringInvalidaException {
+		if (nome == null || nome.trim().isEmpty()) {
+			throw new StringInvalidaException(
+					"Nome do prato esta vazio.");
+		}
+	}
+	
+	public void verificaNomeRefeicao(String nome) throws StringInvalidaException {
+		if (nome == null || nome.trim().isEmpty()) {
+			throw new StringInvalidaException(
+					"Nome da refeicao esta vazio.");
+		}
+	}
+	
+	public void verficaDescricaoRefeicao(String descricao) throws DadoInvalidoException {
+		if (descricao == null || descricao.trim().isEmpty()) {
+			throw new StringInvalidaException(
+					"Descricao da refeicao esta vazia.");
+		}
+	}
+	
+	public void verificaRefeicaoCompleta(String componentes) throws DadoInvalidoException {
+		String[] ingredientes = componentes.split(";");
+		if (ingredientes.length <= 3 && ingredientes.length >= 2) {
+			throw new DadoInvalidoException(
+					"Uma refeicao completa deve possuir no minimo 3 e no maximo 4 pratos.");
+		}
+	}
+	
+	public void verificaComponente(String componente) throws DadoInvalidoException {
+		if (componente == null || componente.trim().isEmpty()) {
+			throw new DadoInvalidoException(
+					"Componente(s) esta(o) vazio(s).");
+		}
+	}
 
 }

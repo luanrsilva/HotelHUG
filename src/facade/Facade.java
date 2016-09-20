@@ -13,6 +13,7 @@ import exceptions.CheckinException;
 import exceptions.CheckoutException;
 import exceptions.ConsultaException;
 import exceptions.ConsultaHospedeException;
+import exceptions.ConsultaRestauranteException;
 import exceptions.DadoInvalidoException;
 import exceptions.HospedagemException;
 import exceptions.IdInvalidoException;
@@ -76,7 +77,7 @@ public class Facade {
 		restauranteController.cadastraPrato(nome, preco, descricao);
 	}
 	
-	public String consultaRestaurante(String nome, String atributo){
+	public String consultaRestaurante(String nome, String atributo) throws ConsultaRestauranteException{
 		return restauranteController.consultaRestaurante(nome, atributo);
 	}
 	

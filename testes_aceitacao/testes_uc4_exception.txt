@@ -21,8 +21,8 @@ expectError "Erro no cadastro do prato. Descricao do prato esta vazia." cadastra
 #    Consulta restaurante     #
 ###############################
 
-expectError "Erro na consulta do restaurante. Nome do prato esto vazio." consultaRestaurante nome="" atributo="Preco"
-expectError "Erro na consulta do restaurante. Nome do prato esto vazio." consultaRestaurante nome="  " atributo="Preco"
+expectError "Erro na consulta do restaurante. Nome do prato esta vazio." consultaRestaurante nome="" atributo="Preco"
+expectError "Erro na consulta do restaurante. Nome do prato esta vazio." consultaRestaurante nome="  " atributo="Preco"
 
 ###################################
 # Cadastro de refeicoes completas #
