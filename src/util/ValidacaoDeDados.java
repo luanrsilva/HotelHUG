@@ -17,7 +17,8 @@ public class ValidacaoDeDados {
 	}
 
 	private boolean verificaDataValida(String data) {
-		DateTimeFormatter dataFormatada = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		DateTimeFormatter dataFormatada = DateTimeFormatter
+				.ofPattern("dd/MM/yyyy");
 
 		try {
 			LocalDate.parse(data, dataFormatada);
@@ -40,7 +41,8 @@ public class ValidacaoDeDados {
 				+ "Za-z0-9])+(\\.[A-Za-z0-9-]+)*((\\.[A-Za-z0-9]{2,})|(\\."
 				+ "[A-Za-z0-9]{2,}\\.[A-Za-z0-9]{2,}))$)\\b";
 
-		Pattern pattern = Pattern.compile(emailPattern, Pattern.CASE_INSENSITIVE);
+		Pattern pattern = Pattern.compile(emailPattern,
+				Pattern.CASE_INSENSITIVE);
 		Matcher matcher = pattern.matcher(email);
 
 		if (matcher.matches()) {
@@ -48,17 +50,19 @@ public class ValidacaoDeDados {
 		}
 		return false;
 	}
-	
-	private boolean verificaQuartoValido(String quartoID){
+
+	private boolean verificaQuartoValido(String quartoID) {
 		String quartoPattern = "([A-Za-z0-9])\\w+";
-		Pattern pattern = Pattern.compile(quartoPattern, Pattern.CASE_INSENSITIVE);
+		Pattern pattern = Pattern.compile(quartoPattern,
+				Pattern.CASE_INSENSITIVE);
 		Matcher matcher = pattern.matcher(quartoID);
-		
+
 		if (matcher.matches()) {
 			return true;
 		}
 		return false;
 	}
+
 
 	private boolean verificaIdadeValida(String data) {
 		String[] novaData = data.split("/");
@@ -71,43 +75,54 @@ public class ValidacaoDeDados {
 		return false;
 	}
 
-	public void verificaIdadeInvalida(String dataNascimento) throws DadoInvalidoException {
+	public void verificaIdadeInvalida(String dataNascimento)
+			throws DadoInvalidoException {
 		if (verificaIdadeValida(dataNascimento)) {
-			throw new DadoInvalidoException("A idade do(a) hospede deve ser maior que 18 anos.");
+			throw new DadoInvalidoException(
+					"A idade do(a) hospede deve ser maior que 18 anos.");
 		}
 	}
 
-	public void verificaNomeInvalido(String nome) throws StringInvalidaException {
+	public void verificaNomeInvalido(String nome)
+			throws StringInvalidaException {
 		if (verificaNomeValido(nome)) {
-			throw new StringInvalidaException("Nome do(a) hospede esta invalido.");
+			throw new StringInvalidaException(
+					"Nome do(a) hospede esta invalido.");
 		}
 	}
 
-	public void verificaEmailInvalido(String email) throws EmailInvalidoException {
+	public void verificaEmailInvalido(String email)
+			throws EmailInvalidoException {
 		if (!verificaEmailValido(email)) {
-			throw new EmailInvalidoException("Email do(a) hospede esta invalido.");
+			throw new EmailInvalidoException(
+					"Email do(a) hospede esta invalido.");
 		}
 	}
 
-	public void verificaDataDeNascimento(String dataNascimento) throws StringInvalidaException {
+	public void verificaDataDeNascimento(String dataNascimento)
+			throws StringInvalidaException {
 		if (dataNascimento == null || dataNascimento.trim().isEmpty()) {
-			throw new StringInvalidaException("Data de Nascimento do(a) hospede nao pode ser vazio.");
+			throw new StringInvalidaException(
+					"Data de Nascimento do(a) hospede nao pode ser vazio.");
 		}
 	}
 
 	public void verificaEmail(String email) throws StringInvalidaException {
 		if (email == null || email.trim().isEmpty()) {
-			throw new StringInvalidaException("Email do(a) hospede nao pode ser vazio.");
+			throw new StringInvalidaException(
+					"Email do(a) hospede nao pode ser vazio.");
 		}
 	}
 
 	public void verificaNome(String nome) throws StringInvalidaException {
 		if (nome == null || nome.trim().isEmpty()) {
-			throw new StringInvalidaException("Nome do(a) hospede nao pode ser vazio.");
+			throw new StringInvalidaException(
+					"Nome do(a) hospede nao pode ser vazio.");
 		}
 	}
 
-	public void verificaDataInvalida(String dataNascimento) throws DataInvalidaException {
+	public void verificaDataInvalida(String dataNascimento)
+			throws DataInvalidaException {
 		if (!verificaDataValida(dataNascimento)) {
 			throw new DataInvalidaException("Formato de data invalido.");
 		}
@@ -115,21 +130,33 @@ public class ValidacaoDeDados {
 
 	public void verificaId(String ID) throws StringInvalidaException {
 		if (ID == null || ID.trim().isEmpty()) {
-			throw new StringInvalidaException("ID do quarto invalido, use apenas numeros ou letras.");
+			throw new StringInvalidaException(
+					"ID do quarto invalido, use apenas numeros ou letras.");
 		}
 	}
 
-	public void verficaTipoQuarto(String tipoQuarto) throws StringInvalidaException {
-		if (!(tipoQuarto.equals("Presidencial") || tipoQuarto.equals("Luxo") || tipoQuarto.equals("Simples"))) {
+	public void verficaTipoQuarto(String tipoQuarto)
+			throws StringInvalidaException {
+		if (!(tipoQuarto.equals("Presidencial") || tipoQuarto.equals("Luxo") || tipoQuarto
+				.equals("Simples"))) {
 
 			throw new StringInvalidaException("Tipo de quarto invalido.");
 		}
 	}
-	
-	public void verificaQuartoIDValido(String quartoID) throws StringInvalidaException {
+
+	public void verificaQuartoIDValido(String quartoID)
+			throws StringInvalidaException {
 		if (!(verificaQuartoValido(quartoID))) {
-			throw new StringInvalidaException("ID do quarto invalido, use apenas numeros ou letras.");
+			throw new StringInvalidaException(
+					"ID do quarto invalido, use apenas numeros ou letras.");
 		}
 	}
+	
+	public void verificaDiasValidos(int dias) throws DadoInvalidoException {
+		if (dias <= 0) {
+			throw new DadoInvalidoException("Quantidade de dias esta invalida.");
+		}
+	}
+	
 
 }

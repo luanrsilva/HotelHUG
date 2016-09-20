@@ -157,13 +157,14 @@ public class HotelController {
 	}
 
 	public void realizaCheckin(String email, int dias, String quarto, String tipoQuarto)
-			throws BuscaHospedeException, ValorInvalidoException, StringInvalidaException, IdInvalidoException, CheckinException {
+			throws BuscaHospedeException, CheckinException {
 		try {
 			validacao.verificaEmail(email);
 			validacao.verificaEmailInvalido(email);
 			validacao.verificaId(quarto);
 			validacao.verficaTipoQuarto(tipoQuarto);
 			validacao.verificaQuartoIDValido(quarto);
+			validacao.verificaDiasValidos(dias);
 			
 			verificaQuartoOcupado(quarto);
 			
@@ -172,12 +173,14 @@ public class HotelController {
 			if (!verificaQuarto(quarto)) {
 				hospede.criaEstadia(dias, quarto, tipoQuarto);
 			}
-		} catch (BuscaHospedeException e) {
-			throw new CheckinException(e.getMessage());
-		} catch (StringInvalidaException e) {
-			throw new CheckinException(e.getMessage()); 
-		} catch (EmailInvalidoException e) {
-			throw new CheckinException(e.getMessage());
+		} catch (BuscaHospedeException bh) {
+			throw new CheckinException(bh.getMessage());
+		} catch (StringInvalidaException si) {
+			throw new CheckinException(si.getMessage()); 
+		} catch (EmailInvalidoException ei) {
+			throw new CheckinException(ei.getMessage());
+		} catch (DadoInvalidoException de) {
+			throw new CheckinException(de.getMessage());
 		}
 		
 	}
