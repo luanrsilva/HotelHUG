@@ -43,6 +43,16 @@ public class HotelController {
 		this.validacao = new ValidacaoDeDados();
 	}
 
+	/**
+	 * Metodo que adiciona o hospede novo no mapa de hospedes, passa seus parametros por
+	 * uma serie de verificacoes que examinam se os dados passados estao corretos.
+	 * @param nome
+	 * @param email
+	 * @param nascimento
+	 * @return retorna uma string contendo o email do hospede.
+	 * @throws StringInvalidaException
+	 * @throws CadastroHospedeException
+	 */
 	public String cadastraHospede(String nome, String email, String nascimento)
 			throws StringInvalidaException, CadastroHospedeException {
 
@@ -64,6 +74,14 @@ public class HotelController {
 
 	}
 
+	/**
+	 * Metodo que remove o hospede do mapa de hospedes, passa seus parametros por
+	 * uma serie de verificacoes que examinam se os dados passados estao corretos.
+	 * @param email
+	 * @return retorna um booleano true para o caso da remocao do hospede e outro false para a nao remocao.
+	 * @throws BuscaHospedeException
+	 * @throws RemocaoHospedeException
+	 */
 	public boolean removeHospede(String email) throws BuscaHospedeException, RemocaoHospedeException {
 		try {
 			validacao.verificaEmail(email);
@@ -83,6 +101,16 @@ public class HotelController {
 
 	}
 
+	/**
+	 * Metodo que modifica um dos atributos do hospede, dependendo da necessidade do usuario, passa seus parametros por
+	 * uma serie de verificacoes que examinam se os dados passados estao corretos.
+	 * @param email
+	 * @param atributo
+	 * @param valor
+	 * @throws DadoInvalidoException
+	 * @throws AtualizacaoHospedeException
+	 * @throws CadastroException
+	 */
 	public void atualizaCadastro(String email, String atributo, String valor)
 			throws DadoInvalidoException, AtualizacaoHospedeException, CadastroException {
 		Hospede hospede = this.hospedes.get(email);
@@ -117,6 +145,15 @@ public class HotelController {
 		}
 	}
 
+	/**
+	 * Metodo que informa ao usuario um dado do hospede solicitada, passado como atrubuto, passa seus parametros por
+	 * uma serie de verificacoes que examinam se os dados passados estao corretos.
+	 * @param email
+	 * @param atributo
+	 * @return retorna uma string contendo a informacao sobre o hospede.
+	 * @throws ConsultaException
+	 * @throws ConsultaHospedeException
+	 */
 	public String getInfoHospede(String email, String atributo) throws ConsultaException, ConsultaHospedeException {
 		String info = "";
 
@@ -140,6 +177,12 @@ public class HotelController {
 		return info;
 	}
 
+	/**
+	 * Metodo que busca o hospede a partir de seu email. 
+	 * @param email
+	 * @return retorna um Hospede
+	 * @throws ConsultaException
+	 */
 	public Hospede buscaHospede(String email) throws ConsultaException{
 		if (hospedes.containsKey(email)) {
 			return hospedes.get(email);
@@ -149,6 +192,11 @@ public class HotelController {
 
 	}
 
+	/**
+	 * Metodo que verifica se algum hospede possui o quarto com o respectivo ID em suas estadias.
+	 * @param quartoId
+	 * @return retorna um booleano true para o caso de possuir o quarto e false caso contrario.
+	 */
 	private boolean verificaQuarto(String quartoId) {
 		for (Hospede hospede : this.hospedes.values()) {
 			if (hospede.contemEstadia(quartoId)) {
@@ -158,6 +206,16 @@ public class HotelController {
 		return false;
 	}
 
+	/**
+	 * Metodo que realiza o checkin do hospede no hotel e ainda cria uma estadia associada ao hospede, passa seus parametros por
+	 * uma serie de verificacoes que examinam se os dados passados estao corretos.
+	 * @param email
+	 * @param dias
+	 * @param quarto
+	 * @param tipoQuarto
+	 * @throws BuscaHospedeException
+	 * @throws CheckinException
+	 */
 	public void realizaCheckin(String email, int dias, String quarto, String tipoQuarto)
 			throws BuscaHospedeException, CheckinException {
 		try {
@@ -187,6 +245,11 @@ public class HotelController {
 		
 	}
 
+	/**
+	 * Metodo que verifica se o quarto de respectivo ID esta sendo utilizado, no caso associado a algum hospede.
+	 * @param quarto
+	 * @throws StringInvalidaException
+	 */
 	private void verificaQuartoOcupado(String quarto)
 			throws StringInvalidaException {
 		if (verificaQuarto(quarto)) {
@@ -194,6 +257,16 @@ public class HotelController {
 		}
 	}
 
+	/**
+	 * Metodo que informa ao usuario um dado passado como atributo a respeito da hospedagem do hospede, passa seus parametros por
+	 * uma serie de verificacoes que examinam se os dados passados estao corretos.
+	 * @param email
+	 * @param atributo
+	 * @return retorna uma string contendo a informacao solicitada.
+	 * @throws ConsultaException
+	 * @throws HospedagemException
+	 * @throws ChecarHospedagemException
+	 */
 	public String getInfoHospedagem(String email, String atributo) throws ConsultaException, HospedagemException, ChecarHospedagemException   {
 		try {
 			validacao.verificaEmail(email);
@@ -233,6 +306,16 @@ public class HotelController {
 		} 
 	}
 
+	/**
+	 * Metodo que realiza o checkout do hospede no hotel removendo-o das suas estadias e adicionando na lista de checkouts,
+	 * passa seus parametros por uma serie de verificacoes que examinam se os dados passados estao corretos.
+	 * @param email
+	 * @param quarto
+	 * @return retorna uma string contendo informacoes a respeito do valor a ser pago pelas estadias.
+	 * @throws BuscaHospedeException
+	 * @throws CheckoutException
+	 * @throws ConsultaException
+	 */
 	public String realizaCheckout(String email, String quarto) throws BuscaHospedeException, CheckoutException, ConsultaException {
 		try {
 			validacao.verificaEmail(email);
@@ -255,6 +338,12 @@ public class HotelController {
 		
 	}
 
+	/**
+	 * Metodo que informa dados sobre o atributo passado a respeito da quantidade de checkouts realizados,
+	 * a respeito do valor de todos os checkouts realizados e dos nomes dos hospedes que fizeram checkout.
+	 * @param atributo
+	 * @return retorna uma string contendo as informacoes requeridas.
+	 */
 	public String consultaTransacoes(String atributo) {
 		String info = "";
 		switch (atributo.toUpperCase()) {
@@ -280,6 +369,15 @@ public class HotelController {
 		return info;
 	}
 
+	/**
+	 * Metodo que informa o valor total de um checkout realizado ou o nome de um hospede da lista de checkout, tudo
+	 * isso a partir do indice informado, passa seus parametros por uma serie de verificacoes que examinam se os dados
+	 * passados estao corretos.
+	 * @param atributo
+	 * @param indice
+	 * @return
+	 * @throws DadoInvalidoException
+	 */
 	public String consultaTransacoes(String atributo, int indice) throws DadoInvalidoException {
 		String info = "";
 		try {
