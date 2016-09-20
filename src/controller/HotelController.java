@@ -163,6 +163,9 @@ public class HotelController {
 			validacao.verificaEmailInvalido(email);
 			validacao.verificaId(quarto);
 			validacao.verficaTipoQuarto(tipoQuarto);
+			
+			verificaQuartoOcupado(quarto);
+			
 			Hospede hospede = buscaHospede(email);
 			
 			if (!verificaQuarto(quarto)) {
@@ -176,6 +179,13 @@ public class HotelController {
 			throw new CheckinException(e.getMessage());
 		}
 		
+	}
+
+	private void verificaQuartoOcupado(String quarto)
+			throws StringInvalidaException {
+		if (verificaQuarto(quarto)) {
+			throw new StringInvalidaException("Quarto 2A ja esta ocupado.");
+		}
 	}
 
 	public String getInfoHospedagem(String email, String atributo) throws BuscaHospedeException, HospedagemException, ChecarHospedagemException {
