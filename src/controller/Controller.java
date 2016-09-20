@@ -14,6 +14,7 @@ import exceptions.CadastraPratoException;
 import exceptions.CadastraRefeicaoException;
 import exceptions.CadastroException;
 import exceptions.CadastroHospedeException;
+import exceptions.CheckoutException;
 import exceptions.DadoInvalidoException;
 import exceptions.DataInvalidaException;
 import exceptions.EmailInvalidoException;
@@ -197,16 +198,25 @@ public class Controller {
 		return info;
 	}
 
-	public String realizaCheckout(String email, String quarto) throws BuscaHospedeException {
-		Hospede hospede = buscaHospede(email);
-		String info = "";
-		DecimalFormat df = new DecimalFormat("#0.00");
-		info += "R$" + df.format(hospede.estadiaQuarto(quarto));
-		info = info.replace('.', ',');
-		this.checkoutRealizados.add(hospede);
-		hospede.moveEstadia(quarto);
-		hospede.removeEstadia(quarto);
-		return info;
+	public String realizaCheckout(String email, String quarto) throws BuscaHospedeException, CheckoutException {
+		try {
+			validacao.verificaEmail(email);
+			validacao.verificaEmailInvalido(email);
+			Hospede hospede = buscaHospede(email);
+			String info = "";
+			DecimalFormat df = new DecimalFormat("#0.00");
+			info += "R$" + df.format(hospede.estadiaQuarto(quarto));
+			info = info.replace('.', ',');
+			this.checkoutRealizados.add(hospede);
+			hospede.moveEstadia(quarto);
+			hospede.removeEstadia(quarto);
+			return info;
+		} catch (StringInvalidaException e) {
+			throw new CheckoutException(e.getMessage());
+		} catch (EmailInvalidoException e) {
+			throw new CheckoutException(e.getMessage());
+		}
+		
 	}
 
 	public String consultaTransacoes(String atributo) {

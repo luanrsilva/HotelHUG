@@ -8,6 +8,7 @@ import exceptions.CadastraPratoException;
 import exceptions.CadastraRefeicaoException;
 import exceptions.CadastroException;
 import exceptions.CadastroHospedeException;
+import exceptions.CheckoutException;
 import exceptions.DadoInvalidoException;
 import exceptions.HospedagemException;
 import exceptions.IdInvalidoException;
@@ -53,7 +54,7 @@ public class Facade {
 		return controller.getInfoHospedagem(email, atributo);
 	}
 	
-	public String realizaCheckout(String email, String quarto) throws BuscaHospedeException {
+	public String realizaCheckout(String email, String quarto) throws BuscaHospedeException, CheckoutException {
 		return controller.realizaCheckout(email, quarto);
 	}
 	
