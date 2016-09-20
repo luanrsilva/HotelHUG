@@ -11,6 +11,8 @@ import exceptions.CadastroHospedeException;
 import exceptions.ChecarHospedagemException;
 import exceptions.CheckinException;
 import exceptions.CheckoutException;
+import exceptions.ConsultaException;
+import exceptions.ConsultaHospedeException;
 import exceptions.DadoInvalidoException;
 import exceptions.HospedagemException;
 import exceptions.IdInvalidoException;
@@ -45,20 +47,20 @@ public class Facade {
 		hotelController.atualizaCadastro(id, atributo, valor);
 	}
 
-	public String getInfoHospede(String email, String atributo) throws BuscaHospedeException {
+	public String getInfoHospede(String email, String atributo) throws ConsultaException, ConsultaHospedeException {
 		return hotelController.getInfoHospede(email, atributo);
 	}
 
 	public void realizaCheckin(String email, int dias, String quarto, String tipoDeQuarto)
-			throws BuscaHospedeException, ValorInvalidoException, StringInvalidaException, IdInvalidoException, CheckinException {
+			throws ValorInvalidoException, StringInvalidaException, IdInvalidoException, CheckinException, ConsultaHospedeException {
 		hotelController.realizaCheckin(email, dias, quarto, tipoDeQuarto);
 	}
 
-	public String getInfoHospedagem(String email, String atributo) throws BuscaHospedeException, HospedagemException, ChecarHospedagemException {
+	public String getInfoHospedagem(String email, String atributo) throws BuscaHospedeException, HospedagemException, ChecarHospedagemException, ConsultaException {
 		return hotelController.getInfoHospedagem(email, atributo);
 	}
 	
-	public String realizaCheckout(String email, String quarto) throws BuscaHospedeException, CheckoutException {
+	public String realizaCheckout(String email, String quarto) throws BuscaHospedeException, CheckoutException, ConsultaException {
 		return hotelController.realizaCheckout(email, quarto);
 	}
 	
