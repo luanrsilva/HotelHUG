@@ -1,8 +1,5 @@
-/controller/
-/estadia/
-/exceptions/
 /facade/
-/hospede/
-/quarto/
+/controller/
+/exceptions/
 /restaurante/
 /util/

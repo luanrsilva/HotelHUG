@@ -59,7 +59,7 @@ public class ValidacaoDeDados {
 		}
 		return false;
 	}
-	
+
 	public void verificaIdadeInvalida(String dataNascimento) throws DadoInvalidoException {
 		if (verificaIdadeValida(dataNascimento)) {
 			throw new DadoInvalidoException("A idade do(a) hospede deve ser maior que 18 anos.");
@@ -73,22 +73,23 @@ public class ValidacaoDeDados {
 	}
 
 	public void verificaEmailInvalido(String email) throws EmailInvalidoException {
-		if(!verificaEmailValido(email)){
+		if (!verificaEmailValido(email)) {
 			throw new EmailInvalidoException("Email do(a) hospede esta invalido.");
 		}
 	}
+
 	public void verificaDataDeNascimento(String dataNascimento) throws StringInvalidaException {
 		if (dataNascimento == null || dataNascimento.trim().isEmpty()) {
 			throw new StringInvalidaException("Data de Nascimento do(a) hospede nao pode ser vazio.");
 		}
 	}
-	
+
 	public void verificaEmail(String email) throws StringInvalidaException {
 		if (email == null || email.trim().isEmpty()) {
 			throw new StringInvalidaException("Email do(a) hospede nao pode ser vazio.");
 		}
 	}
-	
+
 	public void verificaNome(String nome) throws StringInvalidaException {
 		if (nome == null || nome.trim().isEmpty()) {
 			throw new StringInvalidaException("Nome do(a) hospede nao pode ser vazio.");
@@ -101,5 +102,17 @@ public class ValidacaoDeDados {
 		}
 	}
 
+	public void verificaId(String ID) throws StringInvalidaException {
+		if (ID == null || ID.trim().isEmpty()) {
+			throw new StringInvalidaException("ID do quarto invalido, use apenas numeros ou letras.");
+		}
+	}
+
+	public void verficaTipoQuarto(String tipoQuarto) throws StringInvalidaException {
+		if (!tipoQuarto.equals("Presidencial") || !tipoQuarto.equals("Luxo") || !tipoQuarto.equals("Simples")) {
+
+			throw new StringInvalidaException("Tipo de quarto invalido.");
+		}
+	}
 
 }

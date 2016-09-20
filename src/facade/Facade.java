@@ -8,6 +8,8 @@ import exceptions.CadastraPratoException;
 import exceptions.CadastraRefeicaoException;
 import exceptions.CadastroException;
 import exceptions.CadastroHospedeException;
+import exceptions.ChecarHospedagemException;
+import exceptions.CheckinException;
 import exceptions.CheckoutException;
 import exceptions.DadoInvalidoException;
 import exceptions.HospedagemException;
@@ -46,11 +48,11 @@ public class Facade {
 	}
 
 	public void realizaCheckin(String email, int dias, String quarto, String tipoDeQuarto)
-			throws BuscaHospedeException, ValorInvalidoException, StringInvalidaException, IdInvalidoException {
+			throws BuscaHospedeException, ValorInvalidoException, StringInvalidaException, IdInvalidoException, CheckinException {
 		controller.realizaCheckin(email, dias, quarto, tipoDeQuarto);
 	}
 
-	public String getInfoHospedagem(String email, String atributo) throws BuscaHospedeException, HospedagemException {
+	public String getInfoHospedagem(String email, String atributo) throws BuscaHospedeException, HospedagemException, ChecarHospedagemException {
 		return controller.getInfoHospedagem(email, atributo);
 	}
 	
