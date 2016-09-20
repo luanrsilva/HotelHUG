@@ -184,7 +184,7 @@ public class HotelController {
 	private void verificaQuartoOcupado(String quarto)
 			throws StringInvalidaException {
 		if (verificaQuarto(quarto)) {
-			throw new StringInvalidaException("Quarto 2A ja esta ocupado.");
+			throw new StringInvalidaException("Quarto " + quarto + " ja esta ocupado.");
 		}
 	}
 
