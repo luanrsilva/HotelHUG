@@ -9,6 +9,7 @@ import restaurante.Refeicao;
 import restaurante.RefeicaoCompleta;
 import util.ValidacaoDeDados;
 import exceptions.CadastraPratoException;
+import exceptions.CadastraRefeicaoCompletaException;
 import exceptions.CadastraRefeicaoException;
 import exceptions.CadastroException;
 import exceptions.ConsultaRestauranteException;
@@ -88,13 +89,12 @@ public class RestauranteController {
 		}
 	}
 
-	public void cadastraRefeicao(String nome, String descricao, String componentes) throws CadastraRefeicaoException {
+	public void cadastraRefeicao(String nome, String descricao, String componentes) throws CadastraRefeicaoException, CadastraRefeicaoCompletaException {
 		RefeicaoCompleta novaRefeicaoCompleta;
 		try {
 			validacao.verificaNomeRefeicao(nome);
 			validacao.verficaDescricaoRefeicao(descricao);
 			validacao.verificaComponente(componentes);
-			//validacao.verificaRefeicaoCompleta(componentes);
 			novaRefeicaoCompleta = new RefeicaoCompleta(nome, descricao);
 			String[] ingredientes = componentes.split(";");
 			for (String comp : ingredientes) {
@@ -103,9 +103,12 @@ public class RestauranteController {
 					novaRefeicaoCompleta.adicionaPrato((Prato) refeicao);
 				}
 			}
+			validacao.verificaRefeicaoCompleta(componentes);
 			cardapio.add(novaRefeicaoCompleta);
-		} catch (DadoInvalidoException e) {
+		} catch (StringInvalidaException e) {
 			throw new CadastraRefeicaoException(e.getMessage());
+		} catch (DadoInvalidoException e) {
+			throw new CadastraRefeicaoCompletaException(e.getMessage());
 		}
 	}
 

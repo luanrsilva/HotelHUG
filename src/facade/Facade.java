@@ -5,6 +5,7 @@ import controller.RestauranteController;
 import exceptions.AtualizacaoHospedeException;
 import exceptions.BuscaHospedeException;
 import exceptions.CadastraPratoException;
+import exceptions.CadastraRefeicaoCompletaException;
 import exceptions.CadastraRefeicaoException;
 import exceptions.CadastroException;
 import exceptions.CadastroHospedeException;
@@ -81,7 +82,7 @@ public class Facade {
 		return restauranteController.consultaRestaurante(nome, atributo);
 	}
 	
-	public void cadastraRefeicao(String nome, String descricao, String componentes) throws StringInvalidaException, CadastraRefeicaoException{
+	public void cadastraRefeicao(String nome, String descricao, String componentes) throws StringInvalidaException, CadastraRefeicaoException, CadastraRefeicaoCompletaException{
 		restauranteController.cadastraRefeicao(nome,descricao, componentes);
 	}
 
