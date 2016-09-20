@@ -68,7 +68,7 @@ public class Facade {
 		return hotelController.consultaTransacoes(atributo);
 	}
 	
-	public String consultaTransacoes(String atributo, int indice) {
+	public String consultaTransacoes(String atributo, int indice) throws DadoInvalidoException {
 		return hotelController.consultaTransacoes(atributo, indice);
 	}
 	

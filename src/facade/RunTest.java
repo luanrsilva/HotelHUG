@@ -10,7 +10,8 @@ public class RunTest {
 	    					 "testes_aceitacao/testes_uc2.txt",
 	    					 "testes_aceitacao/testes_uc3.txt",
 	    					 "testes_aceitacao/testes_uc4.txt",
-	    					 "testes_aceitacao/testes_uc2_exception.txt"}; //separe cada script de teste por virgula.
+	    					 "testes_aceitacao/testes_uc2_exception.txt",
+	    					 "testes_aceitacao/testes_uc3_exception.txt"}; //separe cada script de teste por virgula.
 	    EasyAccept.main(args);	    
 	}
 

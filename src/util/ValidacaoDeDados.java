@@ -158,5 +158,11 @@ public class ValidacaoDeDados {
 		}
 	}
 	
+	public void verificaIndiceValido(int indice) throws DadoInvalidoException {
+		if (indice < 0) {
+			throw new DadoInvalidoException("Erro na consulta de transacoes. Indice invalido.");
+		}
+	}
+	
 
 }

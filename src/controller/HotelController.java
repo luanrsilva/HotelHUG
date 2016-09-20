@@ -240,6 +240,7 @@ public class HotelController {
 		try {
 			validacao.verificaEmail(email);
 			validacao.verificaEmailInvalido(email);
+			validacao.verificaQuartoIDValido(quarto);
 			Hospede hospede = buscaHospede(email);
 			String info = "";
 			DecimalFormat df = new DecimalFormat("#0.00");
@@ -282,16 +283,21 @@ public class HotelController {
 		return info;
 	}
 
-	public String consultaTransacoes(String atributo, int indice) {
+	public String consultaTransacoes(String atributo, int indice) throws DadoInvalidoException {
 		String info = "";
-		switch (atributo.toUpperCase()) {
-		case "TOTAL":
-			info += "R$" + (int) checkoutRealizados.get(indice).totalPagarCheckOut() + ",00";
-			break;
-		case "NOME":
-			info += checkoutRealizados.get(indice).getNome();
+		try {
+			validacao.verificaIndiceValido(indice);
+			switch (atributo.toUpperCase()) {
+			case "TOTAL":
+				info += "R$" + (int) checkoutRealizados.get(indice).totalPagarCheckOut() + ",00";
+				break;
+			case "NOME":
+				info += checkoutRealizados.get(indice).getNome();
+				break;
+			}
+		} catch (DadoInvalidoException di) {
+			throw new DadoInvalidoException(di.getMessage());
 		}
-
 		return info;
 	}
 }
