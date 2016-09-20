@@ -1,7 +1,7 @@
 package facade;
 
-import controller.Controller;
-
+import controller.HotelController;
+import controller.RestauranteController;
 import exceptions.AtualizacaoHospedeException;
 import exceptions.BuscaHospedeException;
 import exceptions.CadastraPratoException;
@@ -20,10 +20,12 @@ import exceptions.ValorInvalidoException;
 
 public class Facade {
 
-	private Controller controller;
+	private HotelController hotelController;
+	private RestauranteController restauranteController;
 
 	public Facade() {
-		controller = new Controller();
+		hotelController = new HotelController();
+		restauranteController = new RestauranteController();
 	}
 
 	public void iniciaSistema() {
@@ -32,52 +34,52 @@ public class Facade {
 
 	public String cadastraHospede(String nome, String email, String nascimento)
 			throws StringInvalidaException, CadastroException, CadastroHospedeException {
-		return controller.cadastraHospede(nome, email, nascimento);
+		return hotelController.cadastraHospede(nome, email, nascimento);
 	}
 
 	public void removeHospede(String email) throws BuscaHospedeException, RemocaoHospedeException {
-		controller.removeHospede(email);
+		hotelController.removeHospede(email);
 	}
 
 	public void atualizaCadastro(String id, String atributo, String valor) throws BuscaHospedeException, DadoInvalidoException, AtualizacaoHospedeException, CadastroException {
-		controller.atualizaCadastro(id, atributo, valor);
+		hotelController.atualizaCadastro(id, atributo, valor);
 	}
 
 	public String getInfoHospede(String email, String atributo) throws BuscaHospedeException {
-		return controller.getInfoHospede(email, atributo);
+		return hotelController.getInfoHospede(email, atributo);
 	}
 
 	public void realizaCheckin(String email, int dias, String quarto, String tipoDeQuarto)
 			throws BuscaHospedeException, ValorInvalidoException, StringInvalidaException, IdInvalidoException, CheckinException {
-		controller.realizaCheckin(email, dias, quarto, tipoDeQuarto);
+		hotelController.realizaCheckin(email, dias, quarto, tipoDeQuarto);
 	}
 
 	public String getInfoHospedagem(String email, String atributo) throws BuscaHospedeException, HospedagemException, ChecarHospedagemException {
-		return controller.getInfoHospedagem(email, atributo);
+		return hotelController.getInfoHospedagem(email, atributo);
 	}
 	
 	public String realizaCheckout(String email, String quarto) throws BuscaHospedeException, CheckoutException {
-		return controller.realizaCheckout(email, quarto);
+		return hotelController.realizaCheckout(email, quarto);
 	}
 	
 	public String consultaTransacoes(String atributo) {
-		return controller.consultaTransacoes(atributo);
+		return hotelController.consultaTransacoes(atributo);
 	}
 	
 	public String consultaTransacoes(String atributo, int indice) {
-		return controller.consultaTransacoes(atributo, indice);
+		return hotelController.consultaTransacoes(atributo, indice);
 	}
 	
 	public void cadastraPrato(String nome, double preco, String descricao) throws CadastraPratoException, StringInvalidaException{
-		controller.cadastraPrato(nome, preco, descricao);
+		restauranteController.cadastraPrato(nome, preco, descricao);
 	}
 	
 	public String consultaRestaurante(String nome, String atributo){
-		return controller.consultaRestaurante(nome, atributo);
+		return restauranteController.consultaRestaurante(nome, atributo);
 	}
 	
 	public void cadastraRefeicao(String nome, String descricao, String componentes) throws StringInvalidaException, CadastraRefeicaoException{
-		controller.cadastraRefeicao(nome,descricao, componentes);
+		restauranteController.cadastraRefeicao(nome,descricao, componentes);
 	}
 
 	public void fechaSistema(){

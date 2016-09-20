@@ -25,20 +25,19 @@ import exceptions.StringInvalidaException;
 import exceptions.ValorInvalidoException;
 import hotel.Estadia;
 import hotel.Hospede;
-import restaurante.Restaurante;
 import util.ValidacaoDeDados;
 
-public class Controller {
+public class HotelController {
 
 	private Map<String, Hospede> hospedes;
 	private List<Hospede> checkoutRealizados;
-	private Restaurante restaurante;
+	private RestauranteController restaurante;
 	private ValidacaoDeDados validacao;
 
-	public Controller() {
+	public HotelController() {
 		this.hospedes = new HashMap<String, Hospede>();
 		this.checkoutRealizados = new ArrayList<Hospede>();
-		this.restaurante = new Restaurante();
+		this.restaurante = new RestauranteController();
 		this.validacao = new ValidacaoDeDados();
 	}
 
@@ -279,19 +278,4 @@ public class Controller {
 
 		return info;
 	}
-
-	public String consultaRestaurante(String nome, String atributo) {
-		return restaurante.consultaRestaurante(nome, atributo);
-	}
-
-	public void cadastraPrato(String nome, double preco, String descricao)
-			throws CadastraPratoException, StringInvalidaException {
-		restaurante.cadastraPrato(nome, preco, descricao);
-	}
-
-	public void cadastraRefeicao(String nome, String descricao, String componentes)
-			throws StringInvalidaException, CadastraRefeicaoException {
-		restaurante.cadastraRefeicao(nome, descricao, componentes);
-	}
-
 }

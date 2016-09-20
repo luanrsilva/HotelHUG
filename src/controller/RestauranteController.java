@@ -1,19 +1,22 @@
-package restaurante;
+package controller;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import restaurante.Prato;
+import restaurante.Refeicao;
+import restaurante.RefeicaoCompleta;
 import exceptions.CadastraPratoException;
 import exceptions.CadastraRefeicaoException;
 import exceptions.CadastroException;
 import exceptions.StringInvalidaException;
 
-public class Restaurante {
+public class RestauranteController {
 
 	private List<Refeicao> cardapio;
 
-	public Restaurante() {
+	public RestauranteController() {
 		this.cardapio = new ArrayList<Refeicao>();
 	}
 
