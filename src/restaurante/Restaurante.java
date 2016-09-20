@@ -17,6 +17,14 @@ public class Restaurante {
 		this.cardapio = new ArrayList<Refeicao>();
 	}
 
+	/**
+	 * Metodo que cadastra/adiciona o prato no cardapio(Lista de pratos) do restaurante.
+	 * @param nome
+	 * @param preco
+	 * @param descricao
+	 * @throws CadastraPratoException
+	 * @throws StringInvalidaException
+	 */
 	public void cadastraPrato(String nome, double preco, String descricao)
 			throws CadastraPratoException, StringInvalidaException {
 		Prato novoPrato;
@@ -28,6 +36,11 @@ public class Restaurante {
 		}
 	}
 
+	/**
+	 * Metodo que busca um prato no cardapio a partir de seu nome.
+	 * @param nome
+	 * @return retorna o prato caso exista ou nulo se nao existir.
+	 */
 	public Refeicao buscaRefeicao(String nome) {
 		for (Refeicao prato : cardapio) {
 			if (nome.equalsIgnoreCase(prato.getNome())) {
@@ -37,6 +50,12 @@ public class Restaurante {
 		return null;
 	}
 
+	/**
+	 * Metodo que busca e retorna uma informacao de um atributo passado, para o prato passado.
+	 * @param nome
+	 * @param atributo
+	 * @return retorna uma String, contendo uma informacao a partir do preco ou da descricao da refeicao.
+	 */
 	public String consultaRestaurante(String nome, String atributo) {
 		Refeicao refeicao = buscaRefeicao(nome);
 		String info = "";

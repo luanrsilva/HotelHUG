@@ -1,13 +1,11 @@
 package controller;
 
 import java.text.DecimalFormat;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import estadia.Estadia;
 import exceptions.AtualizacaoHospedeException;
 import exceptions.BuscaHospedeException;
 import exceptions.CadastraPratoException;
@@ -25,7 +23,8 @@ import exceptions.IdInvalidoException;
 import exceptions.RemocaoHospedeException;
 import exceptions.StringInvalidaException;
 import exceptions.ValorInvalidoException;
-import hospede.Hospede;
+import hotel.Estadia;
+import hotel.Hospede;
 import restaurante.Restaurante;
 import util.ValidacaoDeDados;
 

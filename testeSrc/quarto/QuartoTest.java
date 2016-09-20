@@ -1,6 +1,8 @@
 package quarto;
 
 import static org.junit.Assert.fail;
+import hotel.Quarto;
+import hotel.TipoQuarto;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -8,8 +10,6 @@ import org.junit.Test;
 
 import exceptions.IdInvalidoException;
 import exceptions.StringInvalidaException;
-import quarto.Quarto;
-import quarto.TipoQuarto;
 
 public class QuartoTest {
 	

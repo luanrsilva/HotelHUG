@@ -1,4 +1,4 @@
-package estadia;
+package hotel;
 
 import exceptions.*;
 import quarto.*;

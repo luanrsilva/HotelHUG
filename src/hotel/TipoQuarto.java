@@ -1,4 +1,4 @@
-package quarto;
+package hotel;
 
 public enum TipoQuarto {
 

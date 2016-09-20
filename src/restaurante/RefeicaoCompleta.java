@@ -18,7 +18,6 @@ public class RefeicaoCompleta extends Refeicao {
 		pratos.add(prato);
 	}
 	
-	
 	@Override
 	public double calculaPreco() {
 		double total = 0.0;
@@ -28,6 +27,7 @@ public class RefeicaoCompleta extends Refeicao {
 		total = total * 0.9;
 		return total;
 	}
+	
 	
 	@Override
 	public String getDescricao() {

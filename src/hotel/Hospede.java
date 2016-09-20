@@ -1,9 +1,8 @@
-package hospede;
+package hotel;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import estadia.Estadia;
 import exceptions.DadoInvalidoException;
 import exceptions.IdInvalidoException;
 import exceptions.StringInvalidaException;

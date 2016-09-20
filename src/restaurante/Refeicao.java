@@ -15,12 +15,22 @@ public abstract class Refeicao {
 		this.descricao = descricao;
 	}
 
+	/**
+	 * Metodo que verifica se a descricao do prato passada eh valida, se nao for, lanca uma excessao.
+	 * @param descricao
+	 * @throws StringInvalidaException
+	 */
 	private void verificaDescricao(String descricao) throws StringInvalidaException {
 		if (descricao == null || descricao.trim().isEmpty()) {
 			throw new StringInvalidaException("Descricao do prato esta vazia.");
 		}
 	}
 
+	/**
+	 * Metodo que verifica se o nome do prato passado eh valido, se nao for, lanca uma excessao.
+	 * @param nome
+	 * @throws StringInvalidaException
+	 */
 	private void verificaNome(String nome) throws StringInvalidaException {
 		if (nome == null || nome.trim().isEmpty()) {
 			throw new StringInvalidaException("Nome do prato esta vazio.");
@@ -45,6 +55,10 @@ public abstract class Refeicao {
 		this.descricao = descricao;
 	}
 
+	/**
+	 * Este metodo calcula o preco de todos os pratos inclusos na refeicao.
+	 * @return Retorna um double com o preco.
+	 */
 	public abstract double calculaPreco();
 
 }
