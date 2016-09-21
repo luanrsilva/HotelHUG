@@ -56,7 +56,7 @@ expectError "Erro na consulta de hospedagem. Hospede Alfred Nobel nao esta hospe
 ##############################################################
 # Um novo checkin nao deve alterar o historico de transacoes #
 ##############################################################
-realizaCheckin email="nobel@got.se" dias=1 quarto="1A" tipoQuarto="Luxo"
+realizaCheckin email="nobel@got.se" dias=1 quarto="1A" tipoQuarto="Presidencial"
 
 expect "3" consultaTransacoes atributo="Quantidade"
 expect "R$2950,00" consultaTransacoes atributo="Total"
@@ -73,10 +73,10 @@ expect "Agnetha Faltskog" consultaTransacoes atributo="Nome" indice=2
 #             O checkout por sua vez altera                  #
 ##############################################################
 
-expect "R$250,00" realizaCheckout email="nobel@got.se" quarto="1A"
+expect "R$450,00" realizaCheckout email="nobel@got.se" quarto="1A"
 
 expect "4" consultaTransacoes atributo="Quantidade"
-expect "R$3200,00" consultaTransacoes atributo="Total"
+expect "R$3400,00" consultaTransacoes atributo="Total"
 expect "Sven Gudmar Svenson;Ines Brasil;Agnetha Faltskog;Alfred Nobel" consultaTransacoes atributo="Nome"
 
 expect "R$2250,00" consultaTransacoes atributo="Total" indice=0
@@ -86,7 +86,7 @@ expect "Ines Brasil" consultaTransacoes atributo="Nome" indice=1
 expect "R$200,00" consultaTransacoes atributo="Total" indice=2
 expect "Agnetha Faltskog" consultaTransacoes atributo="Nome" indice=2
 # Nova transacao referente ao checkout de Nobel.
-expect "R$250,00" consultaTransacoes atributo="Total" indice=3
+expect "R$450,00" consultaTransacoes atributo="Total" indice=3
 expect "Alfred Nobel" consultaTransacoes atributo="Nome" indice=3
 
 fechaSistema

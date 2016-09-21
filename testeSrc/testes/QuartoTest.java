@@ -64,21 +64,4 @@ public class QuartoTest {
 			//Nao deve lancar esxception
 		}
 	}
-	
-	@Test
-	public void testException(){
-		try{
-			Quarto luxo2 = new Quarto("", "luxo");
-			fail();
-		}catch(IdInvalidoException se){
-			Assert.assertEquals("Id nulo ou vazio.", se.getMessage());;
-		}
-		
-		try{
-			Quarto luxo3 = new Quarto("18A", "  ");	
-			fail();
-		}catch(IdInvalidoException se){
-			Assert.assertEquals("Tipo nulo ou vazio.",se.getMessage());
-		}
-	}
 }

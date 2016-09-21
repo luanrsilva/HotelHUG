@@ -11,6 +11,9 @@ iniciaSistema
 #    Cadastro de Hospedes     #
 ###############################
 
+removeHospede email="sven@sverige.se"
+id1=cadastraHospede nome="Sven Gudmar Svenson" email="sven@sverige.se" dataNascimento="10/02/1978"
+
 expectError "Erro no cadastro de Hospede. Nome do(a) hospede nao pode ser vazio." cadastraHospede nome="" email="sven@sverige.se" dataNascimento="10/02/1978"
 expectError "Erro no cadastro de Hospede. Nome do(a) hospede nao pode ser vazio." cadastraHospede nome="    " email="sven@sverige.se" dataNascimento="10/02/1978"
 expectError "Erro no cadastro de Hospede. Nome do(a) hospede esta invalido." cadastraHospede nome="Sven Gudm@r Svenson" email="sven@sverige.se" dataNascimento="10/02/1978"
@@ -62,8 +65,8 @@ expectError "Erro na atualizacao do cadastro de Hospede. A idade do(a) hospede d
 #      Remove Hospede         #
 ###############################
 
-expectError "Erro na remocao do Hospede. Email do(a) hospede esta invalido." removeHospede email="@sverige.se"
-expectError "Erro na remocao do Hospede. Email do(a) hospede esta invalido." removeHospede email="sverige.se"
-expectError "Erro na remocao do Hospede. Email do(a) hospede esta invalido." removeHospede email="sven@"
+expectError "Erro na remocao do Hospede. Formato de email invalido." removeHospede email="@sverige.se"
+expectError "Erro na remocao do Hospede. Formato de email invalido." removeHospede email="sverige.se"
+expectError "Erro na remocao do Hospede. Formato de email invalido." removeHospede email="sven@"
 
 fechaSistema

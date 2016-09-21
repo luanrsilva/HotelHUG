@@ -15,9 +15,6 @@ public class Quarto {
 	private TipoQuarto tipo;
 
 	public Quarto(String id, String tipo) throws IdInvalidoException {
-		if (id == null || id.trim().isEmpty()) {
-			throw new IdInvalidoException(id);
-		}
 		this.tipo = associaTipo(tipo);
 		this.id = id;
 	}
@@ -72,6 +69,7 @@ public class Quarto {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((tipo == null) ? 0 : tipo.hashCode());
 		return result;
 	}
 
@@ -89,7 +87,11 @@ public class Quarto {
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
+		if (tipo != other.tipo)
+			return false;
 		return true;
 	}
+
+
 
 }

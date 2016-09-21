@@ -154,7 +154,7 @@ public class ValidacaoDeDados {
 			throws EmailInvalidoException {
 		if (!verificaEmailValido(email)) {
 			throw new EmailInvalidoException(
-					"Email do(a) hospede esta invalido.");
+					"Formato de email invalido.");
 		}
 	}
 
