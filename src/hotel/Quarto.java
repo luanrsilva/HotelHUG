@@ -36,6 +36,11 @@ public class Quarto {
 		this.tipo = tipo;
 	}
 
+	/**
+	 * Metodo que associa um quarto a seu tipo, passado com parametro.
+	 * @param tipo
+	 * @return retorna o tipo do quarto a ser associado.
+	 */
 	private TipoQuarto associaTipo(String tipo) {
 
 		switch (tipo.toUpperCase()) {

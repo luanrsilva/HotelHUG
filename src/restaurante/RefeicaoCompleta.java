@@ -17,7 +17,11 @@ public class RefeicaoCompleta extends Refeicao {
 	public void adicionaPrato(Prato prato){
 		pratos.add(prato);
 	}
-	
+
+	/**
+	 * Este metodo calcula o preco de todos os pratos inclusos na refeicao.
+	 * @return Retorna um double com o preco.
+	 */
 	@Override
 	public double calculaPreco() {
 		double total = 0.0;
@@ -28,7 +32,10 @@ public class RefeicaoCompleta extends Refeicao {
 		return total;
 	}
 	
-	
+	/**
+	 * Metodo que informa a descricao de cada prato da lista de pratos.
+	 * @return retorna uma string contendo informacoes sobre a descricao de cada prato.
+	 */
 	@Override
 	public String getDescricao() {
 		String descricao = super.getDescricao();
