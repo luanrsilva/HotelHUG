@@ -31,6 +31,11 @@ public class Estadia {
 		return this.quarto.getDiaria() * getDias();
 	}
 	
+	/**
+	 * Metodo que verifica de a estadia contem o quarto com o ID passado.
+	 * @param quartoId
+	 * @return retorna um booleano.
+	 */
 	public boolean contemQuarto(String quartoId){
 		if(quartoId.equals(getQuarto().getId())){
 			return true;
