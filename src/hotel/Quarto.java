@@ -2,6 +2,12 @@ package hotel;
 
 import exceptions.IdInvalidoException;
 
+
+/**
+ * Classe que representa uma abstracao de um quarto.
+ * @author Ariann Farias, Luan Rocha, Nilton Ginani, Yovany Cunha - Turma 03
+ *
+ */
 public class Quarto {
 
 	private String id;

@@ -3,6 +3,12 @@ package restaurante;
 import exceptions.StringInvalidaException;
 import util.ValidacaoDeDados;
 
+
+/**
+ * Classe que representa uma abstracao de uma refeicao.
+ * @author Ariann Farias, Luan Rocha, Nilton Ginani, Yovany Cunha - Turma 03
+ *
+ */
 public abstract class Refeicao {
 
 	private String nome;

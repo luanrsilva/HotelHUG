@@ -7,6 +7,12 @@ import exceptions.DadoInvalidoException;
 import exceptions.IdInvalidoException;
 import exceptions.StringInvalidaException;
 
+
+/**
+ * Classe que representa uma abstracao de um hospede.
+ * @author Ariann Farias, Luan Rocha, Nilton Ginani, Yovany Cunha - Turma 03
+ *
+ */
 public class Hospede {
 
 	private String nome;

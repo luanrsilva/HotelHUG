@@ -10,6 +10,12 @@ import exceptions.DadoInvalidoException;
 import exceptions.EmailInvalidoException;
 import exceptions.StringInvalidaException;
 
+
+/**
+ * Classe responsavel por possuir o metodos capazes de validar dados passados.
+ * @author Ariann Farias, Luan Rocha, Nilton Ginani, Yovany Cunha - Turma 03
+ *
+ */
 public class ValidacaoDeDados {
 
 	public ValidacaoDeDados() {

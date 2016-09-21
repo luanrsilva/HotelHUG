@@ -28,6 +28,11 @@ import hotel.Estadia;
 import hotel.Hospede;
 import util.ValidacaoDeDados;
 
+/**
+ * Classe responsavel controlar tudo o que acontece com o hospedes e suas estadias.
+ * @author Ariann Farias, Luan Rocha, Nilton Ginani, Yovany Cunha - Turma 03
+ *
+ */
 public class HotelController {
 
 	private Map<String, Hospede> hospedes;

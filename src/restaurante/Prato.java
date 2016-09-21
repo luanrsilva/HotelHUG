@@ -2,6 +2,11 @@ package restaurante;
 
 import exceptions.StringInvalidaException;
 
+/**
+ * Classe que representa uma abstracao de um prato.
+ * @author Ariann Farias, Luan Rocha, Nilton Ginani, Yovany Cunha - Turma 03
+ *
+ */
 public class Prato extends Refeicao {
 
 	private double preco;

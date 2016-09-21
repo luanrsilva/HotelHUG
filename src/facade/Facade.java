@@ -22,6 +22,11 @@ import exceptions.IdInvalidoException;
 import exceptions.RemocaoHospedeException;
 import exceptions.StringInvalidaException;
 
+/**
+ * Classe responsavel por ser a entrada e delegar metodos das classes controllers.
+ * @author Ariann Farias, Luan Rocha, Nilton Ginani, Yovany Cunha - Turma 03
+ *
+ */
 public class Facade {
 
 	private HotelController hotelController;

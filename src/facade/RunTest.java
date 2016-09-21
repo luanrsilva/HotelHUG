@@ -2,6 +2,11 @@ package facade;
 
 import easyaccept.EasyAccept;
 
+/**
+ * Classe reponsavel por rodar os testes da plataforma easyaccept.
+ * @author Ariann Farias, Luan Rocha, Nilton Ginani, Yovany Cunha - Turma 03
+ *
+ */
 public class RunTest {
 	
 	public static void main(String[] args) {

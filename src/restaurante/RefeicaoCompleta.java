@@ -5,6 +5,12 @@ import java.util.List;
 
 import exceptions.StringInvalidaException;
 
+
+/**
+ * Classe que representa uma abstracao de uma refeicao.
+ * @author Ariann Farias, Luan Rocha, Nilton Ginani, Yovany Cunha - Turma 03
+ *
+ */
 public class RefeicaoCompleta extends Refeicao {
 
 	private List<Prato> pratos;

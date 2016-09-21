@@ -16,6 +16,12 @@ import exceptions.ConsultaRestauranteException;
 import exceptions.DadoInvalidoException;
 import exceptions.StringInvalidaException;
 
+
+/**
+ * Classe responsavel controlar tudo o que acontece com as refeicoes e seus pratos.
+ * @author Ariann Farias, Luan Rocha, Nilton Ginani, Yovany Cunha - Turma 03
+ *
+ */
 public class RestauranteController {
 
 	private List<Refeicao> cardapio;

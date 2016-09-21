@@ -4,6 +4,12 @@ import exceptions.*;
 
 import testes.*;
 
+
+/**
+ * Classe que representa uma abstracao de uma estadia.
+ * @author Ariann Farias, Luan Rocha, Nilton Ginani, Yovany Cunha - Turma 03
+ *
+ */
 public class Estadia {
 
 	private int dias;
