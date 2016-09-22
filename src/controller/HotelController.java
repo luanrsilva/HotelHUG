@@ -330,7 +330,7 @@ public class HotelController {
 			info += "R$" + df.format(hospede.estadiaQuarto(quarto));
 			info = info.replace('.', ',');
 			this.checkoutRealizados.add(hospede);
-			hospede.moveEstadia(quarto);
+			hospede.desativaEstadia(quarto);
 			hospede.removeEstadia(quarto);
 			return info;
 		} catch (StringInvalidaException e) {

@@ -119,7 +119,7 @@ public class Hospede {
 	 * @param quartoId
 	 * @return retorna um booleano.
 	 */
-	public boolean moveEstadia(String quartoId) {
+	public boolean desativaEstadia(String quartoId) {
 		for (Estadia estadia : estadias) {
 			if (quartoId.equalsIgnoreCase(estadia.getQuarto().getId())) {
 				return estadiasAnteriores.add(estadia);
