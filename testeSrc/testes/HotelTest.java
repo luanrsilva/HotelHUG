@@ -121,4 +121,67 @@ public class HotelTest {
 		Assert.assertEquals("R$1400,00", hotel.consultaTransacoes("total", 1));
 		Assert.assertEquals("Luan Rocha", hotel.consultaTransacoes("nome", 1));
 	}
+	
+	//Testes das Exceptions
+	@Test
+	public void cadastraHospedeExceptions() throws StringInvalidaException{
+		String nomeVazio = "Erro no cadastro de Hospede. Nome do(a) hospede nao pode ser vazio.";
+		String nomeInvalido = "Erro no cadastro de Hospede. Nome do(a) hospede esta invalido.";
+		String emailVazio = "Erro no cadastro de Hospede. Email do(a) hospede nao pode ser vazio.";
+		String emailInvalido = "Erro no cadastro de Hospede. Email do(a) hospede esta invalido.";
+		String dataVazia = "Erro no cadastro de Hospede. Data de Nascimento do(a) hospede nao pode ser vazio.";
+		String dataInvalida = "Erro no cadastro de Hospede. Formato de data invalido.";
+		String dataIdade = "Erro no cadastro de Hospede. A idade do(a) hospede deve ser maior que 18 anos.";
+		
+		//Exceptions de Nome
+		try{
+			hotel.cadastraHospede(" ", "niltonginani@ccc.br", "25/10/1992");
+			fail();
+		}catch (CadastroHospedeException ch){
+			Assert.assertEquals(nomeVazio, ch.getMessage());
+		}
+		
+		try{
+			hotel.cadastraHospede("Nilton@Ginani", "niltonginani@ccc.br", "25/10/1992");
+		}catch (CadastroHospedeException ch){
+			Assert.assertEquals(nomeInvalido, ch.getMessage());
+		}
+		
+		//Exceptions de Email
+		try{
+			hotel.cadastraHospede("Nilton Ginani", " ", "25/10/1992");
+			fail();
+		}catch (CadastroHospedeException ch){
+			Assert.assertEquals(emailVazio, ch.getMessage());
+		}
+		
+		try{
+			hotel.cadastraHospede("Nilton Ginani", "nilton.ginani@ccc.br", "25/10/1992");
+			fail();
+		}catch (CadastroHospedeException ch){
+			Assert.assertEquals(emailInvalido, ch.getMessage());
+		}
+		
+		//Exceptions da Data de Nascimento
+		try{
+			hotel.cadastraHospede("Nilton Ginani", "niltonginani@ccc.br", " ");
+			fail();
+		}catch (CadastroHospedeException ch){
+			Assert.assertEquals(dataVazia, ch.getMessage());
+		}
+		
+		try{
+			hotel.cadastraHospede("Nilton Ginani", "niltonginani@ccc.br", "25-10-1992");
+			fail();
+		}catch (CadastroHospedeException ch){
+			Assert.assertEquals(dataInvalida, ch.getMessage());
+		}
+		
+		try{
+			hotel.cadastraHospede("Nilton Ginani", "niltonginani@ccc.br", "25/10/2000");
+			fail();
+		}catch (CadastroHospedeException ch){
+			Assert.assertEquals(dataIdade, ch.getMessage());
+		}
+	}
 }

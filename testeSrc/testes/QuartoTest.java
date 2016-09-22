@@ -25,7 +25,7 @@ public class QuartoTest {
 	}
 	
 	@Test
-	public void testDiaria(){
+	public void testGetDiaria(){
 		Assert.assertEquals(100.00, quartoSimples.getDiaria(), 0.0);
 		Assert.assertEquals(250.00, quartoLuxo.getDiaria(), 0.0);
 		Assert.assertEquals(450.00, quartoPresidencial.getDiaria(), 0.0);
@@ -39,7 +39,7 @@ public class QuartoTest {
 	}
 	
 	@Test
-	public void testTipo(){
+	public void testGetTipo(){
 		Assert.assertEquals(TipoQuarto.LUXO, quartoLuxo.getTipo());
 		Assert.assertEquals(TipoQuarto.SIMPLES, quartoSimples.getTipo());
 		Assert.assertEquals(TipoQuarto.PRESIDENCIAL, quartoPresidencial.getTipo());
