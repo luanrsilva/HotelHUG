@@ -9,7 +9,7 @@ import util.ValidacaoDeDados;
  * @author Ariann Farias, Luan Rocha, Nilton Ginani, Yovany Cunha - Turma 03
  *
  */
-public abstract class Refeicao {
+public abstract class Refeicao implements Comparable<Refeicao>{
 
 	private String nome;
 	private String descricao;
@@ -60,11 +60,22 @@ public abstract class Refeicao {
 		verificaDescricao(descricao);
 		this.descricao = descricao;
 	}
-
+	
 	/**
 	 * Este metodo calcula o preco de todos os pratos inclusos na refeicao.
 	 * @return Retorna um double com o preco.
 	 */
 	public abstract double calculaPreco();
+	
+	@Override
+	public int compareTo(Refeicao ref) {
+		if (this.calculaPreco() < ref.calculaPreco()){
+			return -1;
+		}
+		else if (this.calculaPreco() > ref.calculaPreco()){
+			return 1;
+		}
+		return 0;
+	}
 
 }

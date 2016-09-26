@@ -1,0 +1,77 @@
+iniciaSistema
+########################
+# Status dos pontos:   #
+# Sven       : 225     #
+# Ines Brasil:  50     #
+# Agnetha    :  25     #
+# Nobel      :   5     #
+########################
+
+expect "225" getHospedeInfo id="svens@sverige.se" atributo="Pontos"
+expect "30" getHospedeInfo id="nobel@got.se" atributo="Pontos"
+expect "50" getHospedeInfo id="ines@brasil.com.br" atributo="Pontos"
+expect "20" getHospedeInfo id="agnetha@abba.se" atributo="Pontos"
+
+expect "R$1350,00" realizaCheckout email="sven@sverige.se" quarto="2A"
+expect "R$750,00" realizaCheckout email="ines@brasil.com.br" quarto="2B"
+
+#Agora apenas Sven eh Premium, e deve ganhar 30% (+ 10 p cada 100,00)
+expect "360" getHospedeInfo id="svens@sverige.se" atributo="Pontos"
+expect "125" getHospedeInfo id="ines@brasil.com.br" atributo="Pontos"
+expect "30" getHospedeInfo id="nobel@got.se" atributo="Pontos"
+expect "20" getHospedeInfo id="agnetha@abba.se" atributo="Pontos"
+
+#Ele tambem ganha 10% de desconto nos gastos, e ganha 30% de pontos (gasto > 100 reais)
+expect "R$45,77" realizaPedido hospede="sven@sverige.se" itemMenu="Delicia da serra"
+expect "375" getHospedeInfo id="svens@sverige.se" atributo="Pontos"
+
+
+#############################################
+#  vamos transformar ines brasil em premium #
+#   e sven em VIP para testar o restante    #
+#   dos calculos                            #
+#############################################
+# Verificando um hospede VIP: Sven Gudmar Svensson
+realizaCheckin email="sven@sverige.se" dias=4 quarto="5A" tipoQuarto="Presidencial"
+
+expect "R$1620,00" realizaCheckout email="sven@sverige.se" quarto="5A"
+expect "1095" getHospedeInfo id="svens@sverige.se" atributo="Pontos"
+
+expect "R$43,23" realizaPedido hospede="svens@sverige.se" itemMenu="Delicia da serra"
+expect "1120" getHospedeInfo id="svens@sverige.se" atributo="Pontos"
+
+realizaCheckin email="sven@sverige.se" dias=2 quarto="5A" tipoQuarto="Presidencial"
+expect "R$675,00" realizaCheckout email="sven@sverige.se" quarto="5A"
+
+# Verificacao de todos os pontos baseados nos ultimos gastos.
+expect "1570" getHospedeInfo id="svens@sverige.se" atributo="Pontos"
+expect "125" getHospedeInfo id="ines@brasil.com.br" atributo="Pontos"
+expect "20" getHospedeInfo id="agnetha@abba.se" atributo="Pontos"
+expect "30" getHospedeInfo id="nobel@got.se" atributo="Pontos"
+
+# Verificando um hospede Premium: Ines Brasil
+expect "R$50,85" realizaPedido hospede="ines@brasil.com.br" itemMenu="Delicia da serra"
+expect "130" getHospedeInfo id="ines@brasil.com.br" atributo="Pontos"
+
+realizaCheckin email="ines@brasil.com.br" dias=2 quarto="5B" tipoQuarto="Presidencial"
+expect "R$2250,00" realizaCheckout email="ines@brasil.com.br" quarto="5B"
+expect "355" getHospedeInfo id="ines@brasil.com.br" atributo="Pontos"
+
+expect "R$45,77" realizaPedido hospede="ines@brasil.com.br" itemMenu="Delicia da serra"
+expect "370" getHospedeInfo id="ines@brasil.com.br" atributo="Pontos"
+
+realizaCheckin email="ines@brasil.com.br" dias=3 quarto="5B" tipoQuarto="Presidencial"
+expect "R$1215,00" realizaCheckout email="ines@brasil.com.br" quarto="5B"
+expect "905" getHospedeInfo id="ines@brasil.com.br" atributo="Pontos"
+
+
+expect "1570" getHospedeInfo id="svens@sverige.se" atributo="Pontos"
+expect "905" getHospedeInfo id="ines@brasil.com.br" atributo="Pontos"
+expect "20" getHospedeInfo id="agnetha@abba.se" atributo="Pontos"
+expect "30" getHospedeInfo id="nobel@got.se" atributo="Pontos"
+
+expect "17" consultaTransacoes atributo="Quantidade"
+expect "R$11302,47" consultaTransacoes atributo="Total"
+expect "Sven Gudmar Svenson;Ines Brasil;Agnetha Faltskog;Alfred Nobel;Alfred Nobel;Alfred Nobel;Ines Brasil;Sven Gudmar Svenson;Ines Brasil;Sven Gudmar Svenson;Sven Gudmar Svenson;Sven Gudmar Svenson;Sven Gudmar Svenson;Ines Brasil;Ines Brasil;Ines Brasil;Ines Brasil" consultaTransacoes atributo="Nome"
+
+fechaSistema

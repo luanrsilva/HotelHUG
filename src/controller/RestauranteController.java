@@ -2,8 +2,10 @@ package controller;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
+import restaurante.ComparaNome;
 import restaurante.Prato;
 import restaurante.Refeicao;
 import restaurante.RefeicaoCompleta;
@@ -96,6 +98,18 @@ public class RestauranteController {
 			throw new ConsultaRestauranteException(e.getMessage());
 		}
 	}
+	
+	public String consultaMenuRestaurante(){
+		String info = "";
+		
+		for (int i = 0; i < (this.cardapio.size()-1); i++){
+			info += cardapio.get(i).getNome();
+			info += ";";
+		}
+		info += cardapio.get(cardapio.size()-1).getNome();
+		
+		return info;
+	}
 
 	/**
 	 * Metodo que cadastra uma nova refeicao na lista de refeicoes.
@@ -127,6 +141,23 @@ public class RestauranteController {
 		} catch (DadoInvalidoException e) {
 			throw new CadastraRefeicaoCompletaException(e.getMessage());
 		}
+	}
+	
+	public void ordenaMenu(String tipoOrdenacao){
+		if (tipoOrdenacao.equalsIgnoreCase("nome")){
+			this.ordenaCardapioPorNome();
+		}
+		else if (tipoOrdenacao.equalsIgnoreCase("preco")){
+			this.ordenaCardapioPorPreco();
+		}
+	}
+
+	private void ordenaCardapioPorPreco(){
+		Collections.sort(this.cardapio);
+	}
+	
+	private void ordenaCardapioPorNome(){
+		Collections.sort(this.cardapio, new ComparaNome());
 	}
 
 }

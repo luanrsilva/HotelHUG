@@ -175,6 +175,10 @@ public class Facade {
 		return restauranteController.consultaRestaurante(nome, atributo);
 	}
 	
+	public String consultaMenuRestaurante(){
+		return this.restauranteController.consultaMenuRestaurante();
+	}
+	
 	/**
 	 * Metodo que delega o cadastro de refeicoes para o restauranteController.
 	 * @param nome
@@ -186,6 +190,10 @@ public class Facade {
 	 */
 	public void cadastraRefeicao(String nome, String descricao, String componentes) throws StringInvalidaException, CadastraRefeicaoException, CadastraRefeicaoCompletaException{
 		restauranteController.cadastraRefeicao(nome,descricao, componentes);
+	}
+	
+	public void ordenaMenu(String tipoOrdenacao){
+		this.restauranteController.ordenaMenu(tipoOrdenacao);
 	}
 
 	public void fechaSistema(){

@@ -1,0 +1,68 @@
+iniciaSistema
+#####################################
+#   A ordenacao nao eh automatica   #
+# ela depende da chamada ao metodo  #
+#      ordenaMenu e do tipo         #
+#####################################
+expect "Artsoppa com panquecas;Kotbullar com lingon;Kanelbullar;Algkot com vegetais;Espresso;Bruschetta;Penne ao pesto;Tiramisu;Bresaola com rucula e parmesao;Tapioca;Rapadura;Carne de sol com fritas;Galeto com farofa;Svensk mat;Pasto italiano;Delicia da serra" consultaMenuRestaurante
+
+ordenaMenu tipoOrdenacao="Nome"
+
+expect "Algkot com vegetais;Artsoppa com panquecas;Bresaola com rucula e parmesao;Bruschetta;Carne de sol com fritas;Delicia da serra;Espresso;Galeto com farofa;Kanelbullar;Kotbullar com lingon;Pasto italiano;Penne ao pesto;Rapadura;Svensk mat;Tapioca;Tiramisu" consultaMenuRestaurante
+
+cadastraPrato nome="Pudim de leite" preco=6.50 descricao="Um a sobremesa a base de leite com calda caramelizada e ameixas."
+
+expect "Algkot com vegetais;Artsoppa com panquecas;Bresaola com rucula e parmesao;Bruschetta;Carne de sol com fritas;Delicia da serra;Espresso;Galeto com farofa;Kanelbullar;Kotbullar com lingon;Pasto italiano;Penne ao pesto;Rapadura;Svensk mat;Tapioca;Tiramisu;Pudim de leite" consultaMenuRestaurante
+
+ordenaMenu tipoOrdenacao="Nome"
+
+expect "Algkot com vegetais;Artsoppa com panquecas;Bresaola com rucula e parmesao;Bruschetta;Carne de sol com fritas;Delicia da serra;Espresso;Galeto com farofa;Kanelbullar;Kotbullar com lingon;Pasto italiano;Penne ao pesto;Pudim de leite;Rapadura;Svensk mat;Tapioca;Tiramisu" consultaMenuRestaurante
+
+ordenaMenu tipoOrdenacao="Preco"
+
+"Rapadura;Espresso;Tapioca;Pudim de Leite;Bruschetta;Bresaola com rucula e parmesao;Tiramisu;Kanelbullar;Galeto com farofa;Artsoppa com panquecas;Penne ao pesto;Kotbullar com lingon;Delicia da serra;Carne de sol com fritas;Pasto italiano;Algkot com vegetais;Svensk mat" consultaMenuRestaurante
+
+##################################
+# Registro de pedido de hospedes #
+##################################
+expect "R$50,85" realizaPedido hospede="nobel@got.se" itemMenu="Delicia da serra"
+expect "R$3,00" realizaPedido hospede="nobel@got.se" itemMenu="Tapioca"
+
+expect "6" consultaTransacoes atributo="Quantidade"
+expect "R$3253,85" consultaTransacoes atributo="Total"
+expect "Sven Gudmar Svenson;Ines Brasil;Agnetha Faltskog;Alfred Nobel;Alfred Nobel;Alfred Nobel" consultaTransacoes atributo="Nome"
+
+expect "R$2950,00" consultaTransacoes atributo="Total" indice=0
+expect "Sven Gudmar Svenson" consultaTransacoes atributo="Nome" indice=0
+expect "1A" consultaTransacoes atributo="Detalhes" indice=0
+
+expect "R$500,00" consultaTransacoes atributo="Total" indice=1
+expect "Ines Brasil" consultaTransacoes atributo="Nome" indice=1
+expect "1B" consultaTransacoes atributo="Detalhes" indice=1
+
+expect "R$200,00" consultaTransacoes atributo="Total" indice=2
+expect "Agnetha Faltskog" consultaTransacoes atributo="Nome" indice=2
+expect "15A" consultaTransacoes atributo="Detalhes" indice=2
+
+expect "R$250,00" consultaTransacoes atributo="Total" indice=3
+expect "Alfred Nobel" consultaTransacoes atributo="Nome" indice=3
+expect "1A" consultaTransacoes atributo="Detalhes" indice=3
+
+expect "R$50,85" consultaTransacoes atributo="Total" indice=4
+expect "Alfred Nobel" consultaTransacoes atributo="Nome" indice=4
+expect "Delicia da Serra" consultaTransacoes atributo="Detalhes" indice=4
+
+expect "R$3,00" consultaTransacoes atributo="Total" indice=5
+expect "Alfred Nobel" consultaTransacoes atributo="Nome" indice=5
+expect "Tapioca" consultaTransacoes atributo="Detalhes" indice=5
+
+"R$3,00" realizaPedido hospede="ines@brasil.com.br" itemMenu="Tapioca"
+expect "7" consultaTransacoes atributo="Quantidade"
+expect "R$3256,85" consultaTransacoes atributo="Total"
+expect "Sven Gudmar Svenson;Ines Brasil;Agnetha Faltskog;Alfred Nobel;Alfred Nobel;Alfred Nobel;Ines Brasil" consultaTransacoes atributo="Nome"
+
+expect "R$3,00" consultaTransacoes atributo="Total" indice=6
+expect "Ines Brasil" consultaTransacoes atributo="Nome" indice=6
+expect "Tapioca" consultaTransacoes atributo="Detalhes" indice=6
+
+fechaSistema
