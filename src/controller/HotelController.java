@@ -36,13 +36,13 @@ import util.ValidacaoDeDados;
 public class HotelController {
 
 	private Map<String, Hospede> hospedes;
-	private List<Hospede> checkoutRealizados;
+	private List<Hospede> transacoes;
 	private ValidacaoDeDados validacao;
 
 	
 	public HotelController() {
 		this.hospedes = new HashMap<String, Hospede>();
-		this.checkoutRealizados = new ArrayList<Hospede>();
+		this.transacoes = new ArrayList<Hospede>();
 		this.validacao = new ValidacaoDeDados();
 	}
 
@@ -329,7 +329,7 @@ public class HotelController {
 			DecimalFormat df = new DecimalFormat("#0.00");
 			info += "R$" + df.format(hospede.estadiaQuarto(quarto));
 			info = info.replace('.', ',');
-			this.checkoutRealizados.add(hospede);
+			this.transacoes.add(hospede);
 			hospede.desativaEstadia(quarto);
 			hospede.removeEstadia(quarto);
 			return info;
@@ -351,21 +351,21 @@ public class HotelController {
 		String info = "";
 		switch (atributo.toUpperCase()) {
 		case "QUANTIDADE":
-			info += checkoutRealizados.size();
+			info += transacoes.size();
 			break;
 		case "TOTAL":
 			double total = 0.0;
 			DecimalFormat df = new DecimalFormat("#0.00");
-			for (Hospede hospede : checkoutRealizados) {
+			for (Hospede hospede : transacoes) {
 				total += hospede.totalPagarCheckOut();
 			}
 			info += "R$" + df.format(total);
 			info = info.replace('.', ',');
 			break;
 		case "NOME":
-			info += checkoutRealizados.get(0).getNome();
-			for (int i = 1; i < checkoutRealizados.size(); i++) {
-				info += ";" + checkoutRealizados.get(i).getNome();
+			info += transacoes.get(0).getNome();
+			for (int i = 1; i < transacoes.size(); i++) {
+				info += ";" + transacoes.get(i).getNome();
 			}
 			break;
 		}
@@ -387,10 +387,10 @@ public class HotelController {
 			validacao.verificaIndiceValido(indice);
 			switch (atributo.toUpperCase()) {
 			case "TOTAL":
-				info += "R$" + (int) checkoutRealizados.get(indice).totalPagarCheckOut() + ",00";
+				info += "R$" + (int) transacoes.get(indice).totalPagarCheckOut() + ",00";
 				break;
 			case "NOME":
-				info += checkoutRealizados.get(indice).getNome();
+				info += transacoes.get(indice).getNome();
 				break;
 			}
 		} catch (DadoInvalidoException di) {
@@ -398,4 +398,5 @@ public class HotelController {
 		}
 		return info;
 	}
+	
 }
