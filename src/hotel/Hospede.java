@@ -20,6 +20,8 @@ public class Hospede {
 	private String dataNascimento;
 	private List<Estadia> estadias;
 	private List<Estadia> estadiasAnteriores;
+	private List<Transacao> transacoes;
+	
 
 	public Hospede(String nome, String email, String dataNascimento) throws DadoInvalidoException {
 
@@ -28,6 +30,7 @@ public class Hospede {
 		this.dataNascimento = dataNascimento;
 		this.estadias = new ArrayList<Estadia>();
 		this.estadiasAnteriores = new ArrayList<Estadia>();
+		this.transacoes = new ArrayList<Transacao>();
 
 	}
 
@@ -104,7 +107,7 @@ public class Hospede {
 	 * @param quartoId
 	 * @return retorna um booleano.
 	 */
-	public boolean removeEstadia(String quartoId) {
+	private boolean removeEstadia(String quartoId) {
 		for (Estadia estadia : estadias) {
 			if (estadia.contemQuarto(quartoId)) {
 				return estadias.remove(estadia);
@@ -122,6 +125,7 @@ public class Hospede {
 	public boolean desativaEstadia(String quartoId) {
 		for (Estadia estadia : estadias) {
 			if (quartoId.equalsIgnoreCase(estadia.getQuarto().getId())) {
+				this.removeEstadia(quartoId);
 				return estadiasAnteriores.add(estadia);
 			}
 		}

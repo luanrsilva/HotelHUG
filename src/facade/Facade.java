@@ -195,6 +195,10 @@ public class Facade {
 	public void ordenaMenu(String tipoOrdenacao){
 		this.restauranteController.ordenaMenu(tipoOrdenacao);
 	}
+	
+	public String realizaPedido(String email, String itemMenu) throws StringInvalidaException, ConsultaException, ConsultaRestauranteException{
+		return this.hotelController.realizaPedido(email, itemMenu);
+	}
 
 	public void fechaSistema(){
 

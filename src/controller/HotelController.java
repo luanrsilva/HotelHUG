@@ -1,12 +1,12 @@
 package controller;
 
 import java.text.DecimalFormat;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import restaurante.Refeicao;
 import exceptions.AtualizacaoHospedeException;
 import exceptions.BuscaHospedeException;
 import exceptions.CadastraPratoException;
@@ -18,6 +18,7 @@ import exceptions.CheckinException;
 import exceptions.CheckoutException;
 import exceptions.ConsultaException;
 import exceptions.ConsultaHospedeException;
+import exceptions.ConsultaRestauranteException;
 import exceptions.DadoInvalidoException;
 import exceptions.EmailInvalidoException;
 import exceptions.HospedagemException;
@@ -26,6 +27,7 @@ import exceptions.RemocaoHospedeException;
 import exceptions.StringInvalidaException;
 import hotel.Estadia;
 import hotel.Hospede;
+import hotel.Transacao;
 import util.ValidacaoDeDados;
 
 /**
@@ -36,14 +38,18 @@ import util.ValidacaoDeDados;
 public class HotelController {
 
 	private Map<String, Hospede> hospedes;
-	private List<Hospede> transacoes;
+	private List<Hospede> checkoutsRealizados;
 	private ValidacaoDeDados validacao;
+	private List<Transacao> transacoes;
+	private RestauranteController restaurante;
 
 	
 	public HotelController() {
 		this.hospedes = new HashMap<String, Hospede>();
-		this.transacoes = new ArrayList<Hospede>();
+		this.checkoutsRealizados = new ArrayList<Hospede>();
 		this.validacao = new ValidacaoDeDados();
+		this.transacoes = new ArrayList<Transacao>();
+		this.restaurante = new RestauranteController();
 	}
 
 	/**
@@ -329,9 +335,8 @@ public class HotelController {
 			DecimalFormat df = new DecimalFormat("#0.00");
 			info += "R$" + df.format(hospede.estadiaQuarto(quarto));
 			info = info.replace('.', ',');
-			this.transacoes.add(hospede);
+			this.checkoutsRealizados.add(hospede);
 			hospede.desativaEstadia(quarto);
-			hospede.removeEstadia(quarto);
 			return info;
 		} catch (StringInvalidaException e) {
 			throw new CheckoutException(e.getMessage());
@@ -351,21 +356,21 @@ public class HotelController {
 		String info = "";
 		switch (atributo.toUpperCase()) {
 		case "QUANTIDADE":
-			info += transacoes.size();
+			info += checkoutsRealizados.size();
 			break;
 		case "TOTAL":
 			double total = 0.0;
 			DecimalFormat df = new DecimalFormat("#0.00");
-			for (Hospede hospede : transacoes) {
+			for (Hospede hospede : checkoutsRealizados) {
 				total += hospede.totalPagarCheckOut();
 			}
 			info += "R$" + df.format(total);
 			info = info.replace('.', ',');
 			break;
 		case "NOME":
-			info += transacoes.get(0).getNome();
-			for (int i = 1; i < transacoes.size(); i++) {
-				info += ";" + transacoes.get(i).getNome();
+			info += checkoutsRealizados.get(0).getNome();
+			for (int i = 1; i < checkoutsRealizados.size(); i++) {
+				info += ";" + checkoutsRealizados.get(i).getNome();
 			}
 			break;
 		}
@@ -387,16 +392,25 @@ public class HotelController {
 			validacao.verificaIndiceValido(indice);
 			switch (atributo.toUpperCase()) {
 			case "TOTAL":
-				info += "R$" + (int) transacoes.get(indice).totalPagarCheckOut() + ",00";
+				info += "R$" + (int) checkoutsRealizados.get(indice).totalPagarCheckOut() + ",00";
 				break;
 			case "NOME":
-				info += transacoes.get(indice).getNome();
+				info += checkoutsRealizados.get(indice).getNome();
 				break;
 			}
 		} catch (DadoInvalidoException di) {
 			throw new DadoInvalidoException(di.getMessage());
 		}
 		return info;
+	}
+	
+	public String realizaPedido(String email, String nomeRefeicao) throws ConsultaException, StringInvalidaException, ConsultaRestauranteException{
+		
+		Hospede hospede = buscaHospede(email);
+		Refeicao refeicao = restaurante.buscaRefeicao(nomeRefeicao);
+		Transacao transacao = new Transacao(hospede.getNome(), refeicao.calculaPreco(), nomeRefeicao);
+		transacoes.add(transacao);
+		return restaurante.consultaRestaurante(nomeRefeicao, "PRECO");
 	}
 	
 }

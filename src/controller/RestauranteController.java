@@ -61,7 +61,7 @@ public class RestauranteController {
 	 * @return Retorna o prato caso exista ou nulo se nao existir.
 	 * @throws StringInvalidaException 
 	 */
-	private Refeicao buscaRefeicao(String nome) throws StringInvalidaException {
+	public Refeicao buscaRefeicao(String nome) throws StringInvalidaException {
 		for (Refeicao prato : cardapio) {
 			if (nome.equalsIgnoreCase(prato.getNome())) {
 				return prato;
