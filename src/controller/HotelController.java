@@ -177,6 +177,9 @@ public class HotelController {
 			case "DATA DE NASCIMENTO":
 				info += hospede.getDataNascimento();
 				break;
+			case "PONTOS":
+				info += hospede.getPontos();
+				break;
 			}
 		} catch (ConsultaException e) {
 			throw new ConsultaHospedeException(e.getMessage());

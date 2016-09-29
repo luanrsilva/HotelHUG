@@ -3,6 +3,7 @@ package hotel;
 import java.util.ArrayList;
 import java.util.List;
 
+import cartao.Cartao;
 import exceptions.DadoInvalidoException;
 import exceptions.IdInvalidoException;
 import exceptions.StringInvalidaException;
@@ -21,6 +22,7 @@ public class Hospede {
 	private List<Estadia> estadias;
 	private List<Estadia> estadiasAnteriores;
 	private List<Transacao> transacoes;
+	private Cartao cartao;
 	
 
 	public Hospede(String nome, String email, String dataNascimento) throws DadoInvalidoException {
@@ -31,9 +33,19 @@ public class Hospede {
 		this.estadias = new ArrayList<Estadia>();
 		this.estadiasAnteriores = new ArrayList<Estadia>();
 		this.transacoes = new ArrayList<Transacao>();
+		this.cartao = new Cartao();
 
 	}
 
+	/**
+	 * Metodo que informa os pontos do cartao que o hospede possui.
+	 * @return retorna um inteiro contendo informacoes referentes aos pontos acumulados do cartao do hospede.
+	 */
+	public int getPontos(){
+		return this.getCartao().getPontos();
+	}
+	
+	
 	/**
 	 * Metodo que adiciona uma estadia na lista de estadias.
 	 * @param estadia
@@ -175,5 +187,9 @@ public class Hospede {
 
 	public ArrayList<Estadia> getEstadias() {
 		return (ArrayList<Estadia>) estadias;
+	}
+	
+	public Cartao getCartao(){
+		return this.cartao;
 	}
 }

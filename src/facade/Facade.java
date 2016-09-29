@@ -86,6 +86,18 @@ public class Facade {
 	 * @throws ConsultaException
 	 * @throws ConsultaHospedeException
 	 */
+	public String getHospedeInfo(String email, String atributo) throws ConsultaException, ConsultaHospedeException {
+		return hotelController.getInfoHospede(email, atributo);
+	}
+	
+	/**
+	 * Metodo que delega a busca de informacoes de hospedes para o hotelController.
+	 * @param email
+	 * @param atributo
+	 * @return
+	 * @throws ConsultaException
+	 * @throws ConsultaHospedeException
+	 */
 	public String getInfoHospede(String email, String atributo) throws ConsultaException, ConsultaHospedeException {
 		return hotelController.getInfoHospede(email, atributo);
 	}
