@@ -50,7 +50,7 @@ expect "1A" consultaTransacoes atributo="Detalhes" indice=3
 
 expect "R$50,85" consultaTransacoes atributo="Total" indice=4
 expect "Alfred Nobel" consultaTransacoes atributo="Nome" indice=4
-expect "Delicia da Serra" consultaTransacoes atributo="Detalhes" indice=4
+expect "Delicia da serra" consultaTransacoes atributo="Detalhes" indice=4
 
 expect "R$3,00" consultaTransacoes atributo="Total" indice=5
 expect "Alfred Nobel" consultaTransacoes atributo="Nome" indice=5

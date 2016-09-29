@@ -333,8 +333,8 @@ public class HotelController {
 			DecimalFormat df = new DecimalFormat("#0.00");
 			info += "R$" + df.format(hospede.estadiaQuarto(quarto));
 			info = info.replace('.', ',');
-			Transacao transacao = new Transacao(hospede.getNome(), hospede.totalPagarCheckOut(), quarto);
-			this.transacoes.add(transacao);
+			Transacao transacao = new Transacao(hospede.getNome(), hospede.estadiaQuarto(quarto), quarto);
+			transacoes.add(transacao);
 			hospede.desativaEstadia(quarto);
 			return info;
 		} catch (StringInvalidaException e) {
@@ -391,11 +391,16 @@ public class HotelController {
 			validacao.verificaIndiceValido(indice);
 			switch (atributo.toUpperCase()) {
 			case "TOTAL":
-				info += "R$" + (int) transacoes.get(indice).getValor() + ",00";
+				double total = 0.0;
+				DecimalFormat df = new DecimalFormat("#0.00");
+				info += "R$" + df.format( transacoes.get(indice).getValor());
+				info = info.replace('.', ',');
 				break;
 			case "NOME":
 				info += transacoes.get(indice).getNome();
 				break;
+			case "DETALHES":
+				info += transacoes.get(indice).getTipo();
 			}
 		} catch (DadoInvalidoException di) {
 			throw new DadoInvalidoException(di.getMessage());

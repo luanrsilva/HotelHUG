@@ -123,9 +123,13 @@ public class Hospede {
 	 * @return retorna um booleano.
 	 */
 	public boolean desativaEstadia(String quartoId) {
+		
+		Transacao transacao;
 		for (Estadia estadia : estadias) {
 			if (quartoId.equalsIgnoreCase(estadia.getQuarto().getId())) {
 				this.removeEstadia(quartoId);
+				transacao = new Transacao(getNome(), estadia.precoTotal(), quartoId);
+				this.transacoes.add(transacao);
 				return estadiasAnteriores.add(estadia);
 			}
 		}
