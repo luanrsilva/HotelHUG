@@ -10,6 +10,7 @@ import restaurante.Refeicao;
 import exceptions.AtualizacaoHospedeException;
 import exceptions.BuscaHospedeException;
 import exceptions.CadastraPratoException;
+import exceptions.CadastraRefeicaoCompletaException;
 import exceptions.CadastraRefeicaoException;
 import exceptions.CadastroException;
 import exceptions.CadastroHospedeException;
@@ -38,18 +39,15 @@ import util.ValidacaoDeDados;
 public class HotelController {
 
 	private Map<String, Hospede> hospedes;
-	private List<Hospede> checkoutsRealizados;
 	private ValidacaoDeDados validacao;
 	private List<Transacao> transacoes;
-	private RestauranteController restaurante;
-
+	private RestauranteController restauranteController;
 	
 	public HotelController() {
 		this.hospedes = new HashMap<String, Hospede>();
-		this.checkoutsRealizados = new ArrayList<Hospede>();
 		this.validacao = new ValidacaoDeDados();
 		this.transacoes = new ArrayList<Transacao>();
-		this.restaurante = new RestauranteController();
+		this.restauranteController = new RestauranteController();
 	}
 
 	/**
@@ -335,7 +333,8 @@ public class HotelController {
 			DecimalFormat df = new DecimalFormat("#0.00");
 			info += "R$" + df.format(hospede.estadiaQuarto(quarto));
 			info = info.replace('.', ',');
-			this.checkoutsRealizados.add(hospede);
+			Transacao transacao = new Transacao(hospede.getNome(), hospede.totalPagarCheckOut(), quarto);
+			this.transacoes.add(transacao);
 			hospede.desativaEstadia(quarto);
 			return info;
 		} catch (StringInvalidaException e) {
@@ -356,21 +355,21 @@ public class HotelController {
 		String info = "";
 		switch (atributo.toUpperCase()) {
 		case "QUANTIDADE":
-			info += checkoutsRealizados.size();
+			info += transacoes.size();
 			break;
 		case "TOTAL":
 			double total = 0.0;
 			DecimalFormat df = new DecimalFormat("#0.00");
-			for (Hospede hospede : checkoutsRealizados) {
-				total += hospede.totalPagarCheckOut();
+			for (Transacao transacao : transacoes) {
+				total += transacao.getValor();
 			}
 			info += "R$" + df.format(total);
 			info = info.replace('.', ',');
 			break;
 		case "NOME":
-			info += checkoutsRealizados.get(0).getNome();
-			for (int i = 1; i < checkoutsRealizados.size(); i++) {
-				info += ";" + checkoutsRealizados.get(i).getNome();
+			info += transacoes.get(0).getNome();
+			for (int i = 1; i < transacoes.size(); i++) {
+				info += ";" + transacoes.get(i).getNome();
 			}
 			break;
 		}
@@ -392,10 +391,10 @@ public class HotelController {
 			validacao.verificaIndiceValido(indice);
 			switch (atributo.toUpperCase()) {
 			case "TOTAL":
-				info += "R$" + (int) checkoutsRealizados.get(indice).totalPagarCheckOut() + ",00";
+				info += "R$" + (int) transacoes.get(indice).getValor() + ",00";
 				break;
 			case "NOME":
-				info += checkoutsRealizados.get(indice).getNome();
+				info += transacoes.get(indice).getNome();
 				break;
 			}
 		} catch (DadoInvalidoException di) {
@@ -405,12 +404,54 @@ public class HotelController {
 	}
 	
 	public String realizaPedido(String email, String nomeRefeicao) throws ConsultaException, StringInvalidaException, ConsultaRestauranteException{
-		
-		Hospede hospede = buscaHospede(email);
-		Refeicao refeicao = restaurante.buscaRefeicao(nomeRefeicao);
-		Transacao transacao = new Transacao(hospede.getNome(), refeicao.calculaPreco(), nomeRefeicao);
-		transacoes.add(transacao);
-		return restaurante.consultaRestaurante(nomeRefeicao, "PRECO");
+		Hospede hospede = this.buscaHospede(email);
+		transacoes.add(restauranteController.realizaPedido(hospede.getNome(), nomeRefeicao));
+		return restauranteController.consultaRestaurante(nomeRefeicao, "PRECO");
 	}
+	
+	/**
+	 * Metodo que delega o cadastro de pratos para o restauranteController.
+	 * @param nome
+	 * @param preco
+	 * @param descricao
+	 * @throws CadastraPratoException
+	 * @throws StringInvalidaException
+	 */
+	public void cadastraPrato(String nome, double preco, String descricao) throws CadastraPratoException, StringInvalidaException{
+		restauranteController.cadastraPrato(nome, preco, descricao);
+	}
+	
+	/**
+	 * Metodo que delega a consulta de informacoes de refeicoes para o restauranteController.
+	 * @param nome
+	 * @param atributo
+	 * @return Retorna uma String, contendo uma informacao a partir do preco ou da descricao da refeicao.
+	 * @throws ConsultaRestauranteException
+	 */
+	public String consultaRestaurante(String nome, String atributo) throws ConsultaRestauranteException{
+		return restauranteController.consultaRestaurante(nome, atributo);
+	}
+	
+	public String consultaMenuRestaurante(){
+		return this.restauranteController.consultaMenuRestaurante();
+	}
+	
+	/**
+	 * Metodo que delega o cadastro de refeicoes para o restauranteController.
+	 * @param nome
+	 * @param descricao
+	 * @param componentes
+	 * @throws StringInvalidaException
+	 * @throws CadastraRefeicaoException
+	 * @throws CadastraRefeicaoCompletaException
+	 */
+	public void cadastraRefeicao(String nome, String descricao, String componentes) throws StringInvalidaException, CadastraRefeicaoException, CadastraRefeicaoCompletaException{
+		restauranteController.cadastraRefeicao(nome,descricao, componentes);
+	}
+	
+	public void ordenaMenu(String tipoOrdenacao){
+		this.restauranteController.ordenaMenu(tipoOrdenacao);
+	}
+
 	
 }

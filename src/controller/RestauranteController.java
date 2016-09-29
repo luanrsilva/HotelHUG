@@ -1,5 +1,7 @@
 package controller;
 
+import hotel.Transacao;
+
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -13,7 +15,7 @@ import util.ValidacaoDeDados;
 import exceptions.CadastraPratoException;
 import exceptions.CadastraRefeicaoCompletaException;
 import exceptions.CadastraRefeicaoException;
-import exceptions.CadastroException;
+import exceptions.ConsultaException;
 import exceptions.ConsultaRestauranteException;
 import exceptions.DadoInvalidoException;
 import exceptions.StringInvalidaException;
@@ -141,6 +143,11 @@ public class RestauranteController {
 		} catch (DadoInvalidoException e) {
 			throw new CadastraRefeicaoCompletaException(e.getMessage());
 		}
+	}
+	
+	public Transacao realizaPedido(String nomeHospede, String nomeRefeicao) throws ConsultaException, StringInvalidaException, ConsultaRestauranteException{
+		
+		return new Transacao(nomeHospede, this.buscaRefeicao(nomeRefeicao).calculaPreco(), nomeRefeicao);
 	}
 	
 	public void ordenaMenu(String tipoOrdenacao){

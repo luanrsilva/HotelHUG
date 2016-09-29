@@ -30,11 +30,9 @@ import exceptions.StringInvalidaException;
 public class Facade {
 
 	private HotelController hotelController;
-	private RestauranteController restauranteController;
 
 	public Facade() {
 		hotelController = new HotelController();
-		restauranteController = new RestauranteController();
 	}
 
 	public void iniciaSistema() {
@@ -161,7 +159,7 @@ public class Facade {
 	 * @throws StringInvalidaException
 	 */
 	public void cadastraPrato(String nome, double preco, String descricao) throws CadastraPratoException, StringInvalidaException{
-		restauranteController.cadastraPrato(nome, preco, descricao);
+		hotelController.cadastraPrato(nome, preco, descricao);
 	}
 	
 	/**
@@ -172,11 +170,11 @@ public class Facade {
 	 * @throws ConsultaRestauranteException
 	 */
 	public String consultaRestaurante(String nome, String atributo) throws ConsultaRestauranteException{
-		return restauranteController.consultaRestaurante(nome, atributo);
+		return hotelController.consultaRestaurante(nome, atributo);
 	}
 	
 	public String consultaMenuRestaurante(){
-		return this.restauranteController.consultaMenuRestaurante();
+		return this.hotelController.consultaMenuRestaurante();
 	}
 	
 	/**
@@ -189,11 +187,11 @@ public class Facade {
 	 * @throws CadastraRefeicaoCompletaException
 	 */
 	public void cadastraRefeicao(String nome, String descricao, String componentes) throws StringInvalidaException, CadastraRefeicaoException, CadastraRefeicaoCompletaException{
-		restauranteController.cadastraRefeicao(nome,descricao, componentes);
+		hotelController.cadastraRefeicao(nome,descricao, componentes);
 	}
 	
 	public void ordenaMenu(String tipoOrdenacao){
-		this.restauranteController.ordenaMenu(tipoOrdenacao);
+		this.hotelController.ordenaMenu(tipoOrdenacao);
 	}
 	
 	public String realizaPedido(String email, String itemMenu) throws StringInvalidaException, ConsultaException, ConsultaRestauranteException{
