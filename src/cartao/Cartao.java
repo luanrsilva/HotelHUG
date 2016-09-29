@@ -34,6 +34,7 @@ public class Cartao {
 		else if(this.tipoCartao == TipoCartao.VIP){
 			pontos += (int)((valorGasto * 50)/100);
 		}
+		this.setTipoCartao(); //  tou chamando este método aqui, pois sempre que adicionar pontos, o tipo do cartao sera mudado automaticamente.
 		return pontos;
 	}
 	
