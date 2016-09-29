@@ -339,6 +339,7 @@ public class HotelController {
 			Transacao transacao = new Transacao(hospede.getNome(), hospede.estadiaQuarto(quarto), quarto);
 			transacoes.add(transacao);
 			hospede.desativaEstadia(quarto);
+			hospede.getCartao().adicionaPontos(transacao.getValor());
 			return info;
 		} catch (StringInvalidaException e) {
 			throw new CheckoutException(e.getMessage());

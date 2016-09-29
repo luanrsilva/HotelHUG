@@ -22,7 +22,7 @@ public class Cartao {
 		}
 	}
 	
-	public int adicionaPontos(double valorGasto){
+	public void adicionaPontos(double valorGasto){
 		int pontos = 0;
 		if(this.tipoCartao == TipoCartao.PADRAO){
 			pontos += (int)((valorGasto * 10)/100);
@@ -35,7 +35,7 @@ public class Cartao {
 			pontos += (int)((valorGasto * 50)/100);
 		}
 		this.setTipoCartao(); //  tou chamando este método aqui, pois sempre que adicionar pontos, o tipo do cartao sera mudado automaticamente.
-		return pontos;
+		this.setPontos(pontos);
 	}
 	
 	
