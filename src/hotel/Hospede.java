@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cartao.Cartao;
+import cartao.TipoDeCartaoIF;
 import exceptions.DadoInvalidoException;
 import exceptions.IdInvalidoException;
 import exceptions.StringInvalidaException;
