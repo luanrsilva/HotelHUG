@@ -12,7 +12,7 @@ expect "Algkot com vegetais;Artsoppa com panquecas;Bresaola com rucula e parmesa
 
 cadastraPrato nome="Pudim de leite" preco=6.50 descricao="Um a sobremesa a base de leite com calda caramelizada e ameixas."
 
-expect "Algkot com vegetais;Artsoppa com panquecas;Bresaola com rucula e parmesao;Bruschetta;Carne de sol com fritas;Delicia da serra;Espresso;Galeto com farofa;Kanelbullar;Kotbullar com lingon;Pasto italiano;Penne ao pesto;Rapadura;Svensk mat;Tapioca;Tiramisu;Pudim de leite" consultaMenuRestaurante
+expect "Algkot com vegetais;Artsoppa com panquecas;Bresaola com rucula e parmesao;Bruschetta;Carne de sol com fritas;Delicia da serra;Espresso;Galeto com farofa;Kanelbullar;Kotbullar com lingon;Pasto italiano;Penne ao pesto;Pudim de leite;Rapadura;Svensk mat;Tapioca;Tiramisu" consultaMenuRestaurante
 
 ordenaMenu tipoOrdenacao="Nome"
 
@@ -29,10 +29,10 @@ expect "R$50,85" realizaPedido hospede="nobel@got.se" itemMenu="Delicia da serra
 expect "R$3,00" realizaPedido hospede="nobel@got.se" itemMenu="Tapioca"
 
 expect "6" consultaTransacoes atributo="Quantidade"
-expect "R$3253,85" consultaTransacoes atributo="Total"
+expect "R$3453,85" consultaTransacoes atributo="Total"
 expect "Sven Gudmar Svenson;Ines Brasil;Agnetha Faltskog;Alfred Nobel;Alfred Nobel;Alfred Nobel" consultaTransacoes atributo="Nome"
 
-expect "R$2950,00" consultaTransacoes atributo="Total" indice=0
+expect "R$2250,00" consultaTransacoes atributo="Total" indice=0
 expect "Sven Gudmar Svenson" consultaTransacoes atributo="Nome" indice=0
 expect "1A" consultaTransacoes atributo="Detalhes" indice=0
 
@@ -44,7 +44,7 @@ expect "R$200,00" consultaTransacoes atributo="Total" indice=2
 expect "Agnetha Faltskog" consultaTransacoes atributo="Nome" indice=2
 expect "15A" consultaTransacoes atributo="Detalhes" indice=2
 
-expect "R$250,00" consultaTransacoes atributo="Total" indice=3
+expect "R$450,00" consultaTransacoes atributo="Total" indice=3
 expect "Alfred Nobel" consultaTransacoes atributo="Nome" indice=3
 expect "1A" consultaTransacoes atributo="Detalhes" indice=3
 
@@ -58,7 +58,7 @@ expect "Tapioca" consultaTransacoes atributo="Detalhes" indice=5
 
 expect "R$3,00" realizaPedido hospede="ines@brasil.com.br" itemMenu="Tapioca"
 expect "7" consultaTransacoes atributo="Quantidade"
-expect "R$3256,85" consultaTransacoes atributo="Total"
+expect "R$3456,85" consultaTransacoes atributo="Total"
 expect "Sven Gudmar Svenson;Ines Brasil;Agnetha Faltskog;Alfred Nobel;Alfred Nobel;Alfred Nobel;Ines Brasil" consultaTransacoes atributo="Nome"
 
 expect "R$3,00" consultaTransacoes atributo="Total" indice=6

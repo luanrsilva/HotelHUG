@@ -37,7 +37,6 @@ public class Cartao {
 		return (valorGasto * tipoCartao.desconto()) - adicional;
 	}
 	
-	
 	public double pagaDividasGastos(double valorGasto){ // FAZER ESTE METODO
 		return 0;
 	}
