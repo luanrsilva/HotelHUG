@@ -2,7 +2,7 @@ package cartao;
 
 public class Padrao implements TipoDeCartaoIF{
 	private static final double DESCONTO_PADRAO = 1.0; // sem desconto
-	private static final double BONUS_PADRAO = 1.1;
+	private static final double BONUS_PADRAO = 0.1;
 	
 	@Override
 	public double desconto() {

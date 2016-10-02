@@ -332,14 +332,15 @@ public class HotelController {
 			validacao.verificaEmailInvalidoCadastro(email);
 			validacao.verificaQuartoIDValido(quarto);
 			Hospede hospede = buscaHospede(email);
+			double valor = hospede.estadiaQuarto(quarto);
 			String info = "";
 			DecimalFormat df = new DecimalFormat("#0.00");
-			info += "R$" + df.format(hospede.estadiaQuarto(quarto));
+			info += "R$" + df.format(valor);
 			info = info.replace('.', ',');
-			Transacao transacao = new Transacao(hospede.getNome(), hospede.estadiaQuarto(quarto), quarto);
+			Transacao transacao = new Transacao(hospede.getNome(), valor, quarto);
 			transacoes.add(transacao);
 			hospede.desativaEstadia(quarto);
-			hospede.getCartao().adicionaPontos(transacao.getValor());
+			hospede.getCartao().adicionaPontos(valor);
 			return info;
 		} catch (StringInvalidaException e) {
 			throw new CheckoutException(e.getMessage());
@@ -414,7 +415,9 @@ public class HotelController {
 	
 	public String realizaPedido(String email, String nomeRefeicao) throws ConsultaException, StringInvalidaException, ConsultaRestauranteException{
 		Hospede hospede = this.buscaHospede(email);
-		transacoes.add(restauranteController.realizaPedido(hospede.getNome(), nomeRefeicao));
+		Transacao transacao = restauranteController.realizaPedido(hospede.getNome(), nomeRefeicao);
+		transacoes.add(transacao);
+		hospede.getCartao().adicionaPontos(transacao.getValor());
 		return restauranteController.consultaRestaurante(nomeRefeicao, "PRECO");
 	}
 	

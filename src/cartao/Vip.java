@@ -2,7 +2,7 @@ package cartao;
 
 public class Vip implements TipoDeCartaoIF{
 	private static final double DESCONTO_VIP = 0.85;
-	private static final double BONUS_VIP = 1.5;
+	private static final double BONUS_VIP = 0.5;
 	private static final double ADICIONAL_VIP = 10;
 	
 	@Override
