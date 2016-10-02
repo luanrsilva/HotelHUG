@@ -333,11 +333,12 @@ public class HotelController {
 			validacao.verificaQuartoIDValido(quarto);
 			Hospede hospede = buscaHospede(email);
 			double valor = hospede.estadiaQuarto(quarto);
+			double valorComDesconto = hospede.getCartao().aplicaDescontoGastos(valor);
 			String info = "";
 			DecimalFormat df = new DecimalFormat("#0.00");
-			info += "R$" + df.format(valor);
+			info += "R$" + df.format(valorComDesconto);
 			info = info.replace('.', ',');
-			Transacao transacao = new Transacao(hospede.getNome(), valor, quarto);
+			Transacao transacao = new Transacao(hospede.getNome(), valorComDesconto, quarto);
 			transacoes.add(transacao);
 			hospede.desativaEstadia(quarto);
 			hospede.getCartao().adicionaPontos(valor);
@@ -413,12 +414,14 @@ public class HotelController {
 		return info;
 	}
 	
-	public String realizaPedido(String email, String nomeRefeicao) throws ConsultaException, StringInvalidaException, ConsultaRestauranteException{
+	public String realizaPedido(String email, String nomeRefeicao) throws ConsultaException, ConsultaRestauranteException, DadoInvalidoException{
 		Hospede hospede = this.buscaHospede(email);
-		Transacao transacao = restauranteController.realizaPedido(hospede.getNome(), nomeRefeicao);
+		double valor = restauranteController.realizaPedido(hospede.getNome(), nomeRefeicao);
+		double valorComDesconto = hospede.getCartao().aplicaDescontoGastos(valor);
+		Transacao transacao = new Transacao (hospede.getNome(), valorComDesconto, nomeRefeicao);
 		transacoes.add(transacao);
-		hospede.getCartao().adicionaPontos(transacao.getValor());
-		return restauranteController.consultaRestaurante(nomeRefeicao, "PRECO");
+		hospede.getCartao().adicionaPontos(valor);
+		return this.consultaTransacoes("TOTAL", (transacoes.size() - 1));
 	}
 	
 	/**

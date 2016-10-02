@@ -145,9 +145,9 @@ public class RestauranteController {
 		}
 	}
 	
-	public Transacao realizaPedido(String nomeHospede, String nomeRefeicao) throws ConsultaException, StringInvalidaException, ConsultaRestauranteException{
+	public double realizaPedido(String nomeHospede, String nomeRefeicao) throws ConsultaException, StringInvalidaException, ConsultaRestauranteException{
 		
-		return new Transacao(nomeHospede, this.buscaRefeicao(nomeRefeicao).calculaPreco(), nomeRefeicao);
+		return this.buscaRefeicao(nomeRefeicao).calculaPreco();
 	}
 	
 	public void ordenaMenu(String tipoOrdenacao){

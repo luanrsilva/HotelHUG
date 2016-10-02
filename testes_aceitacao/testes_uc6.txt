@@ -10,7 +10,7 @@ iniciaSistema
 expect "225" getInfoHospede id="sven@sverige.se" atributo="Pontos"
 expect "50" getInfoHospede id="nobel@got.se" atributo="Pontos"
 expect "50" getInfoHospede id="ines@brasil.com.br" atributo="Pontos"
-expect "20" getInfoHospede id="agnetha@abba.se" atributo="Pontos"
+expect "20" getInfoHospede id="agnetha@monomusic.se" atributo="Pontos"
 
 expect "R$1350,00" realizaCheckout email="sven@sverige.se" quarto="2A"
 expect "R$750,00" realizaCheckout email="ines@brasil.com.br" quarto="2B"
@@ -19,7 +19,7 @@ expect "R$750,00" realizaCheckout email="ines@brasil.com.br" quarto="2B"
 expect "360" getInfoHospede id="sven@sverige.se" atributo="Pontos"
 expect "125" getInfoHospede id="ines@brasil.com.br" atributo="Pontos"
 expect "50" getInfoHospede id="nobel@got.se" atributo="Pontos"
-expect "20" getInfoHospede id="agnetha@abba.se" atributo="Pontos"
+expect "20" getInfoHospede id="agnetha@monomusic.se" atributo="Pontos"
 
 #Ele tambem ganha 10% de desconto nos gastos, e ganha 30% de pontos (gasto > 100 reais)
 expect "R$45,77" realizaPedido hospede="sven@sverige.se" itemMenu="Delicia da serra"
@@ -46,7 +46,7 @@ expect "R$675,00" realizaCheckout email="sven@sverige.se" quarto="5A"
 # Verificacao de todos os pontos baseados nos ultimos gastos.
 expect "1570" getInfoHospede id="sven@sverige.se" atributo="Pontos"
 expect "125" getInfoHospede id="ines@brasil.com.br" atributo="Pontos"
-expect "20" getInfoHospede id="agnetha@abba.se" atributo="Pontos"
+expect "20" getInfoHospede id="agnetha@monomusic.se" atributo="Pontos"
 expect "50" getInfoHospede id="nobel@got.se" atributo="Pontos"
 
 # Verificando um hospede Premium: Ines Brasil
@@ -67,7 +67,7 @@ expect "905" getInfoHospede id="ines@brasil.com.br" atributo="Pontos"
 
 expect "1570" getInfoHospede id="sven@sverige.se" atributo="Pontos"
 expect "905" getInfoHospede id="ines@brasil.com.br" atributo="Pontos"
-expect "20" getInfoHospede id="agnetha@abba.se" atributo="Pontos"
+expect "20" getInfoHospede id="agnetha@monomusic.se" atributo="Pontos"
 expect "50" getInfoHospede id="nobel@got.se" atributo="Pontos"
 
 expect "17" consultaTransacoes atributo="Quantidade"

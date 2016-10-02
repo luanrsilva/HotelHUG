@@ -24,17 +24,26 @@ public class Cartao {
 	
 	public void adicionaPontos(double valorGasto){
 		int pontos = 0;
-		int adicional = (int) ((valorGasto/100) * tipoCartao.adicionalBonus());
+		int adicional = 0; 
+ 		if (valorGasto > 100) {
+ 			adicional += (int) ((valorGasto/100) * tipoCartao.adicionalBonus());			
+		}
 		pontos += (valorGasto * tipoCartao.bonus()) + adicional;
 		
-		this.setTipoCartao(); //  chamando este metodo aqui, pois sempre que adicionar pontos, o tipo do cartao sera mudado automaticamente.
 		this.setPontos(pontos);
+		this.setTipoCartao(); //  chamando este metodo aqui, pois sempre que adicionar pontos, o tipo do cartao sera mudado automaticamente.
 	}
 	
 	
 	public double aplicaDescontoGastos(double valorGasto){
-		int adicional = (int) ((valorGasto/100)* tipoCartao.adicionalDesconto());
-		return (valorGasto * tipoCartao.desconto()) - adicional;
+		int adicional = 0;
+		int desconto = 0;
+		
+		if (valorGasto > 100) {			
+			adicional = (int) ((valorGasto/100)* tipoCartao.adicionalDesconto());
+		}
+		
+		return (valorGasto * tipoCartao.desconto() - adicional);
 	}
 	
 	public double pagaDividasGastos(double valorGasto){ // FAZER ESTE METODO
@@ -46,6 +55,6 @@ public class Cartao {
 	}
 
 	public void setPontos(int pontos) {
-		this.pontos = pontos;
+		this.pontos += pontos;
 	}
 }

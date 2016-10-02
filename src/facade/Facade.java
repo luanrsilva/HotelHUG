@@ -206,7 +206,7 @@ public class Facade {
 		this.hotelController.ordenaMenu(tipoOrdenacao);
 	}
 	
-	public String realizaPedido(String email, String itemMenu) throws StringInvalidaException, ConsultaException, ConsultaRestauranteException{
+	public String realizaPedido(String email, String itemMenu) throws ConsultaException, ConsultaRestauranteException, DadoInvalidoException{
 		return this.hotelController.realizaPedido(email, itemMenu);
 	}
 
