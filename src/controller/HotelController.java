@@ -49,6 +49,25 @@ public class HotelController {
 		this.transacoes = new ArrayList<Transacao>();
 		this.restauranteController = new RestauranteController();
 	}
+	
+	/**
+	 * Metodo que calcula o valor a ser pago pela conversao de uma quantidade de pontos de fidelidade
+	 * passado como parametro, dependendo do tipo de cartao que o hospede possui, seja VIP, Padrao ou Premium.
+	 * @param email
+	 * @param qtdPontos
+	 * @return retorna uma String com o valor a ser descontado dos pontos.
+	 * @throws ConsultaException
+	 */
+	public String convertePontos(String email,int qtdPontos) throws ConsultaException {
+		Hospede hospede = this.buscaHospede(email);
+		hospede.getCartao().setPontos(hospede.getCartao().getPontos() - qtdPontos);
+		String info = "R$";
+		DecimalFormat df = new DecimalFormat("#0.00");
+		info += df.format(hospede.getCartao().pagaDividasGastos(qtdPontos));
+		info = info.replace('.', ',');
+		return info;
+		
+	}
 
 	/**
 	 * Metodo que adiciona o hospede novo no mapa de hospedes, passa seus parametros por

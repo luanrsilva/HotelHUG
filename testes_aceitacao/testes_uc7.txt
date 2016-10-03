@@ -11,7 +11,7 @@ iniciaSistema
 #                                          #
 ############################################
 
-expect "1570" getHospedeInfo id="svens@sverige.se" atributo="Pontos"
+expect "1570" getHospedeInfo id="sven@sverige.se" atributo="Pontos"
 expect "905" getHospedeInfo id="ines@brasil.com.br" atributo="Pontos"
 expect "20" getHospedeInfo id="agnetha@abba.se" atributo="Pontos"
 expect "30" getHospedeInfo id="nobel@got.se" atributo="Pontos"
@@ -26,7 +26,7 @@ expect "20" getHospedeInfo id="agnetha@abba.se" atributo="Pontos"
 expect "0" getHospedeInfo id="nobel@got.se" atributo="Pontos"
 
 expect "R$45,77" realizaPedido hospede="ines@brasil.com.br" itemMenu="Delicia da serra"
-expect "R$43,23" realizaPedido hospede="svens@sverige.se" itemMenu="Delicia da serra"
+expect "R$43,23" realizaPedido hospede="sven@sverige.se" itemMenu="Delicia da serra"
 
 expect "1525" getHospedeInfo id="nobel@got.se" atributo="Pontos"
 expect "815" getHospedeInfo id="ines@brasil.com.br" atributo="Pontos"
@@ -43,7 +43,7 @@ expect "0" getHospedeInfo id="nobel@got.se" atributo="Pontos"
 
 # Ines voltou a ser Normal e Sven voltou a ser Premium
 expect "R$50,85" realizaPedido hospede="ines@brasil.com.br" itemMenu="Delicia da serra"
-expect "R$45,77" realizaPedido hospede="svens@sverige.se" itemMenu="Delicia da serra"
+expect "R$45,77" realizaPedido hospede="sven@sverige.se" itemMenu="Delicia da serra"
 
 expect "540" getHospedeInfo id="nobel@got.se" atributo="Pontos"
 expect "320" getHospedeInfo id="ines@brasil.com.br" atributo="Pontos"

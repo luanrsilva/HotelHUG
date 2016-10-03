@@ -38,6 +38,18 @@ public class Facade {
 	public void iniciaSistema() {
 
 	}
+	
+	/**
+	 * Metodo que calcula o valor a ser pago pela conversao de uma quantidade de pontos de fidelidade
+	 * passado como parametro, dependendo do tipo de cartao que o hospede possui, seja VIP, Padrao ou Premium.
+	 * @param email
+	 * @param qtdPontos
+	 * @return retorna uma String com o valor a ser descontado dos pontos.
+	 * @throws ConsultaException
+	 */
+	public String convertePontos(String email,int qtdPontos) throws ConsultaException {
+		return this.hotelController.convertePontos(email, qtdPontos);
+	}
 
 	/**
 	 * Metodo que delega o cadastro de hospedes para o hotelController.

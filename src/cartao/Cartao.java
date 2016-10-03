@@ -46,8 +46,9 @@ public class Cartao {
 		return (valorGasto * tipoCartao.desconto() - adicional);
 	}
 	
-	public double pagaDividasGastos(double valorGasto){ // FAZER ESTE METODO
-		return 0;
+	public double pagaDividasGastos(double pontos){
+		double valor = this.tipoCartao.pagaDividasGastos(pontos);
+		return valor;
 	}
 
 	public int getPontos() {
