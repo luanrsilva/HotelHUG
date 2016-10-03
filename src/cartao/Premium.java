@@ -30,7 +30,7 @@ public class Premium implements TipoDeCartaoIF{
 	@Override
 	public double pagaDividasGastos(double qtdPontos) {
 		double valorConvertido = TAXA_CONVERTE_FIDELIDADE * qtdPontos;
-		double adicional = (int)(valorConvertido/10) * TAXA_CONVERTE_FIDELIDADE_BONUS;
+		double adicional = ((int)(valorConvertido/10)) * TAXA_CONVERTE_FIDELIDADE_BONUS;
 		return valorConvertido + adicional;
 	}
 

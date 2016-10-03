@@ -30,7 +30,7 @@ public class Cartao {
 		}
 		pontos += (valorGasto * tipoCartao.bonus()) + adicional;
 		
-		this.setPontos(pontos);
+		this.setPontos(this.getPontos() + pontos);
 		this.setTipoCartao(); //  chamando este metodo aqui, pois sempre que adicionar pontos, o tipo do cartao sera mudado automaticamente.
 	}
 	
@@ -56,6 +56,7 @@ public class Cartao {
 	}
 
 	public void setPontos(int pontos) {
-		this.pontos += pontos;
+		this.pontos = pontos;
+		this.setTipoCartao();
 	}
 }
