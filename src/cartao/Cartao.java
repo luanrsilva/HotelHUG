@@ -11,10 +11,10 @@ public class Cartao {
 	}
 	
 	public void setTipoCartao(){
-		if(this.pontos <= 350){
+		if(this.pontos < 350){
 			this.tipoCartao = new Padrao();
 		}
-		else if((this.pontos > 350) && (this.pontos <= 1000)){
+		else if((this.pontos >= 350) && (this.pontos <= 1000)){
 			this.tipoCartao = new Premium();
 		}
 		else if(this.pontos > 1000){
@@ -31,7 +31,7 @@ public class Cartao {
 		pontos += (valorGasto * tipoCartao.bonus()) + adicional;
 		
 		this.setPontos(this.getPontos() + pontos);
-		this.setTipoCartao(); //  chamando este metodo aqui, pois sempre que adicionar pontos, o tipo do cartao sera mudado automaticamente.
+		//this.setTipoCartao(); //  chamando este metodo aqui, pois sempre que adicionar pontos, o tipo do cartao sera mudado automaticamente.
 	}
 	
 	
@@ -52,7 +52,7 @@ public class Cartao {
 	}
 
 	public int getPontos() {
-		return pontos;
+		return this.pontos;
 	}
 
 	public void setPontos(int pontos) {
