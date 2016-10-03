@@ -1,5 +1,10 @@
 package hotel;
 
+/**
+ * Classe que representa uma abstracao de uma Transacao.
+ * @author Ariann Farias, Luan Rocha, Nilton Ginani, Yovany Cunha - Turma 03
+ *
+ */
 public class Transacao {
 
 	private String nome;
