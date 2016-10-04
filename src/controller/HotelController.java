@@ -61,11 +61,8 @@ public class HotelController {
 	public String convertePontos(String email,int qtdPontos) throws ConsultaException {
 		Hospede hospede = this.buscaHospede(email);
 		hospede.getCartao().setPontos(hospede.getCartao().getPontos() - qtdPontos);
-		String info = "R$";
-		DecimalFormat df = new DecimalFormat("#0.00");
-		info += df.format(hospede.getCartao().pagaDividasGastos(qtdPontos));
-		info = info.replace('.', ',');
-		return info;
+		
+		return this.formataValor(hospede.getCartao().getPontos());
 		
 	}
 
@@ -353,14 +350,11 @@ public class HotelController {
 			Hospede hospede = buscaHospede(email);
 			double valor = hospede.estadiaQuarto(quarto);
 			double valorComDesconto = hospede.getCartao().aplicaDescontoGastos(valor);
-			String info = "";
-			DecimalFormat df = new DecimalFormat("#0.00");
-			info += "R$" + df.format(valorComDesconto);
-			info = info.replace('.', ',');
 			Transacao transacao = new Transacao(hospede.getNome(), valorComDesconto, quarto);
 			transacoes.add(transacao);
 			hospede.desativaEstadia(quarto);
 			hospede.getCartao().adicionaPontos(valor);
+			String info = formataValor(valorComDesconto);
 			return info;
 		} catch (StringInvalidaException e) {
 			throw new CheckoutException(e.getMessage());
@@ -368,6 +362,25 @@ public class HotelController {
 			throw new CheckoutException(e.getMessage());
 		}
 		
+	}
+
+	private String formataValor(double valor) {
+		String info = "";
+		DecimalFormat df = new DecimalFormat("#0.00");
+		info += "R$" + df.format(valor);
+		info = info.replace('.', ',');
+		return info;
+	}
+	
+	private double arredondamento(double valor) {
+		double resultado = valor - (int) valor;
+		resultado *= 100;
+		if (resultado != (int) resultado) {
+			valor += 0.01;
+		}
+		//resultado /= 100;
+		//valor = (int) valor + resultado;
+		return valor;
 	}
 
 	/**
@@ -437,6 +450,7 @@ public class HotelController {
 		Hospede hospede = this.buscaHospede(email);
 		double valor = restauranteController.realizaPedido(hospede.getNome(), nomeRefeicao);
 		double valorComDesconto = hospede.getCartao().aplicaDescontoGastos(valor);
+		valorComDesconto = this.arredondamento(valorComDesconto);
 		Transacao transacao = new Transacao (hospede.getNome(), valorComDesconto, nomeRefeicao);
 		transacoes.add(transacao);
 		hospede.getCartao().adicionaPontos(valor);

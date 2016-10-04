@@ -10,7 +10,7 @@ public class Cartao {
 		this.tipoCartao = new Padrao();
 	}
 	
-	public void setTipoCartao(){
+	private void setTipoCartao(){
 		if(this.pontos < 350){
 			this.tipoCartao = new Padrao();
 		}
