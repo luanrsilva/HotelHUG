@@ -53,6 +53,12 @@ public class RefeicaoCompleta extends Refeicao {
 		return descricao;
 	}
 
+	@Override
+	public int compareTo(Refeicao o) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 	
 
 	

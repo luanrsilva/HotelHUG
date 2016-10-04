@@ -25,4 +25,10 @@ public class Prato extends Refeicao {
 		return this.preco;
 	}
 
+	@Override
+	public int compareTo(Refeicao o) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

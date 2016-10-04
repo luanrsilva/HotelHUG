@@ -67,15 +67,5 @@ public abstract class Refeicao implements Comparable<Refeicao>{
 	 */
 	public abstract double calculaPreco();
 	
-	@Override
-	public int compareTo(Refeicao ref) {
-		if (this.calculaPreco() < ref.calculaPreco()){
-			return -1;
-		}
-		else if (this.calculaPreco() > ref.calculaPreco()){
-			return 1;
-		}
-		return 0;
-	}
 
 }

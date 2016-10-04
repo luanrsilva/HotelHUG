@@ -8,6 +8,7 @@ import java.util.Collections;
 import java.util.List;
 
 import restaurante.ComparaNome;
+import restaurante.ComparaPreco;
 import restaurante.Prato;
 import restaurante.Refeicao;
 import restaurante.RefeicaoCompleta;
@@ -30,12 +31,23 @@ public class RestauranteController {
 
 	private List<Refeicao> cardapio;
 	private ValidacaoDeDados validacao;
+	private String tipoOrdenacao;
+
 
 	public RestauranteController() {
 		this.cardapio = new ArrayList<Refeicao>();
 		this.validacao = new ValidacaoDeDados();
+		this.tipoOrdenacao = "";
 	}
 
+	public String getTipoOrdenacao() {
+		return tipoOrdenacao;
+	}
+	
+	public void setTipoOrdenacao(String tipoOrdenacao) {
+		this.tipoOrdenacao = tipoOrdenacao;
+	}
+	
 	/**
 	 * Metodo que cadastra/adiciona o prato no cardapio(Lista de pratos) do restaurante.
 	 * passa seus parametros por uma serie de verificacoes que examinam se os dados passados estao corretos.
@@ -102,6 +114,8 @@ public class RestauranteController {
 	}
 	
 	public String consultaMenuRestaurante(){
+		this.ordenaMenu(this.getTipoOrdenacao());
+		
 		String info = "";
 		
 		for (int i = 0; i < (this.cardapio.size()-1); i++){
@@ -152,15 +166,17 @@ public class RestauranteController {
 	
 	public void ordenaMenu(String tipoOrdenacao){
 		if (tipoOrdenacao.equalsIgnoreCase("nome")){
+			this.setTipoOrdenacao("nome");
 			this.ordenaCardapioPorNome();
 		}
 		else if (tipoOrdenacao.equalsIgnoreCase("preco")){
+			this.setTipoOrdenacao("preco");
 			this.ordenaCardapioPorPreco();
 		}
 	}
 
 	private void ordenaCardapioPorPreco(){
-		Collections.sort(this.cardapio);
+		Collections.sort(this.cardapio, new ComparaPreco());
 	}
 	
 	private void ordenaCardapioPorNome(){
