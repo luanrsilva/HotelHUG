@@ -183,6 +183,16 @@ public class RestauranteController {
 		Collections.sort(this.cardapio, new ComparaNome());
 	}
 	
-	
+	public String imprimirCardipio() {
+		StringBuilder sb = new StringBuilder();
+		String FIM_DE_LINHA = System.lineSeparator();
+		for (Refeicao refeicao : cardapio) {
+			int contador = 1;
+			sb.append("==> Item " + contador + ":" + FIM_DE_LINHA);
+			sb.append(refeicao.toString());
+			contador++;
+		}
+		return sb.toString();
+	}
 
 }

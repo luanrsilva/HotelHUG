@@ -30,5 +30,15 @@ public class Prato extends Refeicao {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		String FIM_DE_LINHA = System.lineSeparator();
+		sb.append("Nome: " + this.getNome() + " Preco: " + this.formataValor(this.calculaPreco()) + FIM_DE_LINHA
+		+ "Descricao: " + this.getDescricao() + FIM_DE_LINHA);
+		
+		return sb.toString();
+	}
 
 }

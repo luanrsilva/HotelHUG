@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import restaurante.Refeicao;
 import exceptions.AtualizacaoHospedeException;
@@ -42,12 +43,22 @@ public class HotelController {
 	private ValidacaoDeDados validacao;
 	private List<Transacao> transacoes;
 	private RestauranteController restauranteController;
+	private String FIM_DE_LINHA;
 	
 	public HotelController() {
 		this.hospedes = new HashMap<String, Hospede>();
 		this.validacao = new ValidacaoDeDados();
 		this.transacoes = new ArrayList<Transacao>();
 		this.restauranteController = new RestauranteController();
+		this.FIM_DE_LINHA = System.lineSeparator();
+	}
+	
+	public void salvar() {
+		
+	}
+	
+	public void carregar() {
+		
 	}
 	
 	/**
@@ -501,5 +512,45 @@ public class HotelController {
 		this.restauranteController.ordenaMenu(tipoOrdenacao);
 	}
 
+	public String imprimirHospedes() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("Cadastro de Hospedes: " + this.hospedes.size() + " hospedes registrados" + FIM_DE_LINHA);
+		for (Entry<String, Hospede> hospedeEntry : this.hospedes.entrySet()) {
+			int contador = 1;
+			sb.append("==> Hospede" + contador + ":" + FIM_DE_LINHA);
+			Hospede hospede = hospedeEntry.getValue();
+			sb.append(hospede.toString() + FIM_DE_LINHA);
+			contador++;
+		}
+		return sb.toString();
+	}
 	
+	public String imprimirCardapio(){
+		return this.restauranteController.imprimirCardipio();
+	}
+	
+	public String imprimirTransacoes() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("Historico de Transacoes:" + FIM_DE_LINHA);
+		for (Transacao transacao : transacoes) {
+			sb.append(transacao.toString());
+		}
+		sb.append("===== Resumo de transacoes =====" + FIM_DE_LINHA);
+		sb.append("Lucro total:" + this.consultaTransacoes("TOTAL") + FIM_DE_LINHA);
+		sb.append("Total de transacoes:" + this.consultaTransacoes("QUANTIDADE") + FIM_DE_LINHA);
+		double valor = Double.parseDouble(this.consultaTransacoes("TOTAL")) / Integer.parseInt(this.consultaTransacoes("QUANTIDADE")); 
+		sb.append("Lucro medio por transacao: " + this.formataValor(valor));
+		return sb.toString();
+	}
+	
+	public String relatorioHotel() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("======================================================" + FIM_DE_LINHA);
+		sb.append(this.imprimirHospedes() + FIM_DE_LINHA);
+		sb.append("======================================================" + FIM_DE_LINHA);
+		sb.append(this.imprimirCardapio() + FIM_DE_LINHA);
+		sb.append("======================================================" + FIM_DE_LINHA);
+		sb.append(this.imprimirTransacoes() + FIM_DE_LINHA);
+		return sb.toString();
+	}
 }

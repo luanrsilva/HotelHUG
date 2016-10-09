@@ -1,5 +1,6 @@
 package restaurante;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -58,9 +59,26 @@ public class RefeicaoCompleta extends Refeicao {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-
 	
+	public String getPratos() {
+		String pratosCadastrados = "";
+		for (int i = 0; i < this.pratos.size(); i++) {
+			if (i == this.pratos.size() - 1){
+				pratosCadastrados += this.pratos.get(i).getNome();
+			} else {
+				pratosCadastrados += this.pratos.get(i).getNome() + ", ";				
+			}	
+		}	
+		return pratosCadastrados;
+	}
 
-	
-
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		String FIM_DE_LINHA = System.lineSeparator();
+		sb.append("Nome: " + this.getNome() + " Preco: " + this.formataValor(this.calculaPreco()) + FIM_DE_LINHA
+		+ "Descricao: " + this.getDescricao() + FIM_DE_LINHA + "Pratos: " + this.getPratos());
+		
+		return sb.toString();
+	}
 }

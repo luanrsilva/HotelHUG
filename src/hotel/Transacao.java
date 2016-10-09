@@ -1,5 +1,7 @@
 package hotel;
 
+import java.text.DecimalFormat;
+
 /**
  * Classe que representa uma abstracao de uma Transacao.
  * @author Ariann Farias, Luan Rocha, Nilton Ginani, Yovany Cunha - Turma 03
@@ -41,5 +43,19 @@ public class Transacao {
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
-
+	
+	private String formataValor(double valor) {
+		String info = "";
+		DecimalFormat df = new DecimalFormat("#0.00");
+		info += "R$" + df.format(valor);
+		info = info.replace('.', ',');
+		return info;
+	}
+	
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		String FIM_DE_LINHA = System.lineSeparator();
+		sb.append("==> Nome: " + this.getNome() + " Gasto: " + this.formataValor(this.getValor()) + " Detalhes: " + this.getTipo());
+		return sb.toString();
+	}
 }

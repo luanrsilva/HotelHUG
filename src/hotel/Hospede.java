@@ -179,7 +179,16 @@ public class Hospede {
 	}
 
 	public String getDataNascimento() {
-		return dataNascimento;
+		String[] data = this.dataNascimento.split("/");
+		String dataFormatada = "";
+		for (int i = data.length - 1; i >= 0; i--) {
+			if (i == 0) {
+				dataFormatada += data[i];
+			} else {				
+				dataFormatada += data[i] + "-";
+			}
+		}
+		return dataFormatada;
 	}
 
 	public void setDataNascimento(String dataNascimento) throws DadoInvalidoException {
@@ -192,5 +201,13 @@ public class Hospede {
 	
 	public Cartao getCartao(){
 		return this.cartao;
+	}
+	
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		String FIM_DE_LINHA = System.lineSeparator();
+		sb.append("Email: " + this.getEmail() + FIM_DE_LINHA + "Nome: " + this.getNome() + FIM_DE_LINHA
+				+ "Data de nascimento: " + this.getDataNascimento());
+		return sb.toString();
 	}
 }

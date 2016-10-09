@@ -1,5 +1,7 @@
 package restaurante;
 
+import java.text.DecimalFormat;
+
 import exceptions.StringInvalidaException;
 import util.ValidacaoDeDados;
 
@@ -61,11 +63,22 @@ public abstract class Refeicao implements Comparable<Refeicao>{
 		this.descricao = descricao;
 	}
 	
+	public String formataValor(double valor) {
+		String info = "";
+		DecimalFormat df = new DecimalFormat("#0.00");
+		info += "R$" + df.format(valor);
+		info = info.replace('.', ',');
+		return info;
+	}
+	
+	
 	/**
 	 * Este metodo calcula o preco de todos os pratos inclusos na refeicao.
 	 * @return Retorna um double com o preco.
 	 */
 	public abstract double calculaPreco();
+	
+	public abstract String toString();
 	
 
 }
