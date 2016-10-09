@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -30,6 +31,7 @@ import exceptions.StringInvalidaException;
 import hotel.Estadia;
 import hotel.Hospede;
 import hotel.Transacao;
+import util.BancoDeDados;
 import util.ValidacaoDeDados;
 
 /**
@@ -43,6 +45,7 @@ public class HotelController {
 	private ValidacaoDeDados validacao;
 	private List<Transacao> transacoes;
 	private RestauranteController restauranteController;
+	private BancoDeDados bd;
 	private String FIM_DE_LINHA;
 	
 	public HotelController() {
@@ -50,11 +53,19 @@ public class HotelController {
 		this.validacao = new ValidacaoDeDados();
 		this.transacoes = new ArrayList<Transacao>();
 		this.restauranteController = new RestauranteController();
+		this.bd = new BancoDeDados();
 		this.FIM_DE_LINHA = System.lineSeparator();
 	}
 	
 	public void salvar() {
-		
+		try {
+			this.bd.salvaTexto(this.imprimirHospedes(), "/arquivos_sistemas/relatorios/cad_hospedes.txt");
+			this.bd.salvaTexto(this.imprimirCardapio(), "/arquivos_sistemas/relatorios/cad_restaurante.txt");
+			this.bd.salvaTexto(this.imprimirTransacoes(), "/arquivos_sistemas/relatorios/cad_transacoes.txt");
+			this.bd.salvaTexto(this.relatorioHotel(), "/arquivos_sistemas/relatorios/hotel_principal.txt");
+		} catch (IOException e) {
+			e.getMessage();
+		}
 	}
 	
 	public void carregar() {

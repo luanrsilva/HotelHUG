@@ -221,7 +221,23 @@ public class Facade {
 	public String realizaPedido(String email, String itemMenu) throws ConsultaException, ConsultaRestauranteException, DadoInvalidoException{
 		return this.hotelController.realizaPedido(email, itemMenu);
 	}
+	
+	public String imprimirHospedes() {
+		return this.hotelController.imprimirHospedes();
+	}
+	
+	public String imprimirCardapio() {
+		return this.hotelController.imprimirCardapio();
+	}
 
+	public String imprimirTransacoes() {
+		return this.hotelController.imprimirTransacoes();
+	}
+	
+	public String relatorioHotel() {
+		return this.hotelController.relatorioHotel();
+	}
+	
 	public void fechaSistema(){
 
 	}
