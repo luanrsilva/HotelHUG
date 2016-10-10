@@ -401,7 +401,7 @@ public class HotelController {
 			valor += 0.01;
 		}
 		//resultado /= 100;
-		//valor = (int) valor + resultado;
+		//valor = (int) valor +  resultado;
 		return valor;
 	}
 
