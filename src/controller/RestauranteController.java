@@ -52,22 +52,7 @@ public class RestauranteController {
 		this.tipoOrdenacao = tipoOrdenacao;
 	}
 	
-	public void salvaCardapio() {
-		try {
-			this.bd.salvaRefeicao(this.cardapio);
-		} catch (IOException e) {
-			e.getMessage();
-		}
-	}
-	
-	public void carregaCardapio() {
-		try {
-			this.cardapio = this.bd.leRefeicao();
-		} catch (ClassNotFoundException | IOException e) {
-			e.getMessage();
-		}
-	}
-	
+
 	/**
 	 * Metodo que cadastra/adiciona o prato no cardapio(Lista de pratos) do restaurante.
 	 * passa seus parametros por uma serie de verificacoes que examinam se os dados passados estao corretos.

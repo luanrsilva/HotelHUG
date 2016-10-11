@@ -23,6 +23,7 @@ import exceptions.HospedagemException;
 import exceptions.IdInvalidoException;
 import exceptions.RemocaoHospedeException;
 import exceptions.StringInvalidaException;
+import util.BancoDeDados;
 
 /**
  * Classe responsavel por ser a entrada e delegar metodos das classes controllers.
@@ -32,14 +33,21 @@ import exceptions.StringInvalidaException;
 public class Facade {
 
 	private HotelController hotelController;
+	private BancoDeDados bd;
 
 	public Facade() {
 		hotelController = new HotelController();
+		bd = new BancoDeDados();
 	}
 
 	public void iniciaSistema() {
 		this.hotelController.carregarTexto();
-		this.hotelController.carregarObjetos();
+		try {
+			this.bd.leHotelController();
+		} catch (ClassNotFoundException | IOException e) {
+			e.getMessage();
+		}
+		//this.hotelController.carregarObjetos();
 
 	}
 	
@@ -228,7 +236,12 @@ public class Facade {
 	
 	public void fechaSistema(){
 		this.hotelController.salvarTexto();
-		this.hotelController.salvarObjetos();
+		try {
+			this.bd.salvaHotelController(this.hotelController);
+		} catch (IOException e) {
+			e.getMessage();
+		}
+		//this.hotelController.salvarObjetos();
 	}
 
 }

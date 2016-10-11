@@ -71,16 +71,7 @@ public class HotelController {
 		}
 		
 	}
-	
-	/** Metodo para salvar os objetos do programa em arquivos.
-	 * 
-	 */
-	public void salvarObjetos() {
-		this.salvaHospede();
-		this.salvaTransacao();
-		this.restauranteController.salvaCardapio();
-	}
-	
+
 	/**Metodo para ler os objetos do programa em formato toString em arquivos.
 	 * 
 	 */
@@ -91,59 +82,6 @@ public class HotelController {
 			this.bd.carregaTexto("arquivos_sistemas/relatorios/cad_transacoes.txt");
 			this.bd.carregaTexto("arquivos_sistemas/relatorios/hotel_principal.txt");
 		} catch (IOException e) {
-			e.getMessage();
-		}
-	}
-	
-	/** Metodo para ler os objetos do programa em arquivos.
-	 * 
-	 */
-	public void carregarObjetos() {
-		this.carregaHospede();
-		this.carregaTransacoes();
-		this.restauranteController.carregaCardapio();
-	}
-	
-	/** Metodo para salvar objeto hospedes no arquivo.
-	 * 
-	 */
-	public void salvaHospede() {
-		try {
-			this.bd.salvaHospede(this.hospedes);
-		} catch (IOException e) {
-			e.getMessage();
-		}
-	}
-	
-	/** Metodo para ler os hospedes no arquivo e substituir no objeto da classe atual. 
-	 * 
-	 */
-	public void carregaHospede() {
-		try {
-			this.hospedes = this.bd.leHospede();
-		} catch (ClassNotFoundException | IOException e) {
-			e.getMessage();
-		}
-	}
-	
-	/** Metodo para salvar no arquivo o objeto transacoes.
-	 * 
-	 */
-	public void salvaTransacao() {
-		try {
-			this.bd.salvaTransacao(this.transacoes);
-		} catch (IOException e) {
-			e.getMessage();
-		}
-	}
-	
-	/** Metodo para ler as transacoes no arquivo e substituir no objeto da classe atual.
-	 * 
-	 */
-	public void carregaTransacoes() {
-		try {
-			this.transacoes = this.bd.leTransacao();
-		} catch (ClassNotFoundException | IOException e) {
 			e.getMessage();
 		}
 	}

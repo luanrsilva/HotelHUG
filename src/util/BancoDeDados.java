@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 
 import java.io.FileInputStream;
-
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -16,6 +16,7 @@ import java.io.ObjectOutputStream;
 import java.util.List;
 import java.util.Map;
 
+import controller.HotelController;
 import hotel.Hospede;
 import hotel.Transacao;
 
@@ -38,50 +39,20 @@ public class BancoDeDados {
 		}
 		return texto;
 	}
-
-	public void salvaHospede(Map<String, Hospede> hospede) throws IOException {
+	
+	public void salvaHotelController(HotelController hotelController) throws IOException {
 		FileOutputStream fos = new FileOutputStream("arquivos_sistemas/hug.dat");
 		ObjectOutputStream oos = new ObjectOutputStream(fos);
-		oos.writeObject(hospede);
+		oos.writeObject(hotelController);
 		oos.close();
 	}
-
-	public Map<String, Hospede> leHospede() throws IOException, ClassNotFoundException {
+	
+	public HotelController leHotelController() throws IOException, ClassNotFoundException {
 		FileInputStream fis = new FileInputStream("arquivos_sistemas/hug.dat");
 		ObjectInputStream ois = new ObjectInputStream(fis);
 		Object o = ois.readObject();
 		ois.close();
-		return (Map<String, Hospede>) o;
-	}
-
-	public void salvaTransacao(List<Transacao> transacao) throws IOException {
-		FileOutputStream fos = new FileOutputStream("arquivos_sistemas/hug.dat");
-		ObjectOutputStream oos = new ObjectOutputStream(fos);
-		oos.writeObject(transacao);
-		oos.close();
-	}
-
-	public List<Transacao> leTransacao() throws IOException, ClassNotFoundException {
-		FileInputStream fis = new FileInputStream("arquivos_sistemas/hug.dat");
-		ObjectInputStream ois = new ObjectInputStream(fis);
-		Object o = ois.readObject();
-		ois.close();
-		return (List<Transacao>) o;
-	}
-
-	public void salvaRefeicao(List<Refeicao> refeicao) throws IOException {
-		FileOutputStream fos = new FileOutputStream("arquivos_sistemas/hug.dat");
-		ObjectOutputStream oos = new ObjectOutputStream(fos);
-		oos.writeObject(refeicao);
-		oos.close();
-	}
-
-	public List<Refeicao> leRefeicao() throws IOException, ClassNotFoundException {
-		FileInputStream fis = new FileInputStream("arquivos_sistemas/hug.dat");
-		ObjectInputStream ois = new ObjectInputStream(fis);
-		Object o = ois.readObject();
-		ois.close();
-		return (List<Refeicao>) o;
+		return (HotelController) o;
 	}
 
 }
