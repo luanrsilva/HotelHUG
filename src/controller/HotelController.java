@@ -57,19 +57,32 @@ public class HotelController {
 		this.FIM_DE_LINHA = System.lineSeparator();
 	}
 	
+	/** Metodo para salvar os objetos do programa em formato toString em arquivos.
+	 * 
+	 */
 	public void salvar() {
 		try {
-			this.bd.salvaTexto(this.imprimirHospedes(), "/arquivos_sistemas/relatorios/cad_hospedes.txt");
-			this.bd.salvaTexto(this.imprimirCardapio(), "/arquivos_sistemas/relatorios/cad_restaurante.txt");
-			this.bd.salvaTexto(this.imprimirTransacoes(), "/arquivos_sistemas/relatorios/cad_transacoes.txt");
-			this.bd.salvaTexto(this.relatorioHotel(), "/arquivos_sistemas/relatorios/hotel_principal.txt");
+			this.bd.salvaTexto(this.imprimirHospedes(), "arquivos_sistemas/relatorios/cad_hospedes.txt");
+			this.bd.salvaTexto(this.imprimirCardapio(), "arquivos_sistemas/relatorios/cad_restaurante.txt");
+			this.bd.salvaTexto(this.imprimirTransacoes(), "arquivos_sistemas/relatorios/cad_transacoes.txt");
+			this.bd.salvaTexto(this.relatorioHotel(), "arquivos_sistemas/relatorios/hotel_principal.txt");
 		} catch (IOException e) {
 			e.getMessage();
 		}
 	}
 	
+	/**Metodo para ler os objetos do programa em formato toString em arquivos.
+	 * 
+	 */
 	public void carregar() {
-		
+		try {
+			this.bd.carregaTexto("arquivos_sistemas/relatorios/cad_hospedes.txt");
+			this.bd.carregaTexto("arquivos_sistemas/relatorios/cad_restaurante.txt");
+			this.bd.carregaTexto("arquivos_sistemas/relatorios/cad_transacoes.txt");
+			this.bd.carregaTexto("arquivos_sistemas/relatorios/hotel_principal.txt");
+		} catch (IOException e) {
+			e.getMessage();
+		}
 	}
 	
 	/**
@@ -420,9 +433,7 @@ public class HotelController {
 		case "TOTAL":
 			double total = 0.0;
 			DecimalFormat df = new DecimalFormat("#0.00");
-			for (Transacao transacao : transacoes) {
-				total += transacao.getValor();
-			}
+			total = this.totalTransacoes();
 			info += "R$" + df.format(total);
 			info = info.replace('.', ',');
 			break;
@@ -466,6 +477,15 @@ public class HotelController {
 			throw new DadoInvalidoException(di.getMessage());
 		}
 		return info;
+	}
+	
+	private double totalTransacoes() {
+		double valor = 0.0;
+		for(Transacao transacao : transacoes) {
+			valor += transacao.getValor();
+		}
+		
+		return valor;
 	}
 	
 	public String realizaPedido(String email, String nomeRefeicao) throws ConsultaException, ConsultaRestauranteException, DadoInvalidoException{
@@ -524,11 +544,11 @@ public class HotelController {
 	}
 
 	public String imprimirHospedes() {
+		int contador = 1;
 		StringBuilder sb = new StringBuilder();
 		sb.append("Cadastro de Hospedes: " + this.hospedes.size() + " hospedes registrados" + FIM_DE_LINHA);
 		for (Entry<String, Hospede> hospedeEntry : this.hospedes.entrySet()) {
-			int contador = 1;
-			sb.append("==> Hospede" + contador + ":" + FIM_DE_LINHA);
+			sb.append(FIM_DE_LINHA + "==> Hospede " + contador + ":" + FIM_DE_LINHA);
 			Hospede hospede = hospedeEntry.getValue();
 			sb.append(hospede.toString() + FIM_DE_LINHA);
 			contador++;
@@ -549,7 +569,7 @@ public class HotelController {
 		sb.append("===== Resumo de transacoes =====" + FIM_DE_LINHA);
 		sb.append("Lucro total:" + this.consultaTransacoes("TOTAL") + FIM_DE_LINHA);
 		sb.append("Total de transacoes:" + this.consultaTransacoes("QUANTIDADE") + FIM_DE_LINHA);
-		double valor = Double.parseDouble(this.consultaTransacoes("TOTAL")) / Integer.parseInt(this.consultaTransacoes("QUANTIDADE")); 
+		double valor = this.totalTransacoes() / Integer.parseInt(this.consultaTransacoes("QUANTIDADE")); 
 		sb.append("Lucro medio por transacao: " + this.formataValor(valor));
 		return sb.toString();
 	}
@@ -564,8 +584,8 @@ public class HotelController {
 		sb.append(this.imprimirTransacoes() + FIM_DE_LINHA);
 		return sb.toString();
 	}
-	public void salvaHospede(String email) throws ConsultaException, IOException{
+	/*public void salvaHospede(String email) throws ConsultaException, IOException{
 		Hospede buscado = buscaHospede(email);
 		buscado.salvaHospede();
-	}
+	}*/
 }

@@ -1,5 +1,7 @@
 package restaurante;
 
+import java.io.Serializable;
+
 import exceptions.StringInvalidaException;
 
 /**
@@ -7,8 +9,9 @@ import exceptions.StringInvalidaException;
  * @author Ariann Farias, Luan Rocha, Nilton Ginani, Yovany Cunha - Turma 03
  *
  */
-public class Prato extends Refeicao {
-
+public class Prato extends Refeicao implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
 	private double preco;
 
 	public Prato(String nome, double preco, String descricao) throws StringInvalidaException {

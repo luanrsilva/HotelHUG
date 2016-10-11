@@ -215,33 +215,6 @@ public class Hospede implements Serializable{
 		return this.cartao;
 	}
 	
-	
-	public void salvaHospede() throws IOException{
-		File file = new File("cad_hospedes.txt");
-		OutputStreamWriter osw = new OutputStreamWriter(new FileOutputStream(file));
-		BufferedWriter bw =  new BufferedWriter(osw);
-		bw.write(leArquivo());
-		bw.close();
-		osw.close();
-	}
-	
-	private String leArquivo() throws IOException{
-		String info = "";
-		FileInputStream fis = new FileInputStream("cad_hospedes.txt");
-		InputStreamReader isr =  new InputStreamReader(fis);
-		BufferedReader br = new BufferedReader(isr);
-		String linha = br.readLine();
-		while(linha != null){
-			info += linha;
-			linha = br.readLine();
-		}
-		br.close();
-		isr.close();
-		
-		return info;
-	}
-
-	
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		String FIM_DE_LINHA = System.lineSeparator();

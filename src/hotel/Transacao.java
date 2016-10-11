@@ -1,5 +1,6 @@
 package hotel;
 
+import java.io.Serializable;
 import java.text.DecimalFormat;
 
 /**
@@ -7,8 +8,9 @@ import java.text.DecimalFormat;
  * @author Ariann Farias, Luan Rocha, Nilton Ginani, Yovany Cunha - Turma 03
  *
  */
-public class Transacao {
-
+public class Transacao implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
 	private String nome;
 	private double valor;
 	private String tipo;
@@ -55,7 +57,7 @@ public class Transacao {
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		String FIM_DE_LINHA = System.lineSeparator();
-		sb.append("==> Nome: " + this.getNome() + " Gasto: " + this.formataValor(this.getValor()) + " Detalhes: " + this.getTipo());
+		sb.append("==> Nome: " + this.getNome() + " Gasto: " + this.formataValor(this.getValor()) + " Detalhes: " + this.getTipo() + FIM_DE_LINHA);
 		return sb.toString();
 	}
 }

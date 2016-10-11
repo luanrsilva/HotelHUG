@@ -38,12 +38,14 @@ public class Facade {
 	}
 
 	public void iniciaSistema() {
+		this.hotelController.carregar();
 
 	}
 	
-	public void salvaHospede(String email) throws ConsultaException, IOException{
+/*	public void salvaHospede(String email) throws ConsultaException, IOException{
 		hotelController.salvaHospede(email);
 	}
+*/
 	
 	/**
 	 * Metodo que calcula o valor a ser pago pela conversao de uma quantidade de pontos de fidelidade
@@ -245,7 +247,7 @@ public class Facade {
 	}
 	
 	public void fechaSistema(){
-
+		this.hotelController.salvar();
 	}
 
 }

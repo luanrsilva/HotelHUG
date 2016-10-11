@@ -1,5 +1,7 @@
 package hotel;
 
+import java.io.Serializable;
+
 import exceptions.*;
 
 import testes.*;
@@ -10,8 +12,9 @@ import testes.*;
  * @author Ariann Farias, Luan Rocha, Nilton Ginani, Yovany Cunha - Turma 03
  *
  */
-public class Estadia {
-
+public class Estadia implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
 	private int dias;
 	private Quarto quarto;
 

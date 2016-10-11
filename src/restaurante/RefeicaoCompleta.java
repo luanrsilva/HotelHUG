@@ -1,5 +1,6 @@
 package restaurante;
 
+import java.io.Serializable;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,8 +13,9 @@ import exceptions.StringInvalidaException;
  * @author Ariann Farias, Luan Rocha, Nilton Ginani, Yovany Cunha - Turma 03
  *
  */
-public class RefeicaoCompleta extends Refeicao {
-
+public class RefeicaoCompleta extends Refeicao implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
 	private List<Prato> pratos;
 
 	public RefeicaoCompleta(String nome, String descricao) throws StringInvalidaException {

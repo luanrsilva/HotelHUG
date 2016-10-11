@@ -184,11 +184,12 @@ public class RestauranteController {
 	}
 	
 	public String imprimirCardipio() {
+		int contador = 1;
 		StringBuilder sb = new StringBuilder();
 		String FIM_DE_LINHA = System.lineSeparator();
+		sb.append("Menu do Restaurante: " +  this.cardapio.size() + " itens no cardapio" + FIM_DE_LINHA);
 		for (Refeicao refeicao : cardapio) {
-			int contador = 1;
-			sb.append("==> Item " + contador + ":" + FIM_DE_LINHA);
+			sb.append(FIM_DE_LINHA + "==> Item " + contador + ":" + FIM_DE_LINHA);
 			sb.append(refeicao.toString());
 			contador++;
 		}
