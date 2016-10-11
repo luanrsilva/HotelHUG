@@ -85,6 +85,50 @@ public class HotelController {
 		}
 	}
 	
+	/** Metodo para salvar objeto hospedes no arquivo.
+	 * 
+	 */
+	public void salvaHospede() {
+		try {
+			this.bd.salvaHospede(this.hospedes);
+		} catch (IOException e) {
+			e.getMessage();
+		}
+	}
+	
+	/** Metodo para ler os hospedes no arquivo e substituir no objeto da classe atual. 
+	 * 
+	 */
+	public void carregaHospede() {
+		try {
+			this.hospedes = this.bd.leHospede();
+		} catch (ClassNotFoundException | IOException e) {
+			e.getMessage();
+		}
+	}
+	
+	/** Metodo para salvar no arquivo o objeto transacoes.
+	 * 
+	 */
+	public void salvaTransacao() {
+		try {
+			this.bd.salvaTransacao(this.transacoes);
+		} catch (IOException e) {
+			e.getMessage();
+		}
+	}
+	
+	/** Metodo para ler as transacoes no arquivo e substituir no objeto da classe atual.
+	 * 
+	 */
+	public void carregaTransacoes() {
+		try {
+			this.transacoes = this.bd.leTransacao();
+		} catch (ClassNotFoundException | IOException e) {
+			e.getMessage();
+		}
+	}
+	
 	/**
 	 * Metodo que calcula o valor a ser pago pela conversao de uma quantidade de pontos de fidelidade
 	 * passado como parametro, dependendo do tipo de cartao que o hospede possui, seja VIP, Padrao ou Premium.
