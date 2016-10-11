@@ -38,14 +38,10 @@ public class Facade {
 	}
 
 	public void iniciaSistema() {
-		this.hotelController.carregar();
+		this.hotelController.carregarTexto();
+		this.hotelController.carregarObjetos();
 
 	}
-	
-/*	public void salvaHospede(String email) throws ConsultaException, IOException{
-		hotelController.salvaHospede(email);
-	}
-*/
 	
 	/**
 	 * Metodo que calcula o valor a ser pago pela conversao de uma quantidade de pontos de fidelidade
@@ -230,24 +226,9 @@ public class Facade {
 		return this.hotelController.realizaPedido(email, itemMenu);
 	}
 	
-	public String imprimirHospedes() {
-		return this.hotelController.imprimirHospedes();
-	}
-	
-	public String imprimirCardapio() {
-		return this.hotelController.imprimirCardapio();
-	}
-
-	public String imprimirTransacoes() {
-		return this.hotelController.imprimirTransacoes();
-	}
-	
-	public String relatorioHotel() {
-		return this.hotelController.relatorioHotel();
-	}
-	
 	public void fechaSistema(){
-		this.hotelController.salvar();
+		this.hotelController.salvarTexto();
+		this.hotelController.salvarObjetos();
 	}
 
 }

@@ -60,7 +60,7 @@ public class HotelController {
 	/** Metodo para salvar os objetos do programa em formato toString em arquivos.
 	 * 
 	 */
-	public void salvar() {
+	public void salvarTexto() {
 		try {
 			this.bd.salvaTexto(this.imprimirHospedes(), "arquivos_sistemas/relatorios/cad_hospedes.txt");
 			this.bd.salvaTexto(this.imprimirCardapio(), "arquivos_sistemas/relatorios/cad_restaurante.txt");
@@ -69,12 +69,22 @@ public class HotelController {
 		} catch (IOException e) {
 			e.getMessage();
 		}
+		
+	}
+	
+	/** Metodo para salvar os objetos do programa em arquivos.
+	 * 
+	 */
+	public void salvarObjetos() {
+		this.salvaHospede();
+		this.salvaTransacao();
+		this.restauranteController.salvaCardapio();
 	}
 	
 	/**Metodo para ler os objetos do programa em formato toString em arquivos.
 	 * 
 	 */
-	public void carregar() {
+	public void carregarTexto() {
 		try {
 			this.bd.carregaTexto("arquivos_sistemas/relatorios/cad_hospedes.txt");
 			this.bd.carregaTexto("arquivos_sistemas/relatorios/cad_restaurante.txt");
@@ -83,6 +93,15 @@ public class HotelController {
 		} catch (IOException e) {
 			e.getMessage();
 		}
+	}
+	
+	/** Metodo para ler os objetos do programa em arquivos.
+	 * 
+	 */
+	public void carregarObjetos() {
+		this.carregaHospede();
+		this.carregaTransacoes();
+		this.restauranteController.carregaCardapio();
 	}
 	
 	/** Metodo para salvar objeto hospedes no arquivo.

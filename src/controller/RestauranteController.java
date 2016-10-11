@@ -2,6 +2,7 @@ package controller;
 
 import hotel.Transacao;
 
+import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -12,6 +13,7 @@ import restaurante.ComparaPreco;
 import restaurante.Prato;
 import restaurante.Refeicao;
 import restaurante.RefeicaoCompleta;
+import util.BancoDeDados;
 import util.ValidacaoDeDados;
 import exceptions.CadastraPratoException;
 import exceptions.CadastraRefeicaoCompletaException;
@@ -32,12 +34,14 @@ public class RestauranteController {
 	private List<Refeicao> cardapio;
 	private ValidacaoDeDados validacao;
 	private String tipoOrdenacao;
+	private BancoDeDados bd;
 
 
 	public RestauranteController() {
 		this.cardapio = new ArrayList<Refeicao>();
 		this.validacao = new ValidacaoDeDados();
 		this.tipoOrdenacao = "";
+		this.bd = new BancoDeDados();
 	}
 
 	public String getTipoOrdenacao() {
@@ -46,6 +50,22 @@ public class RestauranteController {
 	
 	public void setTipoOrdenacao(String tipoOrdenacao) {
 		this.tipoOrdenacao = tipoOrdenacao;
+	}
+	
+	public void salvaCardapio() {
+		try {
+			this.bd.salvaRefeicao(this.cardapio);
+		} catch (IOException e) {
+			e.getMessage();
+		}
+	}
+	
+	public void carregaCardapio() {
+		try {
+			this.cardapio = this.bd.leRefeicao();
+		} catch (ClassNotFoundException | IOException e) {
+			e.getMessage();
+		}
 	}
 	
 	/**
