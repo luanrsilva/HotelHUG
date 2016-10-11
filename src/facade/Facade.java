@@ -1,5 +1,7 @@
 package facade;
 
+import java.io.IOException;
+
 import controller.HotelController;
 
 import controller.RestauranteController;
@@ -37,6 +39,10 @@ public class Facade {
 
 	public void iniciaSistema() {
 
+	}
+	
+	public void salvaHospede(String email) throws ConsultaException, IOException{
+		hotelController.salvaHospede(email);
 	}
 	
 	/**

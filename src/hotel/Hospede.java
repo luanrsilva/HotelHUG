@@ -1,6 +1,7 @@
 package hotel;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -215,23 +216,27 @@ public class Hospede implements Serializable{
 	}
 	
 	
-	public void salvaHospede(String arquivo) throws IOException{
-		File file = new File("./arquivos_sistema/cad_hospedes.txt");
+	public void salvaHospede() throws IOException{
+		File file = new File("cad_hospedes.txt");
 		OutputStreamWriter osw = new OutputStreamWriter(new FileOutputStream(file));
-		osw.write(leArquivo());
+		BufferedWriter bw =  new BufferedWriter(osw);
+		bw.write(leArquivo());
+		bw.close();
 		osw.close();
 	}
 	
 	private String leArquivo() throws IOException{
 		String info = "";
-		FileInputStream fis = new FileInputStream("./arquivos_sistema/cad_hospedes.txt");
+		FileInputStream fis = new FileInputStream("cad_hospedes.txt");
 		InputStreamReader isr =  new InputStreamReader(fis);
 		BufferedReader br = new BufferedReader(isr);
-		String linha ;
-		while((linha = br.readLine())!= null){
+		String linha = br.readLine();
+		while(linha != null){
 			info += linha;
+			linha = br.readLine();
 		}
 		br.close();
+		isr.close();
 		
 		return info;
 	}

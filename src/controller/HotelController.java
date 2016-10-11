@@ -564,4 +564,8 @@ public class HotelController {
 		sb.append(this.imprimirTransacoes() + FIM_DE_LINHA);
 		return sb.toString();
 	}
+	public void salvaHospede(String email) throws ConsultaException, IOException{
+		Hospede buscado = buscaHospede(email);
+		buscado.salvaHospede();
+	}
 }

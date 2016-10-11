@@ -53,4 +53,6 @@ expect "20" getInfoHospede id="nobel@got.se" atributo="Pontos"
 expect "21" consultaTransacoes atributo="Quantidade"
 expect "R$11688,07" consultaTransacoes atributo="Total"
 
+salvaHospede email="ines@brasil.com.br"
+
 fechaSistema
