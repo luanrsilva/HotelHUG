@@ -398,10 +398,10 @@ public class HotelController {
 		double resultado = valor - (int) valor;
 		resultado *= 100;
 		if (resultado != (int) resultado) {
-			valor += 0.01;
+			resultado = Math.ceil(resultado-1);
 		}
-		//resultado /= 100;
-		//valor = (int) valor + resultado;
+		resultado /= 100;
+		valor = (int) valor + resultado;
 		return valor;
 	}
 

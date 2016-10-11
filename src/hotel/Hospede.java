@@ -188,13 +188,12 @@ public class Hospede implements Serializable{
 	public String getDataNascimento() {
 		String[] data = this.dataNascimento.split("/");
 		String dataFormatada = "";
-		for (int i = data.length - 1; i >= 0; i--) {
-			if (i == 0) {
-				dataFormatada += data[i];
-			} else {				
-				dataFormatada += data[i] + "-";
-			}
-		}
+		
+		String dia = data[0].trim();
+		String mes = data[1].trim();
+		String ano = data[2].trim();
+		
+		dataFormatada += dia + "/" + mes + "/" + ano;
 		return dataFormatada;
 	}
 
