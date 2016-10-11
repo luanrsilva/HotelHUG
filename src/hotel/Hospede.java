@@ -1,9 +1,14 @@
 package hotel;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.ObjectOutputStream;
+import java.io.OutputStreamWriter;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -209,22 +214,37 @@ public class Hospede implements Serializable{
 		return this.cartao;
 	}
 	
-	/**
-	 * Método que salva a instância atual da entidade Hospede no arquivo que tem seu nome passado como parâmetro.
-	 * Faz uso do FileOutputStream e do ObjectOutputStream
-	 * 
-	 * @param arquivo
-	 * @throws IOException
-	 */
+	
 	public void salvaHospede(String arquivo) throws IOException{
-		FileOutputStream fos = new FileOutputStream(arquivo, true);
+		File file = new File("./arquivos_sistema/cad_hospedes.txt");
+		OutputStreamWriter osw = new OutputStreamWriter(new FileOutputStream(file));
+		osw.write(leArquivo());
+		osw.close();
+		
+		
+		/*FileOutputStream fos = new FileOutputStream(arquivo, true);
 		ObjectOutputStream oos = new ObjectOutputStream(fos);
 		oos.writeObject(this);
 		oos.flush();
 		oos.close();
 		fos.flush();
-		fos.close();
+		fos.close();*/
 	}
+	
+	private String leArquivo() throws IOException{
+		String info = "";
+		FileInputStream fis = new FileInputStream("./arquivos_sistema/cad_hospedes.txt");
+		InputStreamReader isr =  new InputStreamReader(fis);
+		BufferedReader br = new BufferedReader(isr);
+		String linha ;
+		while((linha = br.readLine())!= null){
+			info += linha;
+		}
+		br.close();
+		
+		return info;
+	}
+
 	
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
