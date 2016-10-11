@@ -1,5 +1,10 @@
 package hotel;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,8 +20,10 @@ import exceptions.StringInvalidaException;
  * @author Ariann Farias, Luan Rocha, Nilton Ginani, Yovany Cunha - Turma 03
  *
  */
-public class Hospede {
+public class Hospede implements Serializable{
 
+	
+	private static final long serialVersionUID = 1L;
 	private String nome;
 	private String email;
 	private String dataNascimento;
@@ -201,6 +208,21 @@ public class Hospede {
 	
 	public Cartao getCartao(){
 		return this.cartao;
+	}
+	
+	/**
+	 * Método que salva a instância atual da entidade Hospede no arquivo que tem seu nome passado como parâmetro.
+	 * Faz uso do FileOutputStream e do ObjectOutputStream
+	 * 
+	 * @param arquivo
+	 * @throws IOException
+	 */
+	public void salvaHospede(String arquivo) throws IOException{
+		FileOutputStream fos = new FileOutputStream(arquivo, true);
+		ObjectOutputStream oos = new ObjectOutputStream(fos);
+		oos.writeObject(this);
+		oos.flush();
+		oos.close();
 	}
 	
 	public String toString() {
