@@ -223,6 +223,8 @@ public class Hospede implements Serializable{
 		oos.writeObject(this);
 		oos.flush();
 		oos.close();
+		fos.flush();
+		fos.close();
 	}
 	
 	public String toString() {
