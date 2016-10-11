@@ -220,15 +220,6 @@ public class Hospede implements Serializable{
 		OutputStreamWriter osw = new OutputStreamWriter(new FileOutputStream(file));
 		osw.write(leArquivo());
 		osw.close();
-		
-		
-		/*FileOutputStream fos = new FileOutputStream(arquivo, true);
-		ObjectOutputStream oos = new ObjectOutputStream(fos);
-		oos.writeObject(this);
-		oos.flush();
-		oos.close();
-		fos.flush();
-		fos.close();*/
 	}
 	
 	private String leArquivo() throws IOException{
