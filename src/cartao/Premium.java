@@ -1,5 +1,8 @@
 package cartao;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 public class Premium implements TipoDeCartaoIF{
 	private static final double DESCONTO_PREMIUM = 0.9;
 	private static final double BONUS_PREMIUM = 0.3; 
@@ -31,7 +34,9 @@ public class Premium implements TipoDeCartaoIF{
 	public double pagaDividasGastos(double qtdPontos) {
 		double valorConvertido = TAXA_CONVERTE_FIDELIDADE * qtdPontos;
 		double adicional = ((int)(valorConvertido/10)) * TAXA_CONVERTE_FIDELIDADE_BONUS;
-		return valorConvertido + adicional;
+		double valorFinal = valorConvertido + adicional;
+		BigDecimal arredondado =  new BigDecimal(valorFinal).setScale(2, RoundingMode.HALF_UP);
+		return arredondado.doubleValue();
 	}
 
 }

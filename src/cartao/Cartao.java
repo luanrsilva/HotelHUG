@@ -1,5 +1,8 @@
 package cartao;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 public class Cartao {
 	
 	private int pontos;
@@ -41,8 +44,9 @@ public class Cartao {
 		if (valorGasto > 100) {			
 			adicional = (int) ((valorGasto/100)* tipoCartao.adicionalDesconto());
 		}
-		
-		return (valorGasto * tipoCartao.desconto() - adicional);
+		double valorFinal = valorGasto * tipoCartao.desconto() - adicional;
+		BigDecimal arredondado =  new BigDecimal(valorFinal).setScale(2, RoundingMode.HALF_UP);
+		return arredondado.doubleValue();
 	}
 	
 	public double pagaDividasGastos(double pontos){

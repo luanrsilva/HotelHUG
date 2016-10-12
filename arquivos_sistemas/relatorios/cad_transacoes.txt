@@ -10,17 +10,17 @@ Historico de Transacoes:
 ==> Nome: Ines Brasil Gasto: R$750,00 Detalhes: 2B
 ==> Nome: Sven Gudmar Svenson Gasto: R$45,77 Detalhes: Delicia da serra
 ==> Nome: Sven Gudmar Svenson Gasto: R$1620,00 Detalhes: 5A
-==> Nome: Sven Gudmar Svenson Gasto: R$43,23 Detalhes: Delicia da serra
+==> Nome: Sven Gudmar Svenson Gasto: R$43,22 Detalhes: Delicia da serra
 ==> Nome: Sven Gudmar Svenson Gasto: R$675,00 Detalhes: 5A
 ==> Nome: Ines Brasil Gasto: R$50,85 Detalhes: Delicia da serra
 ==> Nome: Ines Brasil Gasto: R$2250,00 Detalhes: 5B
 ==> Nome: Ines Brasil Gasto: R$45,77 Detalhes: Delicia da serra
 ==> Nome: Ines Brasil Gasto: R$1215,00 Detalhes: 5B
 ==> Nome: Ines Brasil Gasto: R$45,77 Detalhes: Delicia da serra
-==> Nome: Sven Gudmar Svenson Gasto: R$43,23 Detalhes: Delicia da serra
+==> Nome: Sven Gudmar Svenson Gasto: R$43,22 Detalhes: Delicia da serra
 ==> Nome: Ines Brasil Gasto: R$50,85 Detalhes: Delicia da serra
 ==> Nome: Sven Gudmar Svenson Gasto: R$45,77 Detalhes: Delicia da serra
 ===== Resumo de transacoes =====
-Lucro total:R$11688,10
+Lucro total:R$11688,08
 Total de transacoes:21
-Lucro medio por transacao: R$556,58
+Lucro medio por transacao: R$556,57

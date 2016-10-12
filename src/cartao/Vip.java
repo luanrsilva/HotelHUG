@@ -1,5 +1,8 @@
 package cartao;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 public class Vip implements TipoDeCartaoIF{
 	private static final double DESCONTO_VIP = 0.85;
 	private static final double BONUS_VIP = 0.5;
@@ -31,7 +34,9 @@ public class Vip implements TipoDeCartaoIF{
 	public double pagaDividasGastos(double qtdPontos) {
 		double valorConvertido = TAXA_CONVERTE_FIDELIDADE * qtdPontos;
 		double adicional = (int)(valorConvertido/10) * TAXA_CONVERTE_FIDELIDADE_BONUS;
-		return valorConvertido + adicional;
+		double valorFinal = valorConvertido + adicional;
+		BigDecimal arredondado =  new BigDecimal(valorFinal).setScale(2, RoundingMode.UP);
+		return arredondado.doubleValue();
 	}
 
 }
