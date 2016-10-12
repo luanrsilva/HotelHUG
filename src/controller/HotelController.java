@@ -96,9 +96,11 @@ public class HotelController {
 	 */
 	public String convertePontos(String email,int qtdPontos) throws ConsultaException {
 		Hospede hospede = this.buscaHospede(email);
+		double valor = hospede.getCartao().pagaDividasGastos(qtdPontos);
+		String info = this.formataValor(valor);
 		hospede.getCartao().setPontos(hospede.getCartao().getPontos() - qtdPontos);
 		
-		return this.formataValor(hospede.getCartao().pagaDividasGastos(qtdPontos));
+		return info;
 		
 	}
 
