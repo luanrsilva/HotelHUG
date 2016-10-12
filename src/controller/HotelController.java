@@ -434,7 +434,6 @@ public class HotelController {
 			double total = 0.0;
 			DecimalFormat df = new DecimalFormat("#0.00");
 			total = this.totalTransacoes();
-			total = this.arredondamento(total);
 			info += "R$" + df.format(total);
 			info = info.replace('.', ',');
 			break;

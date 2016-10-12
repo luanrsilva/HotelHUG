@@ -6,8 +6,8 @@ public class Padrao implements TipoDeCartaoIF{
 	private static final double TAXA_CONVERTE_FIDELIDADE = 0.1;
 	
 	@Override
-	public double desconto() {
-		return DESCONTO_PADRAO;
+	public double desconto(double valorgasto) {
+		return valorgasto;
 	}
 
 	@Override
