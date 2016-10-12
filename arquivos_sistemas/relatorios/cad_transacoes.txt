@@ -1,4 +1,84 @@
 Historico de Transacoes:
+===== Resumo de transacoes =====
+Lucro total:R$0,00
+Total de transacoes:0
+Lucro medio por transacao: R$�Historico de Transacoes:
+===== Resumo de transacoes =====
+Lucro total:R$0,00
+Total de transacoes:0
+Lucro medio por transacao: R$�Historico de Transacoes:
+===== Resumo de transacoes =====
+Lucro total:R$0,00
+Total de transacoes:0
+Lucro medio por transacao: R$�Historico de Transacoes:
+===== Resumo de transacoes =====
+Lucro total:R$0,00
+Total de transacoes:0
+Lucro medio por transacao: R$�Historico de Transacoes:
+==> Nome: Sven Gudmar Svenson Gasto: R$2250,00 Detalhes: 1A
+==> Nome: Ines Brasil Gasto: R$500,00 Detalhes: 1B
+==> Nome: Agnetha Faltskog Gasto: R$200,00 Detalhes: 15A
+==> Nome: Alfred Nobel Gasto: R$450,00 Detalhes: 1A
+===== Resumo de transacoes =====
+Lucro total:R$3400,00
+Total de transacoes:4
+Lucro medio por transacao: R$850,00Historico de Transacoes:
+==> Nome: Sven Gudmar Svenson Gasto: R$2250,00 Detalhes: 1A
+==> Nome: Ines Brasil Gasto: R$500,00 Detalhes: 1B
+==> Nome: Agnetha Faltskog Gasto: R$200,00 Detalhes: 15A
+==> Nome: Alfred Nobel Gasto: R$450,00 Detalhes: 1A
+===== Resumo de transacoes =====
+Lucro total:R$3400,00
+Total de transacoes:4
+Lucro medio por transacao: R$850,00Historico de Transacoes:
+==> Nome: Sven Gudmar Svenson Gasto: R$2250,00 Detalhes: 1A
+==> Nome: Ines Brasil Gasto: R$500,00 Detalhes: 1B
+==> Nome: Agnetha Faltskog Gasto: R$200,00 Detalhes: 15A
+==> Nome: Alfred Nobel Gasto: R$450,00 Detalhes: 1A
+===== Resumo de transacoes =====
+Lucro total:R$3400,00
+Total de transacoes:4
+Lucro medio por transacao: R$850,00Historico de Transacoes:
+==> Nome: Sven Gudmar Svenson Gasto: R$2250,00 Detalhes: 1A
+==> Nome: Ines Brasil Gasto: R$500,00 Detalhes: 1B
+==> Nome: Agnetha Faltskog Gasto: R$200,00 Detalhes: 15A
+==> Nome: Alfred Nobel Gasto: R$450,00 Detalhes: 1A
+===== Resumo de transacoes =====
+Lucro total:R$3400,00
+Total de transacoes:4
+Lucro medio por transacao: R$850,00Historico de Transacoes:
+==> Nome: Sven Gudmar Svenson Gasto: R$2250,00 Detalhes: 1A
+==> Nome: Ines Brasil Gasto: R$500,00 Detalhes: 1B
+==> Nome: Agnetha Faltskog Gasto: R$200,00 Detalhes: 15A
+==> Nome: Alfred Nobel Gasto: R$450,00 Detalhes: 1A
+==> Nome: Alfred Nobel Gasto: R$50,85 Detalhes: Delicia da serra
+==> Nome: Alfred Nobel Gasto: R$3,00 Detalhes: Tapioca
+==> Nome: Ines Brasil Gasto: R$3,00 Detalhes: Tapioca
+===== Resumo de transacoes =====
+Lucro total:R$3456,85
+Total de transacoes:7
+Lucro medio por transacao: R$493,84Historico de Transacoes:
+==> Nome: Sven Gudmar Svenson Gasto: R$2250,00 Detalhes: 1A
+==> Nome: Ines Brasil Gasto: R$500,00 Detalhes: 1B
+==> Nome: Agnetha Faltskog Gasto: R$200,00 Detalhes: 15A
+==> Nome: Alfred Nobel Gasto: R$450,00 Detalhes: 1A
+==> Nome: Alfred Nobel Gasto: R$50,85 Detalhes: Delicia da serra
+==> Nome: Alfred Nobel Gasto: R$3,00 Detalhes: Tapioca
+==> Nome: Ines Brasil Gasto: R$3,00 Detalhes: Tapioca
+==> Nome: Sven Gudmar Svenson Gasto: R$1350,00 Detalhes: 2A
+==> Nome: Ines Brasil Gasto: R$750,00 Detalhes: 2B
+==> Nome: Sven Gudmar Svenson Gasto: R$45,77 Detalhes: Delicia da serra
+==> Nome: Sven Gudmar Svenson Gasto: R$1620,00 Detalhes: 5A
+==> Nome: Sven Gudmar Svenson Gasto: R$43,23 Detalhes: Delicia da serra
+==> Nome: Sven Gudmar Svenson Gasto: R$675,00 Detalhes: 5A
+==> Nome: Ines Brasil Gasto: R$50,85 Detalhes: Delicia da serra
+==> Nome: Ines Brasil Gasto: R$2250,00 Detalhes: 5B
+==> Nome: Ines Brasil Gasto: R$45,77 Detalhes: Delicia da serra
+==> Nome: Ines Brasil Gasto: R$1215,00 Detalhes: 5B
+===== Resumo de transacoes =====
+Lucro total:R$11502,47
+Total de transacoes:17
+Lucro medio por transacao: R$676,62Historico de Transacoes:
 ==> Nome: Sven Gudmar Svenson Gasto: R$2250,00 Detalhes: 1A
 ==> Nome: Ines Brasil Gasto: R$500,00 Detalhes: 1B
 ==> Nome: Agnetha Faltskog Gasto: R$200,00 Detalhes: 15A
@@ -21,6 +101,6 @@ Historico de Transacoes:
 ==> Nome: Ines Brasil Gasto: R$50,85 Detalhes: Delicia da serra
 ==> Nome: Sven Gudmar Svenson Gasto: R$45,77 Detalhes: Delicia da serra
 ===== Resumo de transacoes =====
-Lucro total:R$11688,09
+Lucro total:R$11688,10
 Total de transacoes:21
 Lucro medio por transacao: R$556,58

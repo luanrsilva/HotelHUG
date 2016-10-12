@@ -47,8 +47,6 @@ public class Facade {
 		} catch (ClassNotFoundException | IOException e) {
 			e.getMessage();
 		}
-		//this.hotelController.carregarObjetos();
-
 	}
 	
 	/**
@@ -234,6 +232,10 @@ public class Facade {
 		return this.hotelController.realizaPedido(email, itemMenu);
 	}
 	
+	public void salvaHospede(String email) {
+		this.hotelController.salvaHospede(email);
+	}
+	
 	public void fechaSistema(){
 		this.hotelController.salvarTexto();
 		try {
@@ -241,7 +243,6 @@ public class Facade {
 		} catch (IOException e) {
 			e.getMessage();
 		}
-		//this.hotelController.salvarObjetos();
 	}
 
 }

@@ -409,23 +409,11 @@ public class HotelController {
 		return info;
 	}
 	
-/*	private double arredondamento(double valor) {
-		double resultado = valor - (int) valor;
-		resultado *= 100;
-		if (resultado != (int) resultado) {
-			resultado = Math.ceil(resultado-1);
-		}
-		resultado /= 100;
-		valor = (int) valor + resultado;
+	private double arredondamento(double valor) {
+		valor *= 100;
+		valor = Math.ceil(valor);
+		valor /= 100;
 		return valor;
-	}
-*/
-	
-	private double arredondamento(double desconto) {
-		desconto *= 100;
-		desconto = Math.ceil(desconto);
-		desconto /= 100;
-		return desconto;
 	}
 	
 	/**
@@ -444,6 +432,7 @@ public class HotelController {
 			double total = 0.0;
 			DecimalFormat df = new DecimalFormat("#0.00");
 			total = this.totalTransacoes();
+			total = this.arredondamento(total);
 			info += "R$" + df.format(total);
 			info = info.replace('.', ',');
 			break;
@@ -594,8 +583,13 @@ public class HotelController {
 		sb.append(this.imprimirTransacoes() + FIM_DE_LINHA);
 		return sb.toString();
 	}
-	/*public void salvaHospede(String email) throws ConsultaException, IOException{
-		Hospede buscado = buscaHospede(email);
-		buscado.salvaHospede();
-	}*/
+
+	public void salvaHospede(String email) {
+		try {
+			Hospede buscado = buscaHospede(email);
+			this.bd.salvaTexto(buscado.toString(), "arquivos_sistemas/relatorios/cad_hospedes.txt");
+		} catch (ConsultaException | IOException e) {
+			e.getMessage();
+		}
+	}
 }
