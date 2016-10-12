@@ -24,9 +24,9 @@ import restaurante.Refeicao;
 
 public class BancoDeDados {
 	public void salvaTexto(String texto, String path) throws IOException {
-		FileWriter fw = new FileWriter(path, true);
+		FileWriter fw = new FileWriter(path);
 		BufferedWriter bw = new BufferedWriter(fw);
-		bw.append(texto);
+		bw.write(texto);
 		bw.close();
 	}
 
