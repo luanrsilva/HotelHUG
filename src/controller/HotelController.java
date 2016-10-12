@@ -98,7 +98,7 @@ public class HotelController {
 		Hospede hospede = this.buscaHospede(email);
 		hospede.getCartao().setPontos(hospede.getCartao().getPontos() - qtdPontos);
 		
-		return this.formataValor(hospede.getCartao().getPontos());
+		return this.formataValor(hospede.getCartao().pagaDividasGastos(qtdPontos));
 		
 	}
 

@@ -26,7 +26,7 @@ public class Cartao {
 		int pontos = 0;
 		int adicional = 0; 
  		if (valorGasto > 100) {
- 			adicional += (int) ((valorGasto/100) * tipoCartao.adicionalBonus());			
+ 			adicional += (int) ((int)(valorGasto/100) * tipoCartao.adicionalBonus());			
 		}
 		pontos += (valorGasto * tipoCartao.bonus()) + adicional;
 		
