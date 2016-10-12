@@ -386,6 +386,7 @@ public class HotelController {
 			Hospede hospede = buscaHospede(email);
 			double valor = hospede.estadiaQuarto(quarto);
 			double valorComDesconto = hospede.getCartao().aplicaDescontoGastos(valor);
+			valor = this.arredondamento(valor);
 			Transacao transacao = new Transacao(hospede.getNome(), valorComDesconto, quarto);
 			transacoes.add(transacao);
 			hospede.desativaEstadia(quarto);
@@ -408,7 +409,7 @@ public class HotelController {
 		return info;
 	}
 	
-	private double arredondamento(double valor) {
+/*	private double arredondamento(double valor) {
 		double resultado = valor - (int) valor;
 		resultado *= 100;
 		if (resultado != (int) resultado) {
@@ -418,7 +419,15 @@ public class HotelController {
 		valor = (int) valor + resultado;
 		return valor;
 	}
-
+*/
+	
+	private double arredondamento(double desconto) {
+		desconto *= 100;
+		desconto = Math.ceil(desconto);
+		desconto /= 100;
+		return desconto;
+	}
+	
 	/**
 	 * Metodo que informa dados sobre o atributo passado a respeito da quantidade de checkouts realizados,
 	 * a respeito do valor de todos os checkouts realizados e dos nomes dos hospedes que fizeram checkout.
