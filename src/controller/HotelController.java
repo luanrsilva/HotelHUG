@@ -35,7 +35,9 @@ import util.BancoDeDados;
 import util.ValidacaoDeDados;
 
 /**
- * Classe responsavel controlar tudo o que acontece com o hospedes e suas estadias.
+ * Classe responsavel controlar tudo o que acontece com o hospedes e suas
+ * estadias.
+ * 
  * @author Ariann Farias, Luan Rocha, Nilton Ginani, Yovany Cunha - Turma 03
  *
  */
@@ -47,7 +49,7 @@ public class HotelController {
 	private RestauranteController restauranteController;
 	private BancoDeDados bd;
 	private String FIM_DE_LINHA;
-	
+
 	public HotelController() {
 		this.hospedes = new HashMap<String, Hospede>();
 		this.validacao = new ValidacaoDeDados();
@@ -56,8 +58,10 @@ public class HotelController {
 		this.bd = new BancoDeDados();
 		this.FIM_DE_LINHA = System.lineSeparator();
 	}
-	
-	/** Metodo para salvar os objetos do programa em formato toString em arquivos.
+
+	/**
+	 * Metodo para salvar os objetos do programa em formato toString em
+	 * arquivos.
 	 * 
 	 */
 	public void salvarTexto() {
@@ -69,10 +73,11 @@ public class HotelController {
 		} catch (IOException e) {
 			e.getMessage();
 		}
-		
+
 	}
 
-	/**Metodo para ler os objetos do programa em formato toString em arquivos.
+	/**
+	 * Metodo para ler os objetos do programa em formato toString em arquivos.
 	 * 
 	 */
 	public void carregarTexto() {
@@ -85,28 +90,32 @@ public class HotelController {
 			e.getMessage();
 		}
 	}
-	
+
 	/**
-	 * Metodo que calcula o valor a ser pago pela conversao de uma quantidade de pontos de fidelidade
-	 * passado como parametro, dependendo do tipo de cartao que o hospede possui, seja VIP, Padrao ou Premium.
+	 * Metodo que calcula o valor a ser pago pela conversao de uma quantidade de
+	 * pontos de fidelidade passado como parametro, dependendo do tipo de cartao
+	 * que o hospede possui, seja VIP, Padrao ou Premium.
+	 * 
 	 * @param email
 	 * @param qtdPontos
 	 * @return retorna uma String com o valor a ser descontado dos pontos.
 	 * @throws ConsultaException
 	 */
-	public String convertePontos(String email,int qtdPontos) throws ConsultaException {
+	public String convertePontos(String email, int qtdPontos) throws ConsultaException {
 		Hospede hospede = this.buscaHospede(email);
 		double valor = hospede.getCartao().pagaDividasGastos(qtdPontos);
 		String info = this.formataValor(valor);
 		hospede.getCartao().setPontos(hospede.getCartao().getPontos() - qtdPontos);
-		
+
 		return info;
-		
+
 	}
 
 	/**
-	 * Metodo que adiciona o hospede novo no mapa de hospedes, passa seus parametros por
-	 * uma serie de verificacoes que examinam se os dados passados estao corretos.
+	 * Metodo que adiciona o hospede novo no mapa de hospedes, passa seus
+	 * parametros por uma serie de verificacoes que examinam se os dados
+	 * passados estao corretos.
+	 * 
 	 * @param nome
 	 * @param email
 	 * @param nascimento
@@ -136,10 +145,13 @@ public class HotelController {
 	}
 
 	/**
-	 * Metodo que remove o hospede do mapa de hospedes, passa seus parametros por
-	 * uma serie de verificacoes que examinam se os dados passados estao corretos.
+	 * Metodo que remove o hospede do mapa de hospedes, passa seus parametros
+	 * por uma serie de verificacoes que examinam se os dados passados estao
+	 * corretos.
+	 * 
 	 * @param email
-	 * @return retorna um booleano true para o caso da remocao do hospede e outro false para a nao remocao.
+	 * @return retorna um booleano true para o caso da remocao do hospede e
+	 *         outro false para a nao remocao.
 	 * @throws BuscaHospedeException
 	 * @throws RemocaoHospedeException
 	 */
@@ -163,8 +175,10 @@ public class HotelController {
 	}
 
 	/**
-	 * Metodo que modifica um dos atributos do hospede, dependendo da necessidade do usuario, passa seus parametros por
-	 * uma serie de verificacoes que examinam se os dados passados estao corretos.
+	 * Metodo que modifica um dos atributos do hospede, dependendo da
+	 * necessidade do usuario, passa seus parametros por uma serie de
+	 * verificacoes que examinam se os dados passados estao corretos.
+	 * 
 	 * @param email
 	 * @param atributo
 	 * @param valor
@@ -207,8 +221,10 @@ public class HotelController {
 	}
 
 	/**
-	 * Metodo que informa ao usuario um dado do hospede solicitada, passado como atrubuto, passa seus parametros por
-	 * uma serie de verificacoes que examinam se os dados passados estao corretos.
+	 * Metodo que informa ao usuario um dado do hospede solicitada, passado como
+	 * atrubuto, passa seus parametros por uma serie de verificacoes que
+	 * examinam se os dados passados estao corretos.
+	 * 
 	 * @param email
 	 * @param atributo
 	 * @return retorna uma string contendo a informacao sobre o hospede.
@@ -220,7 +236,7 @@ public class HotelController {
 
 		try {
 			Hospede hospede = buscaHospede(email);
-			
+
 			switch (atributo.toUpperCase()) {
 			case "NOME":
 				info += hospede.getNome();
@@ -242,12 +258,13 @@ public class HotelController {
 	}
 
 	/**
-	 * Metodo que busca o hospede a partir de seu email. 
+	 * Metodo que busca o hospede a partir de seu email.
+	 * 
 	 * @param email
 	 * @return retorna um Hospede
 	 * @throws ConsultaException
 	 */
-	public Hospede buscaHospede(String email) throws ConsultaException{
+	public Hospede buscaHospede(String email) throws ConsultaException {
 		if (hospedes.containsKey(email)) {
 			return hospedes.get(email);
 		} else {
@@ -257,9 +274,12 @@ public class HotelController {
 	}
 
 	/**
-	 * Metodo que verifica se algum hospede possui o quarto com o respectivo ID em suas estadias.
+	 * Metodo que verifica se algum hospede possui o quarto com o respectivo ID
+	 * em suas estadias.
+	 * 
 	 * @param quartoId
-	 * @return retorna um booleano true para o caso de possuir o quarto e false caso contrario.
+	 * @return retorna um booleano true para o caso de possuir o quarto e false
+	 *         caso contrario.
 	 */
 	private boolean verificaQuarto(String quartoId) {
 		for (Hospede hospede : this.hospedes.values()) {
@@ -271,8 +291,10 @@ public class HotelController {
 	}
 
 	/**
-	 * Metodo que realiza o checkin do hospede no hotel e ainda cria uma estadia associada ao hospede, passa seus parametros por
-	 * uma serie de verificacoes que examinam se os dados passados estao corretos.
+	 * Metodo que realiza o checkin do hospede no hotel e ainda cria uma estadia
+	 * associada ao hospede, passa seus parametros por uma serie de verificacoes
+	 * que examinam se os dados passados estao corretos.
+	 * 
 	 * @param email
 	 * @param dias
 	 * @param quarto
@@ -290,40 +312,42 @@ public class HotelController {
 			validacao.verificaQuartoIDValido(quarto);
 			validacao.verificaDiasValidos(dias);
 			verificaQuartoOcupado(quarto);
-			
-			
+
 			Hospede hospede = buscaHospede(email);
-			
+
 			if (!verificaQuarto(quarto)) {
 				hospede.criaEstadia(dias, quarto, tipoQuarto);
 			}
 		} catch (ConsultaException bh) {
 			throw new CheckinException(bh.getMessage());
 		} catch (StringInvalidaException si) {
-			throw new CheckinException(si.getMessage()); 
+			throw new CheckinException(si.getMessage());
 		} catch (EmailInvalidoException ei) {
 			throw new CheckinException(ei.getMessage());
 		} catch (DadoInvalidoException de) {
 			throw new CheckinException(de.getMessage());
 		}
-		
+
 	}
 
 	/**
-	 * Metodo que verifica se o quarto de respectivo ID esta sendo utilizado, no caso associado a algum hospede.
+	 * Metodo que verifica se o quarto de respectivo ID esta sendo utilizado, no
+	 * caso associado a algum hospede.
+	 * 
 	 * @param quarto
 	 * @throws StringInvalidaException
 	 */
-	private void verificaQuartoOcupado(String quarto)
-			throws StringInvalidaException {
+	private void verificaQuartoOcupado(String quarto) throws StringInvalidaException {
 		if (verificaQuarto(quarto)) {
 			throw new StringInvalidaException("Quarto " + quarto + " ja esta ocupado.");
 		}
 	}
 
 	/**
-	 * Metodo que informa ao usuario um dado passado como atributo a respeito da hospedagem do hospede, passa seus parametros por
-	 * uma serie de verificacoes que examinam se os dados passados estao corretos.
+	 * Metodo que informa ao usuario um dado passado como atributo a respeito da
+	 * hospedagem do hospede, passa seus parametros por uma serie de
+	 * verificacoes que examinam se os dados passados estao corretos.
+	 * 
 	 * @param email
 	 * @param atributo
 	 * @return retorna uma string contendo a informacao solicitada.
@@ -331,18 +355,19 @@ public class HotelController {
 	 * @throws HospedagemException
 	 * @throws ChecarHospedagemException
 	 */
-	public String getInfoHospedagem(String email, String atributo) throws ConsultaException, HospedagemException, ChecarHospedagemException   {
+	public String getInfoHospedagem(String email, String atributo)
+			throws ConsultaException, HospedagemException, ChecarHospedagemException {
 		try {
 			validacao.verificaEmail(email);
 			validacao.verificaEmailInvalidoCadastro(email);
-			
+
 			Hospede hospede = buscaHospede(email);
-			
-			if (hospede.getEstadias().size() == 0){
+
+			if (hospede.getEstadias().size() == 0) {
 				throw new HospedagemException(hospede.getNome());
 
 			}
-				
+
 			String info = "";
 			switch (atributo.toUpperCase()) {
 			case "HOSPEDAGENS ATIVAS":
@@ -351,36 +376,41 @@ public class HotelController {
 			case "QUARTO":
 				ArrayList<Estadia> estadias = hospede.getEstadias();
 				info += estadias.get(0).getQuarto().getId();
-				
+
 				for (int i = 1; i < estadias.size(); i++) {
 					info += "," + estadias.get(i).getQuarto().getId();
 				}
-				
+
 				break;
 			case "TOTAL":
 				info += "R$" + (int) hospede.totalPagar() + ",00";
 				break;
 			}
-			
+
 			return info;
 		} catch (StringInvalidaException e) {
 			throw new ChecarHospedagemException(e.getMessage());
 		} catch (EmailInvalidoException e) {
 			throw new ChecarHospedagemException(e.getMessage());
-		} 
+		}
 	}
 
 	/**
-	 * Metodo que realiza o checkout do hospede no hotel removendo-o das suas estadias e adicionando na lista de checkouts,
-	 * passa seus parametros por uma serie de verificacoes que examinam se os dados passados estao corretos.
+	 * Metodo que realiza o checkout do hospede no hotel removendo-o das suas
+	 * estadias e adicionando na lista de checkouts, passa seus parametros por
+	 * uma serie de verificacoes que examinam se os dados passados estao
+	 * corretos.
+	 * 
 	 * @param email
 	 * @param quarto
-	 * @return retorna uma string contendo informacoes a respeito do valor a ser pago pelas estadias.
+	 * @return retorna uma string contendo informacoes a respeito do valor a ser
+	 *         pago pelas estadias.
 	 * @throws BuscaHospedeException
 	 * @throws CheckoutException
 	 * @throws ConsultaException
 	 */
-	public String realizaCheckout(String email, String quarto) throws BuscaHospedeException, CheckoutException, ConsultaException {
+	public String realizaCheckout(String email, String quarto)
+			throws BuscaHospedeException, CheckoutException, ConsultaException {
 		try {
 			validacao.verificaEmail(email);
 			validacao.verificaEmailInvalidoCadastro(email);
@@ -388,7 +418,6 @@ public class HotelController {
 			Hospede hospede = buscaHospede(email);
 			double valor = hospede.estadiaQuarto(quarto);
 			double valorComDesconto = hospede.getCartao().aplicaDescontoGastos(valor);
-			valor = this.arredondamento(valor);
 			Transacao transacao = new Transacao(hospede.getNome(), valorComDesconto, quarto);
 			transacoes.add(transacao);
 			hospede.desativaEstadia(quarto);
@@ -400,7 +429,7 @@ public class HotelController {
 		} catch (EmailInvalidoException e) {
 			throw new CheckoutException(e.getMessage());
 		}
-		
+
 	}
 
 	private String formataValor(double valor) {
@@ -410,17 +439,12 @@ public class HotelController {
 		info = info.replace('.', ',');
 		return info;
 	}
-	
-	private double arredondamento(double valor) {
-		valor *= 100;
-		valor = Math.ceil(valor);
-		valor /= 100;
-		return valor;
-	}
-	
+
 	/**
-	 * Metodo que informa dados sobre o atributo passado a respeito da quantidade de checkouts realizados,
-	 * a respeito do valor de todos os checkouts realizados e dos nomes dos hospedes que fizeram checkout.
+	 * Metodo que informa dados sobre o atributo passado a respeito da
+	 * quantidade de checkouts realizados, a respeito do valor de todos os
+	 * checkouts realizados e dos nomes dos hospedes que fizeram checkout.
+	 * 
 	 * @param atributo
 	 * @return retorna uma string contendo as informacoes requeridas.
 	 */
@@ -448,9 +472,11 @@ public class HotelController {
 	}
 
 	/**
-	 * Metodo que informa o valor total de um checkout realizado ou o nome de um hospede da lista de checkout, tudo
-	 * isso a partir do indice informado, passa seus parametros por uma serie de verificacoes que examinam se os dados
-	 * passados estao corretos.
+	 * Metodo que informa o valor total de um checkout realizado ou o nome de um
+	 * hospede da lista de checkout, tudo isso a partir do indice informado,
+	 * passa seus parametros por uma serie de verificacoes que examinam se os
+	 * dados passados estao corretos.
+	 * 
 	 * @param atributo
 	 * @param indice
 	 * @return retorna uma string contendo as informacoes requeridas.
@@ -462,9 +488,8 @@ public class HotelController {
 			validacao.verificaIndiceValido(indice);
 			switch (atributo.toUpperCase()) {
 			case "TOTAL":
-				double total = 0.0;
 				DecimalFormat df = new DecimalFormat("#0.00");
-				info += "R$" + df.format( transacoes.get(indice).getValor());
+				info += "R$" + df.format(transacoes.get(indice).getValor());
 				info = info.replace('.', ',');
 				break;
 			case "NOME":
@@ -478,56 +503,63 @@ public class HotelController {
 		}
 		return info;
 	}
-	
+
 	private double totalTransacoes() {
 		double valor = 0.0;
-		for(Transacao transacao : transacoes) {
+		for (Transacao transacao : transacoes) {
 			valor += transacao.getValor();
 		}
-		
+
 		return valor;
 	}
-	
-	public String realizaPedido(String email, String nomeRefeicao) throws ConsultaException, ConsultaRestauranteException, DadoInvalidoException{
+
+	public String realizaPedido(String email, String nomeRefeicao)
+			throws ConsultaException, ConsultaRestauranteException, DadoInvalidoException {
 		Hospede hospede = this.buscaHospede(email);
 		double valor = restauranteController.realizaPedido(hospede.getNome(), nomeRefeicao);
 		double valorComDesconto = hospede.getCartao().aplicaDescontoGastos(valor);
-		valorComDesconto = this.arredondamento(valorComDesconto);
-		Transacao transacao = new Transacao (hospede.getNome(), valorComDesconto, nomeRefeicao);
+
+		Transacao transacao = new Transacao(hospede.getNome(), valorComDesconto, nomeRefeicao);
 		transacoes.add(transacao);
 		hospede.getCartao().adicionaPontos(valor);
 		return this.consultaTransacoes("TOTAL", (transacoes.size() - 1));
 	}
-	
+
 	/**
 	 * Metodo que delega o cadastro de pratos para o restauranteController.
+	 * 
 	 * @param nome
 	 * @param preco
 	 * @param descricao
 	 * @throws CadastraPratoException
 	 * @throws StringInvalidaException
 	 */
-	public void cadastraPrato(String nome, double preco, String descricao) throws CadastraPratoException, StringInvalidaException{
+	public void cadastraPrato(String nome, double preco, String descricao)
+			throws CadastraPratoException, StringInvalidaException {
 		restauranteController.cadastraPrato(nome, preco, descricao);
 	}
-	
+
 	/**
-	 * Metodo que delega a consulta de informacoes de refeicoes para o restauranteController.
+	 * Metodo que delega a consulta de informacoes de refeicoes para o
+	 * restauranteController.
+	 * 
 	 * @param nome
 	 * @param atributo
-	 * @return Retorna uma String, contendo uma informacao a partir do preco ou da descricao da refeicao.
+	 * @return Retorna uma String, contendo uma informacao a partir do preco ou
+	 *         da descricao da refeicao.
 	 * @throws ConsultaRestauranteException
 	 */
-	public String consultaRestaurante(String nome, String atributo) throws ConsultaRestauranteException{
+	public String consultaRestaurante(String nome, String atributo) throws ConsultaRestauranteException {
 		return restauranteController.consultaRestaurante(nome, atributo);
 	}
-	
-	public String consultaMenuRestaurante(){
+
+	public String consultaMenuRestaurante() {
 		return this.restauranteController.consultaMenuRestaurante();
 	}
-	
+
 	/**
 	 * Metodo que delega o cadastro de refeicoes para o restauranteController.
+	 * 
 	 * @param nome
 	 * @param descricao
 	 * @param componentes
@@ -535,11 +567,12 @@ public class HotelController {
 	 * @throws CadastraRefeicaoException
 	 * @throws CadastraRefeicaoCompletaException
 	 */
-	public void cadastraRefeicao(String nome, String descricao, String componentes) throws StringInvalidaException, CadastraRefeicaoException, CadastraRefeicaoCompletaException{
-		restauranteController.cadastraRefeicao(nome,descricao, componentes);
+	public void cadastraRefeicao(String nome, String descricao, String componentes)
+			throws StringInvalidaException, CadastraRefeicaoException, CadastraRefeicaoCompletaException {
+		restauranteController.cadastraRefeicao(nome, descricao, componentes);
 	}
-	
-	public void ordenaMenu(String tipoOrdenacao){
+
+	public void ordenaMenu(String tipoOrdenacao) {
 		this.restauranteController.ordenaMenu(tipoOrdenacao);
 	}
 
@@ -555,11 +588,11 @@ public class HotelController {
 		}
 		return sb.toString();
 	}
-	
-	public String imprimirCardapio(){
+
+	public String imprimirCardapio() {
 		return this.restauranteController.imprimirCardipio();
 	}
-	
+
 	public String imprimirTransacoes() {
 		StringBuilder sb = new StringBuilder();
 		sb.append("Historico de Transacoes:" + FIM_DE_LINHA);
@@ -569,11 +602,11 @@ public class HotelController {
 		sb.append("===== Resumo de transacoes =====" + FIM_DE_LINHA);
 		sb.append("Lucro total:" + this.consultaTransacoes("TOTAL") + FIM_DE_LINHA);
 		sb.append("Total de transacoes:" + this.consultaTransacoes("QUANTIDADE") + FIM_DE_LINHA);
-		double valor = this.totalTransacoes() / Integer.parseInt(this.consultaTransacoes("QUANTIDADE")); 
+		double valor = this.totalTransacoes() / Integer.parseInt(this.consultaTransacoes("QUANTIDADE"));
 		sb.append("Lucro medio por transacao: " + this.formataValor(valor));
 		return sb.toString();
 	}
-	
+
 	public String relatorioHotel() {
 		StringBuilder sb = new StringBuilder();
 		sb.append("======================================================" + FIM_DE_LINHA);

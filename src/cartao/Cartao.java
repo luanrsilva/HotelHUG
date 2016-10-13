@@ -39,9 +39,8 @@ public class Cartao {
 	
 	public double aplicaDescontoGastos(double valorGasto){
 		
-		double valorFinal = tipoCartao.desconto(valorGasto);
-		BigDecimal arredondado =  new BigDecimal(valorFinal).setScale(2, RoundingMode.HALF_UP);
-		return arredondado.doubleValue();
+		double valorFinal = tipoCartao.desconto(valorGasto);		
+		return valorFinal;
 	}
 	
 	public double pagaDividasGastos(double pontos){

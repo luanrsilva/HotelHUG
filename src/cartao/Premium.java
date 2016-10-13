@@ -37,8 +37,7 @@ public class Premium implements TipoDeCartaoIF{
 		double valorConvertido = TAXA_CONVERTE_FIDELIDADE * qtdPontos;
 		double adicional = ((int)(qtdPontos/10)) * TAXA_CONVERTE_FIDELIDADE_BONUS;
 		double valorFinal = valorConvertido + adicional;
-		BigDecimal arredondado =  new BigDecimal(valorFinal).setScale(2, RoundingMode.HALF_UP);
-		return arredondado.doubleValue();
+		return valorFinal;
 	}
 
 }
