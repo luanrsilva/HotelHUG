@@ -19,7 +19,7 @@ public class Vip implements TipoDeCartaoIF{
 			adicional = (int) ((valorGasto/100)* ADICIONAL_VIP);
 		}
 		desconto =  desconto - adicional;
-		BigDecimal arredondado =  new BigDecimal(desconto).setScale(2, RoundingMode.UP);
+		BigDecimal arredondado =  new BigDecimal(desconto).setScale(2, RoundingMode.HALF_UP);
 		return arredondado.doubleValue();
 	}
 

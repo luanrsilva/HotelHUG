@@ -1,6 +1,8 @@
 package controller;
 
 import java.io.IOException;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -418,6 +420,7 @@ public class HotelController {
 			Hospede hospede = buscaHospede(email);
 			double valor = hospede.estadiaQuarto(quarto);
 			double valorComDesconto = hospede.getCartao().aplicaDescontoGastos(valor);
+			//valorComDesconto =  this.arredondamento(valorComDesconto);
 			Transacao transacao = new Transacao(hospede.getNome(), valorComDesconto, quarto);
 			transacoes.add(transacao);
 			hospede.desativaEstadia(quarto);
@@ -439,6 +442,18 @@ public class HotelController {
 		info = info.replace('.', ',');
 		return info;
 	}
+
+	/*private double arredondamento(double valor) {
+		
+		//BigDecimal arredondado =  new BigDecimal(valor).setScale(2, RoundingMode.HALF_UP);
+		//return arredondado.doubleValue();
+		
+		
+		valor *= 100;
+		valor = Math.ceil(valor);
+		valor /= 100;
+		return valor;
+	}*/
 
 	/**
 	 * Metodo que informa dados sobre o atributo passado a respeito da
@@ -518,11 +533,11 @@ public class HotelController {
 		Hospede hospede = this.buscaHospede(email);
 		double valor = restauranteController.realizaPedido(hospede.getNome(), nomeRefeicao);
 		double valorComDesconto = hospede.getCartao().aplicaDescontoGastos(valor);
-
+		//valorComDesconto = this.arredondamento(valorComDesconto);
 		Transacao transacao = new Transacao(hospede.getNome(), valorComDesconto, nomeRefeicao);
 		transacoes.add(transacao);
 		hospede.getCartao().adicionaPontos(valor);
-		return this.consultaTransacoes("TOTAL", (transacoes.size() - 1));
+		return formataValor(valorComDesconto);
 	}
 
 	/**
