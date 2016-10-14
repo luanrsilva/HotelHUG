@@ -24,7 +24,7 @@ import restaurante.Refeicao;
 
 /**
  * Classe reponsavel pela logica do uso de arquivos
- * @author ariann
+ * @author Ariann Farias, Luan Rocha, Nilton Ginani, Yovany Cunha - Turma 03
  *
  */
 public class BancoDeDados {

@@ -54,6 +54,9 @@ public class Transacao implements Serializable{
 		return info;
 	}
 	
+	/** Representacao da classe em forma de String
+	 * 
+	 */
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		String FIM_DE_LINHA = System.lineSeparator();

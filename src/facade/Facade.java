@@ -39,7 +39,11 @@ public class Facade {
 		hotelController = new HotelController();
 		bd = new BancoDeDados();
 	}
-
+	
+	/**
+	 * Metodo que inicializa o sistema lendo o objeto
+	 * no arquivo e definindo como atual
+	 */
 	public void iniciaSistema() {
 		try {
 			this.bd.leHotelController();
@@ -223,22 +227,50 @@ public class Facade {
 		hotelController.cadastraRefeicao(nome,descricao, componentes);
 	}
 	
+	/**
+	 * Metodo que delega a funcao de ordenar o cardapio do restaurante
+	 * @param tipoOrdenacao
+	 */
 	public void ordenaMenu(String tipoOrdenacao){
 		this.hotelController.ordenaMenu(tipoOrdenacao);
 	}
 	
+	/**
+	 * Metodo que delega a realizacao de um pedido feito pelo hospede
+	 * @param email
+	 * @param itemMenu
+	 * @return
+	 * @throws ConsultaException
+	 * @throws ConsultaRestauranteException
+	 * @throws DadoInvalidoException
+	 */
 	public String realizaPedido(String email, String itemMenu) throws ConsultaException, ConsultaRestauranteException, DadoInvalidoException{
 		return this.hotelController.realizaPedido(email, itemMenu);
 	}
 	
+	/**
+	 * Metodo que delega a funcao de salvar a representacao String de um hospede
+	 * em um arquivo texto
+	 * @param email
+	 */
 	public void salvaHospede(String email) {
 		this.hotelController.salvaHospede(email);
 	}
 	
+	/**
+	 * Metodo que delega a funcao de gerar um relatorio passando como paramentro
+	 * o tipo de relatorio desejado
+	 * @param tipo
+	 */
 	public void geraRelatorio(String tipo) {
 		this.hotelController.geraRelatorio(tipo);
 	}
 	
+	/**
+	 * Metodo utilizado para finalizar o sistema e desta maneira
+	 * salvando em um arquivo o objeto criado, criando a persistencia 
+	 * do arquivo
+	 */
 	public void fechaSistema(){
 		try {
 			this.bd.salvaHotelController(this.hotelController);

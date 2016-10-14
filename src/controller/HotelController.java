@@ -480,7 +480,11 @@ public class HotelController {
 		}
 		return info;
 	}
-
+	
+	/**
+	 * Metodo para retorna o valor total das transacoes
+	 * @return
+	 */
 	private double totalTransacoes() {
 		double valor = 0.0;
 		for (Transacao transacao : transacoes) {
@@ -490,6 +494,16 @@ public class HotelController {
 		return valor;
 	}
 
+	/**
+	 * Metodo para o hospede fazer o pedido de uma refeicao, tendo em consideracao dos calculos
+	 * o cartao e gerando uma transacao
+	 * @param email
+	 * @param nomeRefeicao
+	 * @return
+	 * @throws ConsultaException
+	 * @throws ConsultaRestauranteException
+	 * @throws DadoInvalidoException
+	 */
 	public String realizaPedido(String email, String nomeRefeicao)
 			throws ConsultaException, ConsultaRestauranteException, DadoInvalidoException {
 		Hospede hospede = this.buscaHospede(email);
@@ -548,10 +562,18 @@ public class HotelController {
 		restauranteController.cadastraRefeicao(nome, descricao, componentes);
 	}
 
+	/**
+	 * Metodo que delega a ordenacao do menu para o restaurante
+	 * @param tipoOrdenacao
+	 */
 	public void ordenaMenu(String tipoOrdenacao) {
 		this.restauranteController.ordenaMenu(tipoOrdenacao);
 	}
 
+	/**
+	 * Metodo para gerar o relatorio no formato String de hospedes que o hotel possui
+	 * @return
+	 */
 	public String imprimirHospedes() {
 		int contador = 1;
 		StringBuilder sb = new StringBuilder();
@@ -565,10 +587,19 @@ public class HotelController {
 		return sb.toString();
 	}
 
+	/**
+	 * Metodo que gera o relatorio no formato String das refeicoes presentes no cardapio
+	 * delegando para o restaurante
+	 * @return
+	 */
 	public String imprimirCardapio() {
 		return this.restauranteController.imprimirCardipio();
 	}
 
+	/**
+	 * Metodo para gerar o relatorio no formato String das transacoes presente no hotel
+	 * @return
+	 */
 	public String imprimirTransacoes() {
 		StringBuilder sb = new StringBuilder();
 		sb.append("Historico de Transacoes:" + FIM_DE_LINHA);
@@ -583,6 +614,11 @@ public class HotelController {
 		return sb.toString();
 	}
 
+	/**
+	 * Metodo que utiliza dos relatorios gerados internamente para gerar 
+	 * um relatorio geral do hotel
+	 * @return
+	 */
 	public String relatorioHotel() {
 		StringBuilder sb = new StringBuilder();
 		sb.append("======================================================" + FIM_DE_LINHA);
@@ -594,6 +630,10 @@ public class HotelController {
 		return sb.toString();
 	}
 
+	/**
+	 * Metodo que escreve a representacao String de hospede em um arquivo texto
+	 * @param email
+	 */
 	public void salvaHospede(String email) {
 		try {
 			Hospede buscado = buscaHospede(email);
@@ -602,7 +642,12 @@ public class HotelController {
 			e.getMessage();
 		}
 	}
-
+	
+	/**
+	 * Metodo que utiliza dos relatorios gerados internamente pelo sistema e os escreve no formato String
+	 * em um arquivo texto
+	 * @param tipo
+	 */
 	public void geraRelatorio(String tipo) {
 		if (tipo.equalsIgnoreCase("Hospede")){
 			try {
