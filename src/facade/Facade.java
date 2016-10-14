@@ -41,7 +41,6 @@ public class Facade {
 	}
 
 	public void iniciaSistema() {
-		this.hotelController.carregarTexto();
 		try {
 			this.bd.leHotelController();
 		} catch (ClassNotFoundException | IOException e) {
@@ -236,8 +235,11 @@ public class Facade {
 		this.hotelController.salvaHospede(email);
 	}
 	
+	public void geraRelatorio(String tipo) {
+		this.hotelController.geraRelatorio(tipo);
+	}
+	
 	public void fechaSistema(){
-		this.hotelController.salvarTexto();
 		try {
 			this.bd.salvaHotelController(this.hotelController);
 		} catch (IOException e) {

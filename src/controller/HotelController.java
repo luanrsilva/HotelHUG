@@ -62,38 +62,6 @@ public class HotelController {
 	}
 
 	/**
-	 * Metodo para salvar os objetos do programa em formato toString em
-	 * arquivos.
-	 * 
-	 */
-	public void salvarTexto() {
-		try {
-			this.bd.salvaTexto(this.imprimirHospedes(), "arquivos_sistemas/relatorios/cad_hospedes.txt");
-			this.bd.salvaTexto(this.imprimirCardapio(), "arquivos_sistemas/relatorios/cad_restaurante.txt");
-			this.bd.salvaTexto(this.imprimirTransacoes(), "arquivos_sistemas/relatorios/cad_transacoes.txt");
-			this.bd.salvaTexto(this.relatorioHotel(), "arquivos_sistemas/relatorios/hotel_principal.txt");
-		} catch (IOException e) {
-			e.getMessage();
-		}
-
-	}
-
-	/**
-	 * Metodo para ler os objetos do programa em formato toString em arquivos.
-	 * 
-	 */
-	public void carregarTexto() {
-		try {
-			this.bd.carregaTexto("arquivos_sistemas/relatorios/cad_hospedes.txt");
-			this.bd.carregaTexto("arquivos_sistemas/relatorios/cad_restaurante.txt");
-			this.bd.carregaTexto("arquivos_sistemas/relatorios/cad_transacoes.txt");
-			this.bd.carregaTexto("arquivos_sistemas/relatorios/hotel_principal.txt");
-		} catch (IOException e) {
-			e.getMessage();
-		}
-	}
-
-	/**
 	 * Metodo que calcula o valor a ser pago pela conversao de uma quantidade de
 	 * pontos de fidelidade passado como parametro, dependendo do tipo de cartao
 	 * que o hospede possui, seja VIP, Padrao ou Premium.
@@ -420,7 +388,6 @@ public class HotelController {
 			Hospede hospede = buscaHospede(email);
 			double valor = hospede.estadiaQuarto(quarto);
 			double valorComDesconto = hospede.getCartao().aplicaDescontoGastos(valor);
-			//valorComDesconto =  this.arredondamento(valorComDesconto);
 			Transacao transacao = new Transacao(hospede.getNome(), valorComDesconto, quarto);
 			transacoes.add(transacao);
 			hospede.desativaEstadia(quarto);
@@ -435,6 +402,12 @@ public class HotelController {
 
 	}
 
+	/**
+	 * Metodo que possui a funcao de receber um valor e retorna-lo em forma de String formatado 
+	 * afim de seguir os padroes dos testes
+	 * @param valor
+	 * @return
+	 */
 	private String formataValor(double valor) {
 		String info = "";
 		DecimalFormat df = new DecimalFormat("#0.00");
@@ -443,17 +416,6 @@ public class HotelController {
 		return info;
 	}
 
-	/*private double arredondamento(double valor) {
-		
-		//BigDecimal arredondado =  new BigDecimal(valor).setScale(2, RoundingMode.HALF_UP);
-		//return arredondado.doubleValue();
-		
-		
-		valor *= 100;
-		valor = Math.ceil(valor);
-		valor /= 100;
-		return valor;
-	}*/
 
 	/**
 	 * Metodo que informa dados sobre o atributo passado a respeito da
@@ -533,7 +495,6 @@ public class HotelController {
 		Hospede hospede = this.buscaHospede(email);
 		double valor = restauranteController.realizaPedido(hospede.getNome(), nomeRefeicao);
 		double valorComDesconto = hospede.getCartao().aplicaDescontoGastos(valor);
-		//valorComDesconto = this.arredondamento(valorComDesconto);
 		Transacao transacao = new Transacao(hospede.getNome(), valorComDesconto, nomeRefeicao);
 		transacoes.add(transacao);
 		hospede.getCartao().adicionaPontos(valor);
@@ -640,5 +601,34 @@ public class HotelController {
 		} catch (ConsultaException | IOException e) {
 			e.getMessage();
 		}
+	}
+
+	public void geraRelatorio(String tipo) {
+		if (tipo.equalsIgnoreCase("Hospede")){
+			try {
+				this.bd.salvaTexto(this.imprimirHospedes(), "arquivos_sistemas/relatorios/cad_hospedes.txt");
+			} catch (IOException e) {
+				e.getMessage();
+			}
+		} else if (tipo.equalsIgnoreCase("Restaurante")) {
+			try {
+				this.bd.salvaTexto(this.imprimirCardapio(), "arquivos_sistemas/relatorios/cad_restaurante.txt");
+			} catch (IOException e) {
+				e.getMessage();
+			}
+		} else if (tipo.equalsIgnoreCase("Transacao")) {
+			try {
+				this.bd.salvaTexto(this.imprimirTransacoes(), "arquivos_sistemas/relatorios/cad_transacoes.txt");
+			} catch (IOException e) {
+				e.getMessage();
+			}
+		} else {
+			try {
+				this.bd.salvaTexto(this.relatorioHotel(), "arquivos_sistemas/relatorios/hotel_principal.txt");
+			} catch (IOException e) {
+				e.getMessage();
+			}
+		}
+		
 	}
 }

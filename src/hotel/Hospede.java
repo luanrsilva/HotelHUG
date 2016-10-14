@@ -192,6 +192,14 @@ public class Hospede implements Serializable{
 	}
 
 	public String getDataNascimento() {
+		return dataNascimento;
+	}
+	
+	/**
+	 * Metodo para modificar a data, afim de seguir o padrao paro arquivo
+	 * @return
+	 */
+	public String getDataFormata() {
 		String[] data = this.dataNascimento.split("/");
 		String dataFormatada = "";
 		
@@ -199,7 +207,8 @@ public class Hospede implements Serializable{
 		String mes = data[1].trim();
 		String ano = data[2].trim();
 		
-		dataFormatada += dia + "/" + mes + "/" + ano;
+		dataFormatada += ano + "-" + mes + "-" + dia;
+		
 		return dataFormatada;
 	}
 
@@ -219,7 +228,7 @@ public class Hospede implements Serializable{
 		StringBuilder sb = new StringBuilder();
 		String FIM_DE_LINHA = System.lineSeparator();
 		sb.append("Email: " + this.getEmail() + FIM_DE_LINHA + "Nome: " + this.getNome() + FIM_DE_LINHA
-				+ "Data de nascimento: " + this.getDataNascimento());
+				+ "Data de nascimento: " + this.getDataFormata());
 		return sb.toString();
 	}
 }

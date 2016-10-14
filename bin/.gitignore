@@ -1,8 +1,5 @@
-/cartao/
-/controller/
-/exceptions/
 /facade/
+/controller/
+/cartao/
 /hotel/
-/restaurante/
-/testes/
 /util/
